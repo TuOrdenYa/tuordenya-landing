@@ -8,8 +8,8 @@
 
 /* Tema oscuro: se activa cuando <html> tiene class="dark" */
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: #020617; /* similar a bg-slate-950 */
+  --foreground: #e5e7eb; /* similar a text-slate-200 */
 }
 
 /* Integración con el sistema de tema de Next/Tailwind v4 */
