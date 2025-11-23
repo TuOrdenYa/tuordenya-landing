@@ -75,6 +75,7 @@ export default function LandingPro() {
 
       <main className="max-w-6xl mx-auto px-4">
         {/* HERO */}
+               {/* HERO */}
         <section className="py-12 sm:py-16 lg:py-20">
           <motion.div
             variants={staggerContainer}
@@ -82,122 +83,133 @@ export default function LandingPro() {
             animate="visible"
             className="grid lg:grid-cols-[1.2fr,1fr] gap-10 items-center"
           >
+            {/* Columna izquierda: mensaje principal */}
             <motion.div variants={fadeUp} className="space-y-5">
+              {/* Badge superior */}
               <span className="inline-flex items-center gap-2 rounded-full border border-[#FF6F3C] bg-[#FFD5C2] px-3 py-1 text-xs font-medium text-[#FF6F3C]">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#FF6F3C]" />
-                Versión Pro para restaurantes que ya crecieron
+                Empieza con Light, escala a Plus y Pro cuando crezcas
               </span>
 
+              {/* Título */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight">
-                Menús digitales y órdenes{" "}
+                Menús digitales y operación completa{" "}
                 <span className="text-[#FF6F3C]">
-                  pensados para tu operación real.
+                  para restaurantes de cualquier tamaño.
                 </span>
               </h1>
 
+              {/* Subtítulo */}
               <p className="text-sm sm:text-base text-slate-400 max-w-xl">
-                TuOrdenYa conecta menús con QR, pedidos, pagos y la operación de
-                tu restaurante en una sola plataforma. Comienza con Light y sube
-                a Plus o Pro cuando tu negocio lo necesite.
+                TuOrdenYa tiene tres niveles pensados para cada etapa de tu
+                negocio:{" "}
+                <strong>Light</strong> (menú + QR), <strong>Plus</strong>{" "}
+                (pedidos y reportes básicos) y <strong>Pro</strong> (operación
+                completa en salón y cocina). Empiezas donde estás y escalas
+                cuando lo necesites.
               </p>
 
+              {/* CTAs */}
               <div className="flex flex-wrap items-center gap-3">
                 <a
                   href="#contacto"
                   className="px-5 py-2.5 text-sm rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors"
                 >
-                  Agenda una demo
+                  Quiero mi menú digital (Light)
                 </a>
                 <a
-                  href="https://menu.tuordenya.com"
-                  target="_blank"
+                  href="#planes"
                   className="px-5 py-2.5 text-sm rounded-full border border-slate-700/70 hover:border-[#FF6F3C] hover:text-[#FF6F3C] transition-colors"
                 >
-                  Ver demo del menú digital
+                  Ver planes Light / Plus / Pro
                 </a>
-                <p className="text-xs text-slate-400">
-                  👉 Ideal para restaurantes en crecimiento, cadenas y dark
-                  kitchens.
-                </p>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 text-xs">
-                <div className="rounded-2xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
-                  <p className="text-slate-400">Implementación</p>
-                  <p className="font-semibold">En días, no en meses</p>
-                </div>
-                <div className="rounded-2xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
-                  <p className="text-slate-400">Pedidos</p>
-                  <p className="font-semibold">QR, WhatsApp y salón</p>
-                </div>
-                <div className="rounded-2xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
-                  <p className="text-slate-400">Escalabilidad</p>
-                  <p className="font-semibold">Light → Plus → Pro</p>
-                </div>
+              {/* Segmentos por tipo de restaurante */}
+              <div className="flex flex-wrap gap-2 pt-2 text-[11px] text-slate-400">
+                <span className="px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800/80">
+                  ☕ Cafeterías, food trucks y locales pequeños (Light)
+                </span>
+                <span className="px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800/80">
+                  🍽️ Restaurantes con salón y mayor volumen (Plus)
+                </span>
+                <span className="px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800/80">
+                  🏬 Cadenas y alta rotación / dark kitchens (Pro)
+                </span>
               </div>
             </motion.div>
 
-            {/* Tarjeta derecha */}
+            {/* Columna derecha: mini resumen de los 3 niveles */}
             <motion.div
               variants={fadeUp}
               className="rounded-3xl border border-slate-800/70 bg-gradient-to-br from-slate-900 to-slate-950 p-5 sm:p-6 flex flex-col gap-4 shadow-xl"
             >
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between mb-1">
                 <div>
-                  <p className="text-xs text-slate-400">
-                    Vista rápida de la operación
+                  <p className="text-xs text-slate-400">Suite TuOrdenYa</p>
+                  <p className="text-lg font-semibold">
+                    Elige el nivel para tu restaurante
                   </p>
-                  <p className="text-lg font-semibold">Hoy en tu restaurante</p>
                 </div>
-                <span className="text-xs rounded-full px-3 py-1 bg-[#FFD5C2] text-[#FF6F3C] border border-[#FF6F3C]">
-                  RestOrder Pro
+                <span className="text-[10px] rounded-full px-3 py-1 bg-slate-900/80 border border-slate-700/80 text-slate-300">
+                  Escalable por etapas
                 </span>
               </div>
 
               <div className="space-y-3 text-xs">
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Mesas activas</span>
-                  <span className="font-semibold">18</span>
+                {/* Light */}
+                <div className="rounded-2xl border border-[#FF6F3C] bg-[#FF6F3C1A] px-4 py-3">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-semibold">Light</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold">
+                      Punto de partida
+                    </span>
+                  </div>
+                  <p className="text-slate-200">
+                    Menú digital responsive, QR por local y botón de pedido por
+                    WhatsApp. Ideal para cafeterías, food trucks y negocios
+                    pequeños.
+                  </p>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Órdenes en curso</span>
-                  <span className="font-semibold">32</span>
+
+                {/* Plus */}
+                <div className="rounded-2xl border border-slate-800/80 bg-slate-900/80 px-4 py-3">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-semibold">Plus</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-200">
+                      Pedidos + reportes
+                    </span>
+                  </div>
+                  <p className="text-slate-400">
+                    Todo lo de Light, más registro de pedidos básicos y
+                    reportes sencillos para entender qué se vende y cuándo.
+                  </p>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Tiempo promedio</span>
-                  <span className="font-semibold">12 min</span>
+
+                {/* Pro */}
+                <div className="rounded-2xl border border-[#4A90E2] bg-[#4A90E21A] px-4 py-3">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-semibold">Pro</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#4A90E2] text-slate-50 font-semibold">
+                      Operación completa
+                    </span>
+                  </div>
+                  <p className="text-slate-200">
+                    Órdenes por mesa y canal, tiempos de cocina, cuentas y
+                    cierres. Pensado para restaurantes de alta rotación,
+                    cadenas y dark kitchens.
+                  </p>
                 </div>
               </div>
 
-              <div className="mt-2 h-px bg-slate-800/70" />
-
-              <div className="space-y-2 text-xs">
-                <p className="text-slate-400">Canales conectados</p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700/80">
-                    QR en mesas
-                  </span>
-                  <span className="px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700/80">
-                    WhatsApp
-                  </span>
-                  <span className="px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700/80">
-                    Delivery propio
-                  </span>
-                  <span className="px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700/80">
-                    Integraciones futuras
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-2 h-px bg-slate-800/70" />
-
-              <p className="text-xs text-slate-500">
-                *La vista es ilustrativa, pero representa el tipo de control que
-                tendrás con la versión Pro.
+              <p className="text-[11px] text-slate-500 pt-1">
+                Empiezas con el nivel que necesitas hoy y puedes migrar a Plus o
+                Pro sin cambiar de plataforma ni de menú.
               </p>
             </motion.div>
           </motion.div>
         </section>
+
 
         {/* SECCIÓN BENEFICIOS */}
         <section className="py-10 border-t border-slate-800/70">
