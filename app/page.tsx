@@ -38,7 +38,7 @@ export default function LandingPro() {
               </div>
               <div className="flex flex-col leading-tight">
                 
-                <span className="text-xs text-slate-400">
+                <span className="font-semibold text-sm sm:text-base">
                   Menús y órdenes para restaurantes
                 </span>
               </div>
