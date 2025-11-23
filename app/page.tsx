@@ -37,9 +37,7 @@ export default function LandingPro() {
                 />
               </div>
               <div className="flex flex-col leading-tight">
-                <span className="font-semibold text-sm sm:text-base">
-                  TuOrdenYa
-                </span>
+                
                 <span className="text-xs text-slate-400">
                   Menús y órdenes para restaurantes
                 </span>
