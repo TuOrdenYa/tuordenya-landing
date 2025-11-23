@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const fadeUp = {
@@ -23,10 +24,17 @@ export default function LandingPro() {
       <header className="border-b border-slate-800/80 sticky top-0 z-30 backdrop-blur bg-slate-950/90">
         <nav className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            {/* Logo: luego cambiamos por PNG real */}
+            {/* Logo TuOrdenYa */}
             <a href="/" className="flex items-center gap-2">
-              <div className="h-9 w-9 rounded-xl bg-emerald-500 flex items-center justify-center font-semibold text-slate-950">
-                TO
+              <div className="flex items-center">
+                <Image
+                  src="/logo-tuordenya-white.png"
+                  alt="TuOrdenYa"
+                  width={140}
+                  height={40}
+                  className="h-8 w-auto"
+                  priority
+                />
               </div>
               <div className="flex flex-col leading-tight">
                 <span className="font-semibold text-sm sm:text-base">
@@ -129,7 +137,7 @@ export default function LandingPro() {
               </div>
             </motion.div>
 
-            {/* Tarjeta derecha – ahora mismo sigue igual, luego la cambiamos a Light/Plus/Pro */}
+            {/* Tarjeta derecha */}
             <motion.div
               variants={fadeUp}
               className="rounded-3xl border border-slate-800/70 bg-gradient-to-br from-slate-900 to-slate-950 p-5 sm:p-6 flex flex-col gap-4 shadow-xl shadow-emerald-500/10"
