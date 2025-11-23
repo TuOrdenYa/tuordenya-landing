@@ -48,16 +48,16 @@ export default function LandingPro() {
           </div>
 
           <div className="hidden md:flex items-center gap-6 text-sm">
-            <a href="#como-funciona" className="hover:text-emerald-400">
+            <a href="#como-funciona" className="hover:text-[#FF6F3C]">
               Cómo funciona
             </a>
-            <a href="#pro" className="hover:text-emerald-400">
+            <a href="#pro" className="hover:text-[#FF6F3C]">
               Versión Pro
             </a>
-            <a href="#planes" className="hover:text-emerald-400">
+            <a href="#planes" className="hover:text-[#FF6F3C]">
               Planes
             </a>
-            <a href="#faq" className="hover:text-emerald-400">
+            <a href="#faq" className="hover:text-[#FF6F3C]">
               FAQs
             </a>
           </div>
@@ -65,7 +65,7 @@ export default function LandingPro() {
           <div className="flex items-center gap-3">
             <a
               href="#contacto"
-              className="inline-flex text-xs sm:text-sm px-4 py-2 rounded-full bg-emerald-500 text-slate-950 font-semibold hover:bg-emerald-400 transition-colors"
+              className="inline-flex text-xs sm:text-sm px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors"
             >
               Agenda una demo
             </a>
@@ -83,14 +83,14 @@ export default function LandingPro() {
             className="grid lg:grid-cols-[1.2fr,1fr] gap-10 items-center"
           >
             <motion.div variants={fadeUp} className="space-y-5">
-              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/5 px-3 py-1 text-xs font-medium text-emerald-400">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#FF6F3C] bg-[#FFD5C2] px-3 py-1 text-xs font-medium text-[#FF6F3C]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#FF6F3C]" />
                 Versión Pro para restaurantes que ya crecieron
               </span>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight">
                 Menús digitales y órdenes{" "}
-                <span className="text-emerald-400">
+                <span className="text-[#FF6F3C]">
                   pensados para tu operación real.
                 </span>
               </h1>
@@ -104,14 +104,14 @@ export default function LandingPro() {
               <div className="flex flex-wrap items-center gap-3">
                 <a
                   href="#contacto"
-                  className="px-5 py-2.5 text-sm rounded-full bg-emerald-500 text-slate-950 font-semibold hover:bg-emerald-400 transition-colors"
+                  className="px-5 py-2.5 text-sm rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors"
                 >
                   Agenda una demo
                 </a>
                 <a
                   href="https://menu.tuordenya.com"
                   target="_blank"
-                  className="px-5 py-2.5 text-sm rounded-full border border-slate-700/70 hover:border-emerald-500/60 hover:text-emerald-400 transition-colors"
+                  className="px-5 py-2.5 text-sm rounded-full border border-slate-700/70 hover:border-[#FF6F3C] hover:text-[#FF6F3C] transition-colors"
                 >
                   Ver demo del menú digital
                 </a>
@@ -140,7 +140,7 @@ export default function LandingPro() {
             {/* Tarjeta derecha */}
             <motion.div
               variants={fadeUp}
-              className="rounded-3xl border border-slate-800/70 bg-gradient-to-br from-slate-900 to-slate-950 p-5 sm:p-6 flex flex-col gap-4 shadow-xl shadow-emerald-500/10"
+              className="rounded-3xl border border-slate-800/70 bg-gradient-to-br from-slate-900 to-slate-950 p-5 sm:p-6 flex flex-col gap-4 shadow-xl"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -149,7 +149,7 @@ export default function LandingPro() {
                   </p>
                   <p className="text-lg font-semibold">Hoy en tu restaurante</p>
                 </div>
-                <span className="text-xs rounded-full px-3 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/40">
+                <span className="text-xs rounded-full px-3 py-1 bg-[#FFD5C2] text-[#FF6F3C] border border-[#FF6F3C]">
                   RestOrder Pro
                 </span>
               </div>
@@ -354,9 +354,9 @@ export default function LandingPro() {
 
             <motion.div
               variants={fadeUp}
-              className="rounded-3xl border border-emerald-500/40 bg-gradient-to-br from-emerald-500/10 to-slate-900 p-5 text-sm"
+              className="rounded-3xl border border-[#4A90E2] bg-gradient-to-br from-slate-900 to-slate-950 p-5 text-sm"
             >
-              <p className="text-xs font-semibold text-emerald-400 mb-2">
+              <p className="text-xs font-semibold text-[#4A90E2] mb-2">
                 ¿Para quién es Pro?
               </p>
               <ul className="space-y-2 text-xs">
@@ -369,7 +369,7 @@ export default function LandingPro() {
               </ul>
               <a
                 href="#contacto"
-                className="inline-flex mt-4 px-4 py-2 rounded-full bg-emerald-500 text-slate-950 text-xs font-semibold hover:bg-emerald-400"
+                className="inline-flex mt-4 px-4 py-2 rounded-full bg-[#4A90E2] text-slate-50 text-xs font-semibold hover:bg-[#5fa3ff]"
               >
                 Quiero hablar de la versión Pro
               </a>
@@ -508,13 +508,13 @@ export default function LandingPro() {
               {/* Pro */}
               <motion.div
                 variants={fadeUp}
-                className="rounded-2xl border border-emerald-500/70 bg-gradient-to-br from-emerald-500/15 to-slate-900 p-5 flex flex-col justify-between relative overflow-hidden"
+                className="rounded-2xl border border-[#FF6F3C] bg-gradient-to-br from-[#FF6F3C33] to-slate-900 p-5 flex flex-col justify-between relative overflow-hidden"
               >
-                <span className="absolute right-4 top-4 text-[10px] px-2 py-1 rounded-full bg-emerald-500 text-slate-950 font-semibold">
+                <span className="absolute right-4 top-4 text-[10px] px-2 py-1 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold">
                   Recomendado
                 </span>
                 <div>
-                  <p className="text-xs font-semibold text-emerald-300">Pro</p>
+                  <p className="text-xs font-semibold text-[#FF6F3C]">Pro</p>
                   <p className="text-lg font-semibold mt-1 mb-1">
                     Operación completa
                   </p>
@@ -532,7 +532,7 @@ export default function LandingPro() {
                 </div>
                 <a
                   href="#contacto"
-                  className="mt-4 inline-flex px-4 py-2 rounded-full bg-emerald-500 text-slate-950 text-xs font-semibold hover:bg-emerald-400"
+                  className="mt-4 inline-flex px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 text-xs font-semibold hover:bg-[#FF814F]"
                 >
                   Quiero cotizar Pro
                 </a>
@@ -721,7 +721,7 @@ export default function LandingPro() {
                 <input
                   type="text"
                   placeholder="Ej: Juan Pérez"
-                  className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-emerald-500"
+                  className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
                 />
               </div>
               <div>
@@ -731,7 +731,7 @@ export default function LandingPro() {
                 <input
                   type="text"
                   placeholder="Ej: La Parrilla 24"
-                  className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-emerald-500"
+                  className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
                 />
               </div>
               <div>
@@ -741,14 +741,14 @@ export default function LandingPro() {
                 <input
                   type="tel"
                   placeholder="Ej: +57 300 000 0000"
-                  className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-emerald-500"
+                  className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
                 />
               </div>
               <div>
                 <label className="text-xs text-slate-400 block mb-1">
                   ¿Qué te interesa?
                 </label>
-                <select className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-emerald-500">
+                <select className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]">
                   <option>Solo menú digital (Light)</option>
                   <option>Menú + pedidos y reportes (Plus)</option>
                   <option>Operación completa (Pro)</option>
@@ -762,12 +762,12 @@ export default function LandingPro() {
                 <textarea
                   rows={3}
                   placeholder="Número de mesas, sedes, si usas POS, etc."
-                  className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-emerald-500"
+                  className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
                 />
               </div>
               <button
                 type="button"
-                className="w-full mt-2 rounded-full bg-emerald-500 text-slate-950 font-semibold text-sm py-2 hover:bg-emerald-400"
+                className="w-full mt-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold text-sm py-2 hover:bg-[#FF814F]"
               >
                 Enviar mensaje
               </button>
@@ -788,13 +788,13 @@ export default function LandingPro() {
             reservados.
           </p>
           <div className="flex flex-wrap gap-3">
-            <a href="#planes" className="hover:text-emerald-400">
+            <a href="#planes" className="hover:text-[#FF6F3C]">
               Planes
             </a>
-            <a href="#faq" className="hover:text-emerald-400">
+            <a href="#faq" className="hover:text-[#FF6F3C]">
               FAQs
             </a>
-            <a href="#contacto" className="hover:text-emerald-400">
+            <a href="#contacto" className="hover:text-[#FF6F3C]">
               Contacto
             </a>
           </div>
