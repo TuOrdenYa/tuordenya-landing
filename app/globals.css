@@ -1,10 +1,18 @@
 @import "tailwindcss";
 
+/* Tema base (modo claro) */
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
+/* Tema oscuro: se activa cuando <html> tiene class="dark" */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+/* Integración con el sistema de tema de Next/Tailwind v4 */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -12,13 +20,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Estilos globales del body */
 body {
   background: var(--background);
   color: var(--foreground);
