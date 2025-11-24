@@ -60,14 +60,14 @@ export default function ProPage() {
               Cómo funciona
             </a>
 
-            {/* Dropdown de planes en el header (desktop) */}
+            {/* Dropdown de productos en el header (desktop) */}
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setIsHeaderPlansOpen((open) => !open)}
                 className="inline-flex items-center gap-1 hover:text-[#FF6F3C]"
               >
-                Nuestros planes
+                Nuestros productos
                 <span className="text-[10px]">▼</span>
               </button>
 
@@ -144,7 +144,7 @@ export default function ProPage() {
 
               <div className="pt-1">
                 <p className="text-xs uppercase tracking-wide text-slate-500 mb-1">
-                  Nuestros planes
+                  Nuestros productos
                 </p>
                 <div className="space-y-1 text-xs">
                   <a
@@ -240,7 +240,7 @@ export default function ProPage() {
                   Quiero hablar de la versión Pro
                 </a>
                 <a
-                  href="/#planes"
+                  href="/#productos"
                   className="px-5 py-2.5 text-sm rounded-full border border-slate-700/70 hover:border-[#4A90E2] hover:text-[#4A90E2] transition-colors"
                 >
                   Ver comparación Light / Plus / Pro
@@ -442,8 +442,8 @@ export default function ProPage() {
             reservados.
           </p>
           <div className="flex flex-wrap gap-3">
-            <a href="/#planes" className="hover:text-[#FF6F3C]">
-              Planes
+            <a href="/#productos" className="hover:text-[#FF6F3C]">
+              Productos
             </a>
             <a href="/#faq" className="hover:text-[#FF6F3C]">
               FAQs

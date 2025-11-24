@@ -60,14 +60,14 @@ export default function LightPage() {
               Cómo funciona
             </a>
 
-            {/* Dropdown de planes en el header (desktop) */}
+            {/* Dropdown de productos en el header (desktop) */}
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setIsHeaderPlansOpen((open) => !open)}
                 className="inline-flex items-center gap-1 hover:text-[#FF6F3C]"
               >
-                Nuestros planes
+                Nuestros productos
                 <span className="text-[10px]">▼</span>
               </button>
 
@@ -102,7 +102,7 @@ export default function LightPage() {
 
           {/* ACCIONES DERECHA */}
           <div className="flex items-center gap-3">
-            {/* CTA desktop */}
+            {/* CTA desktop – color de marca global (naranja) */}
             <a
               href="/#contacto"
               className="hidden sm:inline-flex text-xs sm:text-sm px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors md:inline-flex"
@@ -144,7 +144,7 @@ export default function LightPage() {
 
               <div className="pt-1">
                 <p className="text-xs uppercase tracking-wide text-slate-500 mb-1">
-                  Nuestros planes
+                  Nuestros productos
                 </p>
                 <div className="space-y-1 text-xs">
                   <a
@@ -202,16 +202,16 @@ export default function LightPage() {
           >
             {/* Columna izquierda: mensaje principal */}
             <motion.div variants={fadeUp} className="space-y-5">
-              {/* Badge superior */}
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#FF6F3C] bg-[#FFD5C2] px-3 py-1 text-xs font-medium text-[#FF6F3C]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#FF6F3C]" />
+              {/* Badge superior – AMARILLO LIGHT */}
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#F7C325] bg-[#F7C3251A] px-3 py-1 text-xs font-medium text-[#F7C325]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#F7C325]" />
                 Plan Light — Tu menú digital en días, no meses
               </span>
 
               {/* Título */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight">
                 Menú digital + QR{" "}
-                <span className="text-[#FF6F3C]">para salir del papel.</span>
+                <span className="text-[#F7C325]">para salir del papel.</span>
               </h1>
 
               {/* Subtítulo */}
@@ -229,11 +229,11 @@ export default function LightPage() {
                 <li>• Ajuste básico a la marca de tu restaurante.</li>
               </ul>
 
-              {/* CTAs */}
+              {/* CTAs – AMARILLO PARA LIGHT */}
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <a
                   href="/#contacto"
-                  className="px-5 py-2.5 text-sm rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors"
+                  className="px-5 py-2.5 text-sm rounded-full bg-[#F7C325] text-slate-950 font-semibold hover:bg-[#F9CF47] transition-colors"
                 >
                   Quiero el plan Light
                 </a>
@@ -241,7 +241,7 @@ export default function LightPage() {
                   href="https://menu.tuordenya.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="px-5 py-2.5 text-sm rounded-full border border-slate-700/70 hover:border-[#FF6F3C] hover:text-[#FF6F3C] transition-colors"
+                  className="px-5 py-2.5 text-sm rounded-full border border-slate-700/70 hover:border-[#F7C325] hover:text-[#F7C325] transition-colors"
                 >
                   Ver demo de menú digital
                 </a>
@@ -271,7 +271,7 @@ export default function LightPage() {
                   <p className="text-xs text-slate-400">Resumen plan</p>
                   <p className="text-lg font-semibold">TuOrdenYa Light</p>
                 </div>
-                <span className="text-[10px] rounded-full px-3 py-1 bg-[#FF6F3C] text-slate-950 font-semibold">
+                <span className="text-[10px] rounded-full px-3 py-1 bg-[#F7C325] text-slate-950 font-semibold">
                   Punto de partida
                 </span>
               </div>
@@ -400,7 +400,7 @@ export default function LightPage() {
                 <li>
                   • Si quieres registrar cada pedido y ver ventas por
                   día/horario, el siguiente paso natural es{" "}
-                  <a href="/plus" className="underline text-[#FF6F3C]">
+                  <a href="/plus" className="underline text-[#2ECC71]">
                     Plus
                   </a>
                   .
@@ -408,7 +408,7 @@ export default function LightPage() {
                 <li>
                   • Si manejas muchas mesas, cocina, barra y cuentas, el camino
                   es{" "}
-                  <a href="/pro" className="underline text-[#FF6F3C]">
+                  <a href="/pro" className="underline text-[#4A90E2]">
                     Pro
                   </a>
                   .
@@ -439,9 +439,9 @@ export default function LightPage() {
               </ul>
               <a
                 href="/#contacto"
-                className="inline-flex mt-4 px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 text-xs font-semibold hover:bg-[#FF814F]"
+                className="inline-flex mt-4 px-4 py-2 rounded-full bg-[#F7C325] text-slate-950 text-xs font-semibold hover:bg-[#F9CF47]"
               >
-                Hablar del plan Light
+                Hablar del producto Light
               </a>
             </motion.div>
           </motion.div>
@@ -456,8 +456,8 @@ export default function LightPage() {
             reservados.
           </p>
           <div className="flex flex-wrap gap-3">
-            <a href="/#planes" className="hover:text-[#FF6F3C]">
-              Planes
+            <a href="/#productos" className="hover:text-[#FF6F3C]">
+              Productos
             </a>
             <a href="/#faq" className="hover:text-[#FF6F3C]">
               FAQs

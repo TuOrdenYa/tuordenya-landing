@@ -25,11 +25,11 @@ export default function LandingPro() {
   const [isPlanMenuOpen, setIsPlanMenuOpen] = useState(false);
   const [isHeaderPlansOpen, setIsHeaderPlansOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMobilePlansOpen, setIsMobilePlansOpen] = useState(false); // NUEVO: controla acordeón de planes en móvil
+  const [isMobilePlansOpen, setIsMobilePlansOpen] = useState(false); // NUEVO: controla acordeón de productos en móvil
 
   const planLabelMap: Record<Plan, string> = {
     Light: "Quiero mi menú digital (Light)",
-    Plus: "Quiero el plan Plus",
+    Plus: "Quiero hablar de Plus",
     Pro: "Quiero hablar de Pro",
   };
 
@@ -44,7 +44,7 @@ export default function LandingPro() {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
-    setIsMobilePlansOpen(false); // cerramos también el submenú de planes
+    setIsMobilePlansOpen(false); // cerramos también el submenú de productos
   };
 
   return (
@@ -79,14 +79,14 @@ export default function LandingPro() {
               Cómo funciona
             </a>
 
-            {/* Dropdown de planes en el header (desktop) */}
+            {/* Dropdown de productos en el header (desktop) */}
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setIsHeaderPlansOpen((open) => !open)}
                 className="inline-flex items-center gap-1 hover:text-[#FF6F3C]"
               >
-                Nuestros planes
+                Nuestros productos
                 <span className="text-[10px]">▼</span>
               </button>
 
@@ -159,7 +159,7 @@ export default function LandingPro() {
                 Cómo funciona
               </a>
 
-              {/* Acordeón "Nuestros planes" en móvil */}
+              {/* Acordeón "Nuestros productos" en móvil */}
               <div className="pt-1">
                 <button
                   type="button"
@@ -168,7 +168,7 @@ export default function LandingPro() {
                     setIsMobilePlansOpen((open) => !open)
                   }
                 >
-                  <span>Nuestros planes</span>
+                  <span>Nuestros productos</span>
                   <span className="text-[10px]">
                     {isMobilePlansOpen ? "▲" : "▼"}
                   </span>
@@ -322,10 +322,10 @@ export default function LandingPro() {
 
                 {/* CTA secundario */}
                 <a
-                  href="#planes"
+                  href="#productos"
                   className="px-5 py-2.5 text-sm rounded-full border border-slate-700/70 hover:border-[#FF6F3C] hover:text-[#FF6F3C] transition-colors"
                 >
-                  Ver planes Light / Plus / Pro
+                  Ver productos Light / Plus / Pro
                 </a>
               </div>
 
@@ -362,10 +362,10 @@ export default function LandingPro() {
 
               <div className="space-y-3 text-xs">
                 {/* Light */}
-                <div className="rounded-2xl border border-[#FF6F3C] bg-[#FF6F3C1A] px-4 py-3">
+                <div className="rounded-2xl border border-[#F7C325] bg-[#F7C3251A] px-4 py-3">
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-semibold">Light</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold">
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#F7C325] text-slate-950 font-semibold">
                       Punto de partida
                     </span>
                   </div>
@@ -644,8 +644,8 @@ export default function LandingPro() {
           </motion.div>
         </section>
 
-        {/* PLANES */}
-        <section id="planes" className="py-12 border-t border-slate-800/70">
+        {/* productos */}
+        <section id="productos" className="py-12 border-t border-slate-800/70">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
@@ -656,14 +656,14 @@ export default function LandingPro() {
               variants={fadeUp}
               className="text-xl sm:text-2xl font-semibold mb-2"
             >
-              Planes pensados para ti
+              Productos pensados para ti
             </motion.h2>
             <motion.p
               variants={fadeUp}
               className="text-sm text-slate-400 mb-6"
             >
               Comienza con lo básico y escala a medida que tu restaurante crece.
-              Todos los planes incluyen hosting, dominio técnico y soporte
+              Todos los productos incluyen hosting, dominio técnico y soporte
               básico.
             </motion.p>
 
@@ -1003,8 +1003,8 @@ export default function LandingPro() {
             reservados.
           </p>
           <div className="flex flex-wrap gap-3">
-            <a href="#planes" className="hover:text-[#FF6F3C]">
-              Planes
+            <a href="#productos" className="hover:text-[#FF6F3C]">
+              Productos
             </a>
             <a href="#faq" className="hover:text-[#FF6F3C]">
               FAQs
