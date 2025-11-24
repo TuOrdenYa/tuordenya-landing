@@ -23,6 +23,7 @@ type Plan = "Light" | "Plus" | "Pro";
 export default function LandingPro() {
   const [selectedPlan, setSelectedPlan] = useState<Plan>("Light");
   const [isPlanMenuOpen, setIsPlanMenuOpen] = useState(false);
+  const [isHeaderPlansOpen, setIsHeaderPlansOpen] = useState(false);
 
   const planLabelMap: Record<Plan, string> = {
     Light: "Quiero mi menú digital (Light)",
@@ -35,7 +36,6 @@ export default function LandingPro() {
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     } else {
-      // fallback por si no encuentra la sección
       window.location.hash = "#contacto";
     }
   };
@@ -67,23 +67,49 @@ export default function LandingPro() {
           </div>
 
           <div className="hidden md:flex items-center gap-6 text-sm">
-  <a href="#como-funciona" className="hover:text-[#FF6F3C]">
-    Cómo funciona
-  </a>
-  <a href="/light" className="hover:text-[#FF6F3C]">
-    Light
-  </a>
-  <a href="/plus" className="hover:text-[#FF6F3C]">
-    Plus
-  </a>
-  <a href="/pro" className="hover:text-[#FF6F3C]">
-    Pro
-  </a>
-  <a href="#faq" className="hover:text-[#FF6F3C]">
-    FAQs
-  </a>
-</div>
+            <a href="#como-funciona" className="hover:text-[#FF6F3C]">
+              Cómo funciona
+            </a>
 
+            {/* Dropdown de planes en el header */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setIsHeaderPlansOpen((open) => !open)}
+                className="inline-flex items-center gap-1 hover:text-[#FF6F3C]"
+              >
+                Nuestros planes
+                <span className="text-[10px]">▼</span>
+              </button>
+
+              {isHeaderPlansOpen && (
+                <div className="absolute left-0 mt-2 w-52 rounded-xl border border-slate-800 bg-slate-900 shadow-lg py-2 text-xs z-40">
+                  <a
+                    href="/light"
+                    className="block px-3 py-1.5 hover:bg-slate-800 hover:text-[#FF6F3C]"
+                  >
+                    Light — Menú digital + QR
+                  </a>
+                  <a
+                    href="/plus"
+                    className="block px-3 py-1.5 hover:bg-slate-800 hover:text-[#FF6F3C]"
+                  >
+                    Plus — Pedidos y reportes
+                  </a>
+                  <a
+                    href="/pro"
+                    className="block px-3 py-1.5 hover:bg-slate-800 hover:text-[#FF6F3C]"
+                  >
+                    Pro — Operación completa
+                  </a>
+                </div>
+              )}
+            </div>
+
+            <a href="#faq" className="hover:text-[#FF6F3C]">
+              FAQs
+            </a>
+          </div>
 
           <div className="flex items-center gap-3">
             <a
@@ -275,8 +301,8 @@ export default function LandingPro() {
                   </div>
                   <p className="text-slate-200">
                     Órdenes por mesa y canal, tiempos de cocina, cuentas y
-                    cierres. Pensado para restaurantes de alta rotación,
-                    cadenas y dark kitchens.
+                    cierres. Pensado para restaurantes de alta rotación, cadenas
+                    y dark kitchens.
                   </p>
                 </div>
               </div>
