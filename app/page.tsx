@@ -59,80 +59,91 @@ export default function LandingPro() {
     setIsMobilePlansOpen(false); // cerramos también el submenú de productos
   };
 
-  // Envío del formulario: Supabase + WhatsApp
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (isSubmitting) return;
+  // Envío del formulario: Supabase + WhatsApp + GA4
+const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  if (isSubmitting) return;
 
-    // Validación básica
-    if (!fullName.trim() || !whatsapp.trim()) {
-      setErrorMessage("Por favor completa al menos tu nombre y WhatsApp.");
-      return;
+  // Validación básica
+  if (!fullName.trim() || !whatsapp.trim()) {
+    setErrorMessage("Por favor completa al menos tu nombre y WhatsApp.");
+    return;
+  }
+
+  setErrorMessage(null);
+  setIsSubmitting(true);
+
+  try {
+    // 1️⃣ Preparar mensaje para Supabase
+    const composedMessage = [
+      interest ? `Interés: ${interest}` : null,
+      operationNotes ? `Sobre su operación: ${operationNotes}` : null,
+      "Fuente: tuordenya.com",
+    ]
+      .filter(Boolean)
+      .join(" | ");
+
+    // 2️⃣ Guardar en Supabase
+    const { error } = await supabase.from("leads").insert([
+      {
+        name: fullName || null,
+        phone: whatsapp || null,
+        email: email || null,
+        restaurant: restaurantName || null,
+        message: composedMessage || null,
+      },
+    ]);
+
+    if (error) {
+      console.error("Error guardando lead en Supabase:", error);
+      setErrorMessage("Ocurrió un error guardando tus datos. Intenta de nuevo.");
+      return; // ⛔ Importante: no seguir si falla
     }
 
-    setErrorMessage(null);
-    setIsSubmitting(true);
+    // 3️⃣ GA4 — Evento de envío exitoso
+    gaEvent("submit_lead_form", {
+      page: "landing_home",
+      interest: interest || "No especificado",
+    });
 
-    try {
-      // 1) Guardar en Supabase (tabla leads)
-      const composedMessage = [
-        interest ? `Interés: ${interest}` : null,
-        operationNotes ? `Sobre su operación: ${operationNotes}` : null,
-        "Fuente: tuordenya.com",
-      ]
-        .filter(Boolean)
-        .join(" | ");
+    // 4️⃣ Construir mensaje para WhatsApp
+    const messageLines = [
+      "👋 Hola, llegó un lead desde la landing de TuOrdenYa.",
+      "",
+      fullName ? `👤 Nombre: ${fullName}` : null,
+      restaurantName ? `🏪 Restaurante: ${restaurantName}` : null,
+      whatsapp ? `📱 WhatsApp del cliente: ${whatsapp}` : null,
+      email ? `✉️ Email: ${email}` : null,
+      interest ? `⭐ Interés: ${interest}` : null,
+      operationNotes ? `📝 Sobre su operación: ${operationNotes}` : null,
+      "",
+      "Fuente: tuordenya.com",
+    ]
+      .filter(Boolean)
+      .join("\n");
 
-      const { error } = await supabase.from("leads").insert([
-        {
-          name: fullName || null,
-          phone: whatsapp || null,
-          email: email || null,
-          restaurant: restaurantName || null,
-          message: composedMessage || null,
-        },
-      ]);
+    const whatsappUrl = `https://wa.me/573227921640?text=${encodeURIComponent(
+      messageLines
+    )}`;
 
-      if (error) {
-        console.error("Error guardando lead en Supabase:", error);
-        setErrorMessage("Ocurrió un error guardando tus datos. Intenta de nuevo.");
-      }
+    // 5️⃣ Abrir WhatsApp
+    window.open(whatsappUrl, "_blank");
 
-      // 2) Armar mensaje para WhatsApp (para ti)
-      const messageLines = [
-        "👋 Hola, llegó un lead desde la landing de TuOrdenYa.",
-        "",
-        fullName ? `👤 Nombre: ${fullName}` : null,
-        restaurantName ? `🏪 Restaurante: ${restaurantName}` : null,
-        whatsapp ? `📱 WhatsApp del cliente: ${whatsapp}` : null,
-        email ? `✉️ Email: ${email}` : null,
-        interest ? `⭐ Interés: ${interest}` : null,
-        operationNotes ? `📝 Sobre su operación: ${operationNotes}` : null,
-        "",
-        "Fuente: tuordenya.com",
-      ]
-        .filter(Boolean)
-        .join("\n");
+    // 6️⃣ Limpiar formulario
+    setFullName("");
+    setRestaurantName("");
+    setWhatsapp("");
+    setEmail("");
+    setInterest("Solo menú digital (Light)");
+    setOperationNotes("");
+  } catch (err) {
+    console.error("Error inesperado en el submit:", err);
+    setErrorMessage("Ocurrió un error inesperado. Intenta de nuevo.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
-      const whatsappUrl = `https://wa.me/573227921640?text=${encodeURIComponent(
-        messageLines
-      )}`;
-
-      // 3) Abrir tu WhatsApp en una nueva pestaña
-      window.open(whatsappUrl, "_blank");
-
-      // 4) Limpiar formulario
-      setFullName("");
-      setRestaurantName("");
-      setWhatsapp("");
-      setEmail("");
-      setInterest("Solo menú digital (Light)");
-      setOperationNotes("");
-    } catch (err) {
-      console.error("Error inesperado en el submit:", err);
-      setErrorMessage("Ocurrió un error inesperado. Intenta de nuevo.");
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
