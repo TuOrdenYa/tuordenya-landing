@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useState, FormEvent } from "react";
+import { useState,  FormEvent } from "react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -27,17 +27,6 @@ export default function LandingPro() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobilePlansOpen, setIsMobilePlansOpen] = useState(false); // NUEVO: controla acordeón de productos en móvil
 
-  // Estado del formulario de contacto
-  const [fullName, setFullName] = useState("");
-  const [restaurantName, setRestaurantName] = useState("");
-  const [whatsapp, setWhatsapp] = useState("");
-  const [interest, setInterest] = useState("Solo menú digital (Light)");
-  const [notes, setNotes] = useState("");
-
-  const [isSending, setIsSending] = useState(false);
-  const [hasSent, setHasSent] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
   const planLabelMap: Record<Plan, string> = {
     Light: "Quiero mi menú digital (Light)",
     Plus: "Quiero hablar de Plus",
@@ -56,58 +45,6 @@ export default function LandingPro() {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
     setIsMobilePlansOpen(false); // cerramos también el submenú de productos
-  };
-
-  const handleContactSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSending(true);
-    setError(null);
-    setHasSent(false);
-
-    // 1) Armar y abrir WhatsApp (para que te llegue de inmediato)
-    const waNumber = "573227921640"; // tu WhatsApp en formato internacional sin "+"
-    const message = encodeURIComponent(
-      `Nuevo lead desde TuOrdenYa:\n\n` +
-        `Nombre: ${fullName}\n` +
-        `Restaurante: ${restaurantName}\n` +
-        `WhatsApp cliente: ${whatsapp}\n` +
-        `Interés: ${interest}\n` +
-        `Detalles: ${notes || "No agregó detalles"}`
-    );
-    const waUrl = `https://wa.me/${waNumber}?text=${message}`;
-    window.open(waUrl, "_blank");
-
-    // 2) Guardar en tu backend / DB (ajusta la URL o lógica según ya lo tengas)
-    try {
-      await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName,
-          restaurantName,
-          whatsapp,
-          interest,
-          notes,
-          source: "landing-tuordenya",
-        }),
-      });
-
-      setHasSent(true);
-
-      // Limpiar campos tras envío correcto
-      setFullName("");
-      setRestaurantName("");
-      setWhatsapp("");
-      setInterest("Solo menú digital (Light)");
-      setNotes("");
-    } catch (err) {
-      console.error(err);
-      setError(
-        "Guardamos tu info en WhatsApp, pero hubo un problema registrando en sistema. Lo revisaremos."
-      );
-    } finally {
-      setIsSending(false);
-    }
   };
 
   return (
@@ -227,7 +164,9 @@ export default function LandingPro() {
                 <button
                   type="button"
                   className="w-full flex items-center justify-between py-2 text-slate-100 hover:text-[#FF6F3C]"
-                  onClick={() => setIsMobilePlansOpen((open) => !open)}
+                  onClick={() =>
+                    setIsMobilePlansOpen((open) => !open)
+                  }
                 >
                   <span>Nuestros productos</span>
                   <span className="text-[10px]">
@@ -300,7 +239,7 @@ export default function LandingPro() {
               </span>
 
               {/* Título */}
-              <h1 className="text-3xl sm:text-4xl lg:5xl font-semibold tracking-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight">
                 Menús digitales y operación completa{" "}
                 <span className="text-[#FF6F3C]">
                   para restaurantes de cualquier tamaño.
@@ -989,7 +928,6 @@ export default function LandingPro() {
             <motion.form
               variants={fadeUp}
               className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-5 space-y-4 text-sm"
-              onSubmit={handleContactSubmit}
             >
               <div>
                 <label className="text-xs text-slate-400 block mb-1">
@@ -999,9 +937,6 @@ export default function LandingPro() {
                   type="text"
                   placeholder="Ej: Juan Pérez"
                   className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  required
                 />
               </div>
               <div>
@@ -1012,9 +947,6 @@ export default function LandingPro() {
                   type="text"
                   placeholder="Ej: La Parrilla 24"
                   className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
-                  value={restaurantName}
-                  onChange={(e) => setRestaurantName(e.target.value)}
-                  required
                 />
               </div>
               <div>
@@ -1025,20 +957,13 @@ export default function LandingPro() {
                   type="tel"
                   placeholder="Ej: +57 300 000 0000"
                   className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
-                  value={whatsapp}
-                  onChange={(e) => setWhatsapp(e.target.value)}
-                  required
                 />
               </div>
               <div>
                 <label className="text-xs text-slate-400 block mb-1">
                   ¿Qué te interesa?
                 </label>
-                <select
-                  className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
-                  value={interest}
-                  onChange={(e) => setInterest(e.target.value)}
-                >
+                <select className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]">
                   <option>Solo menú digital (Light)</option>
                   <option>Menú + pedidos y reportes (Plus)</option>
                   <option>Operación completa (Pro)</option>
@@ -1053,29 +978,14 @@ export default function LandingPro() {
                   rows={3}
                   placeholder="Número de mesas, sedes, si usas POS, etc."
                   className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
                 />
               </div>
               <button
-                type="submit"
-                className="w-full mt-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold text-sm py-2 hover:bg-[#FF814F] disabled:opacity-60"
-                disabled={isSending}
+                type="button"
+                className="w-full mt-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold text-sm py-2 hover:bg-[#FF814F]"
               >
-                {isSending ? "Enviando..." : "Enviar mensaje"}
+                Enviar mensaje
               </button>
-
-              {hasSent && !error && (
-                <p className="text-[11px] text-emerald-400 mt-1">
-                  ¡Gracias! Abrimos un mensaje en WhatsApp y registramos tus
-                  datos.
-                </p>
-              )}
-
-              {error && (
-                <p className="text-[11px] text-red-400 mt-1">{error}</p>
-              )}
-
               <p className="text-[11px] text-slate-500 mt-1">
                 Respetamos tu tiempo: nada de spam, solo información relevante
                 para tu restaurante.
