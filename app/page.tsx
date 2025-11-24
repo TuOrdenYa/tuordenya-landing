@@ -144,8 +144,6 @@ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
   }
 };
 
-    }
-  };
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50 transition-colors duration-300">
