@@ -908,7 +908,7 @@ export default function LandingPro() {
           >
             <motion.div variants={fadeUp}>
               <h2 className="text-xl sm:text-2xl font-semibold mb-2">
-                Conversemos de tu restaurante
+                Conversemos sobre tu restaurante
               </h2>
               <p className="text-sm text-slate-400 mb-4">
                 Déjanos tus datos y te contactamos para mostrarte cómo TuOrdenYa
