@@ -26,7 +26,7 @@ export default function LandingPro() {
 
   const planLabelMap: Record<Plan, string> = {
     Light: "Quiero mi menú digital (Light)",
-    Plus: "Quiero avanzar a Plus",
+    Plus: "Quiero el plan Plus",
     Pro: "Quiero hablar de Pro",
   };
 
@@ -67,19 +67,23 @@ export default function LandingPro() {
           </div>
 
           <div className="hidden md:flex items-center gap-6 text-sm">
-            <a href="#como-funciona" className="hover:text-[#FF6F3C]">
-              Cómo funciona
-            </a>
-            <a href="#planes" className="hover:text-[#FF6F3C]">
-              Light / Plus / Pro
-            </a>
-            <a href="#pro" className="hover:text-[#FF6F3C]">
-              Versión Pro
-            </a>
-            <a href="#faq" className="hover:text-[#FF6F3C]">
-              FAQs
-            </a>
-          </div>
+  <a href="#como-funciona" className="hover:text-[#FF6F3C]">
+    Cómo funciona
+  </a>
+  <a href="/light" className="hover:text-[#FF6F3C]">
+    Light
+  </a>
+  <a href="/plus" className="hover:text-[#FF6F3C]">
+    Plus
+  </a>
+  <a href="/pro" className="hover:text-[#FF6F3C]">
+    Pro
+  </a>
+  <a href="#faq" className="hover:text-[#FF6F3C]">
+    FAQs
+  </a>
+</div>
+
 
           <div className="flex items-center gap-3">
             <a
