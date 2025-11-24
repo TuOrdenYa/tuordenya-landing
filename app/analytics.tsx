@@ -1,17 +1,20 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { pageview } from "@/lib/gtag";
 
 export default function Analytics() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
-    const url = `${pathname}?${searchParams.toString()}`;
-    pageview(url);
-  }, [pathname, searchParams]);
+    if (!pathname) return;
+
+    // Evitar tracking en páginas especiales si molestan
+    if (pathname === "/404" || pathname === "/_not-found") return;
+
+    pageview(pathname);
+  }, [pathname]);
 
   return null;
 }
