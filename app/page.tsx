@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useState,  FormEvent } from "react";
+import { useState, FormEvent } from "react";
+import { supabase } from "../lib/supabase";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -27,6 +28,16 @@ export default function LandingPro() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobilePlansOpen, setIsMobilePlansOpen] = useState(false); // NUEVO: controla acordeón de productos en móvil
 
+  // Estado del formulario
+  const [fullName, setFullName] = useState("");
+  const [restaurantName, setRestaurantName] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [email, setEmail] = useState("");
+  const [interest, setInterest] = useState("Solo menú digital (Light)");
+  const [operationNotes, setOperationNotes] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const planLabelMap: Record<Plan, string> = {
     Light: "Quiero mi menú digital (Light)",
     Plus: "Quiero hablar de Plus",
@@ -45,6 +56,83 @@ export default function LandingPro() {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
     setIsMobilePlansOpen(false); // cerramos también el submenú de productos
+  };
+
+  // Envío del formulario: Supabase + WhatsApp
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+
+    // Validación básica
+    if (!fullName.trim() || !whatsapp.trim()) {
+      setErrorMessage("Por favor completa al menos tu nombre y WhatsApp.");
+      return;
+    }
+
+    setErrorMessage(null);
+    setIsSubmitting(true);
+
+    try {
+      // 1) Guardar en Supabase (tabla leads)
+      const composedMessage = [
+        interest ? `Interés: ${interest}` : null,
+        operationNotes ? `Sobre su operación: ${operationNotes}` : null,
+        "Fuente: tuordenya.com",
+      ]
+        .filter(Boolean)
+        .join(" | ");
+
+      const { error } = await supabase.from("leads").insert([
+        {
+          name: fullName || null,
+          phone: whatsapp || null,
+          email: email || null,
+          restaurant: restaurantName || null,
+          message: composedMessage || null,
+        },
+      ]);
+
+      if (error) {
+        console.error("Error guardando lead en Supabase:", error);
+        setErrorMessage("Ocurrió un error guardando tus datos. Intenta de nuevo.");
+      }
+
+      // 2) Armar mensaje para WhatsApp (para ti)
+      const messageLines = [
+        "👋 Hola, llegó un lead desde la landing de TuOrdenYa.",
+        "",
+        fullName ? `👤 Nombre: ${fullName}` : null,
+        restaurantName ? `🏪 Restaurante: ${restaurantName}` : null,
+        whatsapp ? `📱 WhatsApp del cliente: ${whatsapp}` : null,
+        email ? `✉️ Email: ${email}` : null,
+        interest ? `⭐ Interés: ${interest}` : null,
+        operationNotes ? `📝 Sobre su operación: ${operationNotes}` : null,
+        "",
+        "Fuente: tuordenya.com",
+      ]
+        .filter(Boolean)
+        .join("\n");
+
+      const whatsappUrl = `https://wa.me/573227921640?text=${encodeURIComponent(
+        messageLines
+      )}`;
+
+      // 3) Abrir tu WhatsApp en una nueva pestaña
+      window.open(whatsappUrl, "_blank");
+
+      // 4) Limpiar formulario
+      setFullName("");
+      setRestaurantName("");
+      setWhatsapp("");
+      setEmail("");
+      setInterest("Solo menú digital (Light)");
+      setOperationNotes("");
+    } catch (err) {
+      console.error("Error inesperado en el submit:", err);
+      setErrorMessage("Ocurrió un error inesperado. Intenta de nuevo.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -164,9 +252,7 @@ export default function LandingPro() {
                 <button
                   type="button"
                   className="w-full flex items-center justify-between py-2 text-slate-100 hover:text-[#FF6F3C]"
-                  onClick={() =>
-                    setIsMobilePlansOpen((open) => !open)
-                  }
+                  onClick={() => setIsMobilePlansOpen((open) => !open)}
                 >
                   <span>Nuestros productos</span>
                   <span className="text-[10px]">
@@ -249,10 +335,10 @@ export default function LandingPro() {
               {/* Subtítulo */}
               <p className="text-sm sm:text-base text-slate-400 max-w-xl">
                 TuOrdenYa tiene tres niveles pensados para cada etapa de tu
-                negocio: <strong>Light</strong> (menú + QR), <strong>Plus</strong>{" "}
-                (pedidos y reportes básicos) y <strong>Pro</strong> (operación
-                completa en salón y cocina). Empiezas donde estás y escalas
-                cuando lo necesites.
+                negocio: <strong>Light</strong> (menú + QR),{" "}
+                <strong>Plus</strong> (pedidos y reportes básicos) y{" "}
+                <strong>Pro</strong> (operación completa en salón y cocina).
+                Empiezas donde estás y escalas cuando lo necesites.
               </p>
 
               {/* CTAs */}
@@ -928,6 +1014,8 @@ export default function LandingPro() {
             <motion.form
               variants={fadeUp}
               className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-5 space-y-4 text-sm"
+              onSubmit={handleSubmit}
+              noValidate
             >
               <div>
                 <label className="text-xs text-slate-400 block mb-1">
@@ -937,6 +1025,8 @@ export default function LandingPro() {
                   type="text"
                   placeholder="Ej: Juan Pérez"
                   className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
                 />
               </div>
               <div>
@@ -947,6 +1037,8 @@ export default function LandingPro() {
                   type="text"
                   placeholder="Ej: La Parrilla 24"
                   className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
+                  value={restaurantName}
+                  onChange={(e) => setRestaurantName(e.target.value)}
                 />
               </div>
               <div>
@@ -957,13 +1049,31 @@ export default function LandingPro() {
                   type="tel"
                   placeholder="Ej: +57 300 000 0000"
                   className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
+                  value={whatsapp}
+                  onChange={(e) => setWhatsapp(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="text-xs text-slate-400 block mb-1">
+                  Correo electrónico
+                </label>
+                <input
+                  type="email"
+                  placeholder="Ej: correo@tuordenya.com"
+                  className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div>
                 <label className="text-xs text-slate-400 block mb-1">
                   ¿Qué te interesa?
                 </label>
-                <select className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]">
+                <select
+                  className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
+                  value={interest}
+                  onChange={(e) => setInterest(e.target.value)}
+                >
                   <option>Solo menú digital (Light)</option>
                   <option>Menú + pedidos y reportes (Plus)</option>
                   <option>Operación completa (Pro)</option>
@@ -978,13 +1088,19 @@ export default function LandingPro() {
                   rows={3}
                   placeholder="Número de mesas, sedes, si usas POS, etc."
                   className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
+                  value={operationNotes}
+                  onChange={(e) => setOperationNotes(e.target.value)}
                 />
               </div>
+              {errorMessage && (
+                <p className="text-[11px] text-red-400">{errorMessage}</p>
+              )}
               <button
-                type="button"
-                className="w-full mt-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold text-sm py-2 hover:bg-[#FF814F]"
+                type="submit"
+                className="w-full mt-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold text-sm py-2 hover:bg-[#FF814F] disabled:opacity-60 disabled:cursor-not-allowed"
+                disabled={isSubmitting}
               >
-                Enviar mensaje
+                {isSubmitting ? "Enviando..." : "Enviar mensaje"}
               </button>
               <p className="text-[11px] text-slate-500 mt-1">
                 Respetamos tu tiempo: nada de spam, solo información relevante
