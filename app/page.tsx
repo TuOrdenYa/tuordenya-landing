@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -17,7 +18,28 @@ const staggerContainer = {
   },
 };
 
+type Plan = "Light" | "Plus" | "Pro";
+
 export default function LandingPro() {
+  const [selectedPlan, setSelectedPlan] = useState<Plan>("Light");
+  const [isPlanMenuOpen, setIsPlanMenuOpen] = useState(false);
+
+  const planLabelMap: Record<Plan, string> = {
+    Light: "Quiero mi menú digital (Light)",
+    Plus: "Quiero avanzar a Plus",
+    Pro: "Quiero hablar de Pro",
+  };
+
+  const handlePrimaryClick = () => {
+    const section = document.getElementById("contacto");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // fallback por si no encuentra la sección
+      window.location.hash = "#contacto";
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50 transition-colors duration-300">
       {/* NAVBAR */}
@@ -37,7 +59,6 @@ export default function LandingPro() {
                 />
               </div>
               <div className="flex flex-col leading-tight">
-                
                 <span className="font-semibold text-sm sm:text-base">
                   Menús y órdenes para restaurantes
                 </span>
@@ -49,11 +70,11 @@ export default function LandingPro() {
             <a href="#como-funciona" className="hover:text-[#FF6F3C]">
               Cómo funciona
             </a>
+            <a href="#planes" className="hover:text-[#FF6F3C]">
+              Light / Plus / Pro
+            </a>
             <a href="#pro" className="hover:text-[#FF6F3C]">
               Versión Pro
-            </a>
-            <a href="#planes" className="hover:text-[#FF6F3C]">
-              Planes
             </a>
             <a href="#faq" className="hover:text-[#FF6F3C]">
               FAQs
@@ -73,7 +94,6 @@ export default function LandingPro() {
 
       <main className="max-w-6xl mx-auto px-4">
         {/* HERO */}
-               {/* HERO */}
         <section className="py-12 sm:py-16 lg:py-20">
           <motion.div
             variants={staggerContainer}
@@ -100,8 +120,7 @@ export default function LandingPro() {
               {/* Subtítulo */}
               <p className="text-sm sm:text-base text-slate-400 max-w-xl">
                 TuOrdenYa tiene tres niveles pensados para cada etapa de tu
-                negocio:{" "}
-                <strong>Light</strong> (menú + QR), <strong>Plus</strong>{" "}
+                negocio: <strong>Light</strong> (menú + QR), <strong>Plus</strong>{" "}
                 (pedidos y reportes básicos) y <strong>Pro</strong> (operación
                 completa en salón y cocina). Empiezas donde estás y escalas
                 cuando lo necesites.
@@ -109,12 +128,70 @@ export default function LandingPro() {
 
               {/* CTAs */}
               <div className="flex flex-wrap items-center gap-3">
-                <a
-                  href="#contacto"
-                  className="px-5 py-2.5 text-sm rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors"
-                >
-                  Quiero mi menú digital (Light)
-                </a>
+                {/* Botón principal + desplegable de plan */}
+                <div className="relative inline-flex">
+                  {/* Botón principal: envía al formulario */}
+                  <button
+                    type="button"
+                    onClick={handlePrimaryClick}
+                    className="px-5 py-2.5 text-sm rounded-l-full rounded-r-none bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors whitespace-nowrap"
+                  >
+                    {planLabelMap[selectedPlan]}
+                  </button>
+
+                  {/* Botón para abrir/cerrar el menú */}
+                  <button
+                    type="button"
+                    onClick={() => setIsPlanMenuOpen((open) => !open)}
+                    className="px-3 py-2.5 text-sm rounded-r-full rounded-l-none bg-[#FF6F3C] border-l border-[#FF814F] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors"
+                  >
+                    ▾
+                  </button>
+
+                  {/* Menú desplegable */}
+                  {isPlanMenuOpen && (
+                    <div className="absolute z-20 mt-1 w-full min-w-[260px] rounded-2xl border border-slate-800 bg-slate-950 shadow-lg overflow-hidden">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelectedPlan("Light");
+                          setIsPlanMenuOpen(false);
+                        }}
+                        className={`w-full text-left px-4 py-2 text-xs hover:bg-slate-900 ${
+                          selectedPlan === "Light" ? "bg-slate-900" : ""
+                        }`}
+                      >
+                        Light – Menú + QR + WhatsApp
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelectedPlan("Plus");
+                          setIsPlanMenuOpen(false);
+                        }}
+                        className={`w-full text-left px-4 py-2 text-xs hover:bg-slate-900 ${
+                          selectedPlan === "Plus" ? "bg-slate-900" : ""
+                        }`}
+                      >
+                        Plus – Pedidos básicos + reportes
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelectedPlan("Pro");
+                          setIsPlanMenuOpen(false);
+                        }}
+                        className={`w-full text-left px-4 py-2 text-xs hover:bg-slate-900 ${
+                          selectedPlan === "Pro" ? "bg-slate-900" : ""
+                        }`}
+                      >
+                        Pro – Operación completa
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* CTA secundario */}
                 <a
                   href="#planes"
                   className="px-5 py-2.5 text-sm rounded-full border border-slate-700/70 hover:border-[#FF6F3C] hover:text-[#FF6F3C] transition-colors"
@@ -207,7 +284,6 @@ export default function LandingPro() {
             </motion.div>
           </motion.div>
         </section>
-
 
         {/* SECCIÓN BENEFICIOS */}
         <section className="py-10 border-t border-slate-800/70">
