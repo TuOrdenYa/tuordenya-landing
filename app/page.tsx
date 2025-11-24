@@ -25,6 +25,7 @@ export default function LandingPro() {
   const [isPlanMenuOpen, setIsPlanMenuOpen] = useState(false);
   const [isHeaderPlansOpen, setIsHeaderPlansOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobilePlansOpen, setIsMobilePlansOpen] = useState(false); // NUEVO: controla acordeón de planes en móvil
 
   const planLabelMap: Record<Plan, string> = {
     Light: "Quiero mi menú digital (Light)",
@@ -41,7 +42,10 @@ export default function LandingPro() {
     }
   };
 
-  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    setIsMobilePlansOpen(false); // cerramos también el submenú de planes
+  };
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50 transition-colors duration-300">
@@ -129,7 +133,13 @@ export default function LandingPro() {
             <button
               type="button"
               className="inline-flex items-center justify-center md:hidden h-9 w-9 rounded-full border border-slate-700 text-slate-100"
-              onClick={() => setIsMobileMenuOpen((open) => !open)}
+              onClick={() =>
+                setIsMobileMenuOpen((open) => {
+                  const next = !open;
+                  if (!next) setIsMobilePlansOpen(false);
+                  return next;
+                })
+              }
               aria-label="Abrir menú"
             >
               {isMobileMenuOpen ? "✕" : "☰"}
@@ -149,33 +159,46 @@ export default function LandingPro() {
                 Cómo funciona
               </a>
 
+              {/* Acordeón "Nuestros planes" en móvil */}
               <div className="pt-1">
-                <p className="text-xs uppercase tracking-wide text-slate-500 mb-1">
-                  Nuestros planes
-                </p>
-                <div className="space-y-1 text-xs">
-                  <a
-                    href="/light"
-                    className="block py-1 text-slate-200 hover:text-[#FF6F3C]"
-                    onClick={closeMobileMenu}
-                  >
-                    Light — Menú digital + QR
-                  </a>
-                  <a
-                    href="/plus"
-                    className="block py-1 text-slate-200 hover:text-[#FF6F3C]"
-                    onClick={closeMobileMenu}
-                  >
-                    Plus — Pedidos y reportes
-                  </a>
-                  <a
-                    href="/pro"
-                    className="block py-1 text-slate-200 hover:text-[#FF6F3C]"
-                    onClick={closeMobileMenu}
-                  >
-                    Pro — Operación completa
-                  </a>
-                </div>
+                <button
+                  type="button"
+                  className="w-full flex items-center justify-between py-2 text-slate-100 hover:text-[#FF6F3C]"
+                  onClick={() =>
+                    setIsMobilePlansOpen((open) => !open)
+                  }
+                >
+                  <span>Nuestros planes</span>
+                  <span className="text-[10px]">
+                    {isMobilePlansOpen ? "▲" : "▼"}
+                  </span>
+                </button>
+
+                {isMobilePlansOpen && (
+                  <div className="mt-1 space-y-1 text-xs pl-3 border-l border-slate-800">
+                    <a
+                      href="/light"
+                      className="block py-1 text-slate-200 hover:text-[#FF6F3C]"
+                      onClick={closeMobileMenu}
+                    >
+                      Light — Menú digital + QR
+                    </a>
+                    <a
+                      href="/plus"
+                      className="block py-1 text-slate-200 hover:text-[#FF6F3C]"
+                      onClick={closeMobileMenu}
+                    >
+                      Plus — Pedidos y reportes
+                    </a>
+                    <a
+                      href="/pro"
+                      className="block py-1 text-slate-200 hover:text-[#FF6F3C]"
+                      onClick={closeMobileMenu}
+                    >
+                      Pro — Operación completa
+                    </a>
+                  </div>
+                )}
               </div>
 
               <a
