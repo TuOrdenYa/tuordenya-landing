@@ -52,6 +52,10 @@ export default function LightPage() {
 
           {/* NAV DESKTOP */}
           <div className="hidden md:flex items-center gap-6 text-sm">
+            <a href="/" className="hover:text-[#FF6F3C]">
+              Volver al inicio
+            </a>
+
             <a href="/#como-funciona" className="hover:text-[#FF6F3C]">
               Cómo funciona
             </a>
@@ -122,6 +126,14 @@ export default function LightPage() {
         {isMobileMenuOpen && (
           <div className="md:hidden border-t border-slate-800 bg-slate-950">
             <div className="max-w-6xl mx-auto px-4 py-3 space-y-2 text-sm">
+              <a
+                href="/"
+                className="block py-2 text-slate-100 hover:text-[#FF6F3C]"
+                onClick={closeMobileMenu}
+              >
+                Volver al inicio
+              </a>
+
               <a
                 href="/#como-funciona"
                 className="block py-2 text-slate-100 hover:text-[#FF6F3C]"
@@ -278,7 +290,9 @@ export default function LightPage() {
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Tiempo típico de salida</span>
+                  <span className="text-slate-400">
+                    Tiempo típico de salida
+                  </span>
                   <span className="font-semibold text-slate-100">
                     Pocos días
                   </span>
@@ -384,23 +398,24 @@ export default function LightPage() {
               </p>
               <ul className="text-sm text-slate-300 space-y-2">
                 <li>
-                  • Si quieres registrar cada pedido y ver ventas por día/horario,
-                  el siguiente paso natural es{" "}
+                  • Si quieres registrar cada pedido y ver ventas por
+                  día/horario, el siguiente paso natural es{" "}
                   <a href="/plus" className="underline text-[#FF6F3C]">
                     Plus
                   </a>
                   .
                 </li>
                 <li>
-                  • Si manejas muchas mesas, cocina, barra y cuentas, el camino es{" "}
+                  • Si manejas muchas mesas, cocina, barra y cuentas, el camino
+                  es{" "}
                   <a href="/pro" className="underline text-[#FF6F3C]">
                     Pro
                   </a>
                   .
                 </li>
                 <li>
-                  • En todos los casos, tu menú digital y tu QR siguen siendo los
-                  mismos: no hay que “volver a empezar”.
+                  • En todos los casos, tu menú digital y tu QR siguen siendo
+                  los mismos: no hay que “volver a empezar”.
                 </li>
               </ul>
             </motion.div>
@@ -415,8 +430,12 @@ export default function LightPage() {
               <ul className="space-y-2 text-xs text-slate-400">
                 <li>• Aún no registras pedidos en un sistema.</li>
                 <li>• Cambias precios con cierta frecuencia.</li>
-                <li>• Tus clientes ya usan WhatsApp para escribir o preguntar.</li>
-                <li>• Quieres algo simple, rápido de implementar y económico.</li>
+                <li>
+                  • Tus clientes ya usan WhatsApp para escribir o preguntar.
+                </li>
+                <li>
+                  • Quieres algo simple, rápido de implementar y económico.
+                </li>
               </ul>
               <a
                 href="/#contacto"
