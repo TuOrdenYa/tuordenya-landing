@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState, FormEvent } from "react";
 import { supabase } from "../lib/supabase";
-import { event as gaEvent } from "@/lib/gtag";
+import { gaEvent } from "@/lib/gtag";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
