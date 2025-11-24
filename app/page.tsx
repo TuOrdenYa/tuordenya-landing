@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState, FormEvent } from "react";
 import { supabase } from "../lib/supabase";
+import { event as gaEvent } from "@/lib/gtag";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -991,6 +992,12 @@ export default function LandingPro() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             className="grid md:grid-cols-[1.1fr,1fr] gap-8 items-start"
+            onViewportEnter={() => {
+  gaEvent("view_lead_form", {
+    page: "landing_home",
+    section_id: "contacto",
+  });
+              }}
           >
             <motion.div variants={fadeUp}>
               <h2 className="text-xl sm:text-2xl font-semibold mb-2">
