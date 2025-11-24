@@ -986,6 +986,11 @@ Detalle de la operación: ${operationDetails || "N/A"}.`;
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             className="grid md:grid-cols-[1.1fr,1fr] gap-8 items-start"
+              onViewportEnter={() => {
+    // 👇 Evento GA4: el usuario vio el formulario de contacto
+    gaEvent("view_lead_form", {
+      page: "landing_home",
+      section_id: "contacto",
           >
             <motion.div variants={fadeUp}>
               <h2 className="text-xl sm:text-2xl font-semibold mb-2">
