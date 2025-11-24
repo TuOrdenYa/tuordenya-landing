@@ -28,17 +28,15 @@ export default function LandingPro() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobilePlansOpen, setIsMobilePlansOpen] = useState(false); // NUEVO: controla acordeón de productos en móvil
 
-  // --- ESTADO DEL FORMULARIO ---
+  // Estado del formulario
   const [fullName, setFullName] = useState("");
   const [restaurantName, setRestaurantName] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
   const [email, setEmail] = useState("");
-  const [interest, setInterest] = useState(
-    "Solo menú digital (Light)"
-  );
-  const [operationDetails, setOperationDetails] = useState("");
+  const [interest, setInterest] = useState("Solo menú digital (Light)");
+  const [operationNotes, setOperationNotes] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const planLabelMap: Record<Plan, string> = {
     Light: "Quiero mi menú digital (Light)",
@@ -60,71 +58,78 @@ export default function LandingPro() {
     setIsMobilePlansOpen(false); // cerramos también el submenú de productos
   };
 
-  // --- ENVÍO DEL FORMULARIO (Supabase + WhatsApp) ---
+  // Envío del formulario: Supabase + WhatsApp
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (isSubmitting) return;
 
-    setSubmitMessage(null);
-
-    // Validaciones mínimas
-    if (!fullName || !restaurantName || !whatsapp || !email) {
-      setSubmitMessage("Por favor completa los campos obligatorios.");
+    // Validación básica
+    if (!fullName.trim() || !whatsapp.trim()) {
+      setErrorMessage("Por favor completa al menos tu nombre y WhatsApp.");
       return;
     }
 
-    try {
-      setIsSubmitting(true);
+    setErrorMessage(null);
+    setIsSubmitting(true);
 
-      // 1) Guardar lead en Supabase (tabla "leads")
-      const combinedMessage = `Interés: ${interest}\nDetalle: ${operationDetails}`;
+    try {
+      // 1) Guardar en Supabase (tabla leads)
+      const composedMessage = [
+        interest ? `Interés: ${interest}` : null,
+        operationNotes ? `Sobre su operación: ${operationNotes}` : null,
+        "Fuente: tuordenya.com",
+      ]
+        .filter(Boolean)
+        .join(" | ");
+
       const { error } = await supabase.from("leads").insert([
         {
-          name: fullName,
-          restaurant: restaurantName,
-          phone: whatsapp,
-          email,
-          message: combinedMessage,
+          name: fullName || null,
+          phone: whatsapp || null,
+          email: email || null,
+          restaurant: restaurantName || null,
+          message: composedMessage || null,
         },
       ]);
 
       if (error) {
         console.error("Error guardando lead en Supabase:", error);
-        setSubmitMessage(
-          "Ocurrió un error guardando tus datos. Intenta de nuevo."
-        );
-        return;
+        setErrorMessage("Ocurrió un error guardando tus datos. Intenta de nuevo.");
       }
 
-      // 2) Abrir WhatsApp contigo
-      const tuNumero = "573227921640"; // sin "+"
-      const texto = `Hola, soy ${fullName}.
-Restaurante: ${restaurantName}.
-WhatsApp de contacto: ${whatsapp}.
-Correo: ${email}.
-Interés: ${interest}.
-Detalle de la operación: ${operationDetails || "N/A"}.`;
+      // 2) Armar mensaje para WhatsApp (para ti)
+      const messageLines = [
+        "👋 Hola, llegó un lead desde la landing de TuOrdenYa.",
+        "",
+        fullName ? `👤 Nombre: ${fullName}` : null,
+        restaurantName ? `🏪 Restaurante: ${restaurantName}` : null,
+        whatsapp ? `📱 WhatsApp del cliente: ${whatsapp}` : null,
+        email ? `✉️ Email: ${email}` : null,
+        interest ? `⭐ Interés: ${interest}` : null,
+        operationNotes ? `📝 Sobre su operación: ${operationNotes}` : null,
+        "",
+        "Fuente: tuordenya.com",
+      ]
+        .filter(Boolean)
+        .join("\n");
 
-      const waUrl = `https://wa.me/${tuNumero}?text=${encodeURIComponent(
-        texto
+      const whatsappUrl = `https://wa.me/573227921640?text=${encodeURIComponent(
+        messageLines
       )}`;
-      window.open(waUrl, "_blank");
 
-      setSubmitMessage(
-        "¡Gracias! Guardamos tus datos y abrimos WhatsApp para continuar la conversación."
-      );
+      // 3) Abrir tu WhatsApp en una nueva pestaña
+      window.open(whatsappUrl, "_blank");
 
-      // 3) Limpiar campos
+      // 4) Limpiar formulario
       setFullName("");
       setRestaurantName("");
       setWhatsapp("");
       setEmail("");
       setInterest("Solo menú digital (Light)");
-      setOperationDetails("");
+      setOperationNotes("");
     } catch (err) {
-      console.error("Error inesperado al enviar el formulario:", err);
-      setSubmitMessage(
-        "Ocurrió un error guardando tus datos. Intenta de nuevo."
-      );
+      console.error("Error inesperado en el submit:", err);
+      setErrorMessage("Ocurrió un error inesperado. Intenta de nuevo.");
     } finally {
       setIsSubmitting(false);
     }
@@ -330,10 +335,10 @@ Detalle de la operación: ${operationDetails || "N/A"}.`;
               {/* Subtítulo */}
               <p className="text-sm sm:text-base text-slate-400 max-w-xl">
                 TuOrdenYa tiene tres niveles pensados para cada etapa de tu
-                negocio: <strong>Light</strong> (menú + QR), <strong>Plus</strong>{" "}
-                (pedidos y reportes básicos) y <strong>Pro</strong> (operación
-                completa en salón y cocina). Empiezas donde estás y escalas
-                cuando lo necesites.
+                negocio: <strong>Light</strong> (menú + QR),{" "}
+                <strong>Plus</strong> (pedidos y reportes básicos) y{" "}
+                <strong>Pro</strong> (operación completa en salón y cocina).
+                Empiezas donde estás y escalas cuando lo necesites.
               </p>
 
               {/* CTAs */}
@@ -466,8 +471,8 @@ Detalle de la operación: ${operationDetails || "N/A"}.`;
                     </span>
                   </div>
                   <p className="text-slate-400">
-                    Todo lo de Light, más registro de pedidos básicos y reportes
-                    sencillos para entender qué se vende y cuándo.
+                    Todo lo de Light, más registro de pedidos básicos y
+                    reportes sencillos para entender qué se vende y cuándo.
                   </p>
                 </div>
 
@@ -986,11 +991,6 @@ Detalle de la operación: ${operationDetails || "N/A"}.`;
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             className="grid md:grid-cols-[1.1fr,1fr] gap-8 items-start"
-              onViewportEnter={() => {
-    // 👇 Evento GA4: el usuario vio el formulario de contacto
-    gaEvent("view_lead_form", {
-      page: "landing_home",
-      section_id: "contacto",
           >
             <motion.div variants={fadeUp}>
               <h2 className="text-xl sm:text-2xl font-semibold mb-2">
@@ -1013,8 +1013,9 @@ Detalle de la operación: ${operationDetails || "N/A"}.`;
 
             <motion.form
               variants={fadeUp}
-              onSubmit={handleSubmit}
               className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-5 space-y-4 text-sm"
+              onSubmit={handleSubmit}
+              noValidate
             >
               <div>
                 <label className="text-xs text-slate-400 block mb-1">
@@ -1054,11 +1055,11 @@ Detalle de la operación: ${operationDetails || "N/A"}.`;
               </div>
               <div>
                 <label className="text-xs text-slate-400 block mb-1">
-                  Correo
+                  Correo electrónico
                 </label>
                 <input
                   type="email"
-                  placeholder="Ej: nombre@tuordenya.com"
+                  placeholder="Ej: correo@tuordenya.com"
                   className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -1087,22 +1088,20 @@ Detalle de la operación: ${operationDetails || "N/A"}.`;
                   rows={3}
                   placeholder="Número de mesas, sedes, si usas POS, etc."
                   className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
-                  value={operationDetails}
-                  onChange={(e) => setOperationDetails(e.target.value)}
+                  value={operationNotes}
+                  onChange={(e) => setOperationNotes(e.target.value)}
                 />
               </div>
+              {errorMessage && (
+                <p className="text-[11px] text-red-400">{errorMessage}</p>
+              )}
               <button
                 type="submit"
-                disabled={isSubmitting}
                 className="w-full mt-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold text-sm py-2 hover:bg-[#FF814F] disabled:opacity-60 disabled:cursor-not-allowed"
+                disabled={isSubmitting}
               >
                 {isSubmitting ? "Enviando..." : "Enviar mensaje"}
               </button>
-              {submitMessage && (
-                <p className="text-[11px] text-slate-400 mt-2">
-                  {submitMessage}
-                </p>
-              )}
               <p className="text-[11px] text-slate-500 mt-1">
                 Respetamos tu tiempo: nada de spam, solo información relevante
                 para tu restaurante.
