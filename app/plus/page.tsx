@@ -102,7 +102,7 @@ export default function PlusPage() {
 
           {/* ACCIONES DERECHA */}
           <div className="flex items-center gap-3">
-            {/* CTA desktop */}
+            {/* CTA desktop (marca global, sigue en naranja) */}
             <a
               href="/#contacto"
               className="hidden sm:inline-flex text-xs sm:text-sm px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors md:inline-flex"
@@ -202,16 +202,16 @@ export default function PlusPage() {
           >
             {/* Columna izquierda: mensaje principal */}
             <motion.div variants={fadeUp} className="space-y-5">
-              {/* Badge superior */}
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#FF6F3C] bg-[#FFD5C2] px-3 py-1 text-xs font-medium text-[#FF6F3C]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#FF6F3C]" />
+              {/* Badge superior (VERDE PLUS) */}
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#2ECC71] bg-[#2ECC711A] px-3 py-1 text-xs font-medium text-[#2ECC71]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#2ECC71]" />
                 Plan Plus — Cuando ya quieres ver pedidos y datos
               </span>
 
               {/* Título */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight">
                 Pedidos básicos + reportes{" "}
-                <span className="text-[#FF6F3C]">
+                <span className="text-[#2ECC71]">
                   para entender mejor tu operación.
                 </span>
               </h1>
@@ -235,13 +235,13 @@ export default function PlusPage() {
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <a
                   href="/#contacto"
-                  className="px-5 py-2.5 text-sm rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors"
+                  className="px-5 py-2.5 text-sm rounded-full bg-[#2ECC71] text-slate-950 font-semibold hover:bg-[#38D27C] transition-colors"
                 >
                   Quiero el plan Plus
                 </a>
                 <a
                   href="/#planes"
-                  className="px-5 py-2.5 text-sm rounded-full border border-slate-700/70 hover:border-[#FF6F3C] hover:text-[#FF6F3C] transition-colors"
+                  className="px-5 py-2.5 text-sm rounded-full border border-slate-700/70 hover:border-[#2ECC71] hover:text-[#2ECC71] transition-colors"
                 >
                   Comparar Light / Plus / Pro
                 </a>
@@ -271,7 +271,7 @@ export default function PlusPage() {
                   <p className="text-xs text-slate-400">Resumen plan</p>
                   <p className="text-lg font-semibold">TuOrdenYa Plus</p>
                 </div>
-                <span className="text-[10px] rounded-full px-3 py-1 bg-slate-900 border border-slate-600 text-slate-100 font-semibold">
+                <span className="text-[10px] rounded-full px-3 py-1 bg-[#2ECC71] text-slate-950 font-semibold">
                   Pedidos + datos
                 </span>
               </div>
@@ -290,9 +290,7 @@ export default function PlusPage() {
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-400">
-                    Nivel de complejidad
-                  </span>
+                  <span className="text-slate-400">Nivel de complejidad</span>
                   <span className="font-semibold text-slate-100">
                     Medio / manejable
                   </span>
@@ -419,12 +417,16 @@ export default function PlusPage() {
               <ul className="space-y-2 text-xs text-slate-400">
                 <li>• Ya tienes buen volumen de pedidos.</li>
                 <li>• Quieres ver datos claros sin complicarte.</li>
-                <li>• Aún no estás listo para una operación de salón completa.</li>
-                <li>• Necesitas más información que la que te da solo un menú.</li>
+                <li>
+                  • Aún no estás listo para una operación de salón completa.
+                </li>
+                <li>
+                  • Necesitas más información que la que te da solo un menú.
+                </li>
               </ul>
               <a
                 href="/#contacto"
-                className="inline-flex mt-4 px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 text-xs font-semibold hover:bg-[#FF814F]"
+                className="inline-flex mt-4 px-4 py-2 rounded-full bg-[#2ECC71] text-slate-950 text-xs font-semibold hover:bg-[#38D27C]"
               >
                 Hablar del plan Plus
               </a>
