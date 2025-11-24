@@ -377,10 +377,10 @@ export default function LandingPro() {
                 </div>
 
                 {/* Plus */}
-                <div className="rounded-2xl border border-slate-800/80 bg-slate-900/80 px-4 py-3">
+                <div className="rounded-2xl border border-[#2ECC71] bg-[#2ECC711A] px-4 py-3">
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-semibold">Plus</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-200">
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#2ECC71] text-slate-950 font-semibold">
                       Pedidos + reportes
                     </span>
                   </div>
