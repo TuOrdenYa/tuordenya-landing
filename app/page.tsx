@@ -24,6 +24,7 @@ export default function LandingPro() {
   const [selectedPlan, setSelectedPlan] = useState<Plan>("Light");
   const [isPlanMenuOpen, setIsPlanMenuOpen] = useState(false);
   const [isHeaderPlansOpen, setIsHeaderPlansOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const planLabelMap: Record<Plan, string> = {
     Light: "Quiero mi menú digital (Light)",
@@ -39,6 +40,8 @@ export default function LandingPro() {
       window.location.hash = "#contacto";
     }
   };
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50 transition-colors duration-300">
@@ -66,12 +69,13 @@ export default function LandingPro() {
             </a>
           </div>
 
+          {/* NAV DESKTOP */}
           <div className="hidden md:flex items-center gap-6 text-sm">
             <a href="#como-funciona" className="hover:text-[#FF6F3C]">
               Cómo funciona
             </a>
 
-            {/* Dropdown de planes en el header */}
+            {/* Dropdown de planes en el header (desktop) */}
             <div className="relative">
               <button
                 type="button"
@@ -111,15 +115,87 @@ export default function LandingPro() {
             </a>
           </div>
 
+          {/* ACCIONES DERECHA */}
           <div className="flex items-center gap-3">
+            {/* CTA desktop */}
             <a
               href="#contacto"
-              className="inline-flex text-xs sm:text-sm px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors"
+              className="hidden sm:inline-flex text-xs sm:text-sm px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors md:inline-flex"
             >
               Agenda una demo
             </a>
+
+            {/* Botón menú móvil */}
+            <button
+              type="button"
+              className="inline-flex items-center justify-center md:hidden h-9 w-9 rounded-full border border-slate-700 text-slate-100"
+              onClick={() => setIsMobileMenuOpen((open) => !open)}
+              aria-label="Abrir menú"
+            >
+              {isMobileMenuOpen ? "✕" : "☰"}
+            </button>
           </div>
         </nav>
+
+        {/* PANEL MENÚ MÓVIL */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden border-t border-slate-800 bg-slate-950">
+            <div className="max-w-6xl mx-auto px-4 py-3 space-y-2 text-sm">
+              <a
+                href="#como-funciona"
+                className="block py-2 text-slate-100 hover:text-[#FF6F3C]"
+                onClick={closeMobileMenu}
+              >
+                Cómo funciona
+              </a>
+
+              <div className="pt-1">
+                <p className="text-xs uppercase tracking-wide text-slate-500 mb-1">
+                  Nuestros planes
+                </p>
+                <div className="space-y-1 text-xs">
+                  <a
+                    href="/light"
+                    className="block py-1 text-slate-200 hover:text-[#FF6F3C]"
+                    onClick={closeMobileMenu}
+                  >
+                    Light — Menú digital + QR
+                  </a>
+                  <a
+                    href="/plus"
+                    className="block py-1 text-slate-200 hover:text-[#FF6F3C]"
+                    onClick={closeMobileMenu}
+                  >
+                    Plus — Pedidos y reportes
+                  </a>
+                  <a
+                    href="/pro"
+                    className="block py-1 text-slate-200 hover:text-[#FF6F3C]"
+                    onClick={closeMobileMenu}
+                  >
+                    Pro — Operación completa
+                  </a>
+                </div>
+              </div>
+
+              <a
+                href="#faq"
+                className="block pt-2 pb-1 text-slate-100 hover:text-[#FF6F3C]"
+                onClick={closeMobileMenu}
+              >
+                FAQs
+              </a>
+
+              <a
+                href="#contacto"
+                className="mt-2 inline-flex w-full justify-center text-xs sm:text-sm px-4 py-2.5 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors"
+                onClick={closeMobileMenu}
+              >
+                Agenda una demo
+              </a>
+            </div>
+          </div>
+        )}
       </header>
 
       <main className="max-w-6xl mx-auto px-4">
