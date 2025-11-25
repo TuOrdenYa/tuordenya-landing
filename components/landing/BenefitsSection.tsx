@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer } from "./animations";
+import { useI18n } from "../i18n/LanguageContext";
 
 export default function BenefitsSection() {
+  const { benefits } = useI18n();
+
   return (
     <section className="py-10 border-t border-slate-800/70">
       <motion.div
@@ -13,38 +16,29 @@ export default function BenefitsSection() {
         viewport={{ once: true, amount: 0.2 }}
         className="grid md:grid-cols-3 gap-6"
       >
-        {/* Título + descripción */}
+        {/* Header */}
         <motion.div variants={fadeUp} className="md:col-span-1">
           <h2 className="text-xl sm:text-2xl font-semibold mb-3">
-            ¿Qué ganas con TuOrdenYa?
+            {benefits.title}
           </h2>
-          <p className="text-sm text-slate-400">
-            Pasas de un menú impreso a una experiencia digital que conecta
-            pedidos, operación y datos en un solo lugar.
-          </p>
+          <p className="text-sm text-slate-400">{benefits.subtitle}</p>
         </motion.div>
 
-        {/* Lista de beneficios */}
+        {/* Bullets */}
         <motion.div
           variants={fadeUp}
           className="md:col-span-2 grid sm:grid-cols-2 gap-4 text-sm"
         >
           <ul className="space-y-2">
-            <li>• Los clientes ven tu carta escaneando un código QR.</li>
-            <li>
-              • Recibes pedidos por WhatsApp o directamente desde el sistema.
-            </li>
-            <li>• Actualizas precios y platos sin reimprimir menús.</li>
+            {benefits.bulletsLeft.map((b) => (
+              <li key={b}>{b}</li>
+            ))}
           </ul>
 
           <ul className="space-y-2">
-            <li>• Reportes básicos desde Plus y operación completa en Pro.</li>
-            <li>
-              • Escalable: comienza con Light y migra a Plus/Pro cuando creces.
-            </li>
-            <li>
-              • Base lista para integrarse con tu flujo actual (POS, cocina, etc.).
-            </li>
+            {benefits.bulletsRight.map((b) => (
+              <li key={b}>{b}</li>
+            ))}
           </ul>
         </motion.div>
       </motion.div>

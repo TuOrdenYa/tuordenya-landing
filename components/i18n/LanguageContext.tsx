@@ -8,22 +8,37 @@ import {
   useEffect,
   type ReactNode,
 } from "react";
+
 import type { HomeContent, Locale } from "../../locales/types";
 import { homeEs } from "../../locales/es/home";
 import { homeEn } from "../../locales/en/home";
 
+import { benefitsEs } from "../../locales/es/benefits";
+import { benefitsEn } from "../../locales/en/benefits";
+
+/* ===============================================
+   TIPOS DEL CONTEXTO
+   =============================================== */
 type I18nContextValue = {
   locale: Locale;
   setLocale: (locale: Locale) => void;
+
   home: HomeContent;
+  benefits: typeof benefitsEs;
 };
 
+/* ===============================================
+   CREACIÓN DEL CONTEXTO
+   =============================================== */
 const I18nContext = createContext<I18nContextValue | undefined>(undefined);
 
+/* ===============================================
+   PROVIDER
+   =============================================== */
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [locale, setLocale] = useState<Locale>("es");
 
-  // Opcional: detectar idioma del navegador
+  // Detectar idioma del navegador (opcional)
   useEffect(() => {
     if (typeof navigator !== "undefined") {
       const lang = navigator.language.slice(0, 2).toLowerCase();
@@ -31,20 +46,33 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  // Selección de textos por idioma
   const home = locale === "es" ? homeEs : homeEn;
+  const benefits = locale === "es" ? benefitsEs : benefitsEn;
 
+  // Memo del valor del Provider para evitar renders innecesarios
   const value = useMemo(
-    () => ({ locale, setLocale, home }),
-    [locale, home]
+    () => ({
+      locale,
+      setLocale,
+      home,
+      benefits,
+    }),
+    [locale, home, benefits]
   );
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }
 
+/* ===============================================
+   HOOK useI18n
+   =============================================== */
 export function useI18n() {
   const ctx = useContext(I18nContext);
+
   if (!ctx) {
-    throw new Error("useI18n must be used within I18nProvider");
+    throw new Error("useI18n must be used inside <I18nProvider>");
   }
+
   return ctx;
 }
