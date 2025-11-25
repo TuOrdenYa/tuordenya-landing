@@ -3,10 +3,16 @@
 import Image from "next/image";
 import { useState } from "react";
 
+// 👇 Importamos el hook del contexto de idioma
+import { useI18n } from "@/components/i18n/LanguageContext";
+
 export default function Navbar() {
+  const { locale, setLocale, home } = useI18n();
+  const { navbar } = home;
+
   const [isHeaderPlansOpen, setIsHeaderPlansOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMobilePlansOpen, setIsMobilePlansOpen] = useState(false); // acordeón productos en móvil
+  const [isMobilePlansOpen, setIsMobilePlansOpen] = useState(false);
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
@@ -16,8 +22,9 @@ export default function Navbar() {
   return (
     <header className="border-b border-slate-800/80 sticky top-0 z-30 backdrop-blur bg-slate-950/90">
       <nav className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+        
+        {/* LOGO */}
         <div className="flex items-center gap-3">
-          {/* Logo TuOrdenYa */}
           <a href="/" className="flex items-center gap-2">
             <div className="flex items-center">
               <Image
@@ -31,26 +38,27 @@ export default function Navbar() {
             </div>
             <div className="flex flex-col leading-tight">
               <span className="font-semibold text-sm sm:text-base">
-                Menús y órdenes para restaurantes
+                {navbar.subtitle}
               </span>
             </div>
           </a>
         </div>
 
-        {/* NAV DESKTOP */}
+        {/* DESKTOP NAV */}
         <div className="hidden md:flex items-center gap-6 text-sm">
+
           <a href="#como-funciona" className="hover:text-[#FF6F3C]">
-            Cómo funciona
+            {navbar.howItWorks}
           </a>
 
-          {/* Dropdown de productos en el header (desktop) */}
+          {/* PRODUCTOS DROPDOWN */}
           <div className="relative">
             <button
               type="button"
               onClick={() => setIsHeaderPlansOpen((open) => !open)}
               className="inline-flex items-center gap-1 hover:text-[#FF6F3C]"
             >
-              Nuestros productos
+              {navbar.products}
               <span className="text-[10px]">▼</span>
             </button>
 
@@ -60,40 +68,48 @@ export default function Navbar() {
                   href="/light"
                   className="block px-3 py-1.5 hover:bg-slate-800 hover:text-[#FF6F3C]"
                 >
-                  Light — Menú digital + QR
+                  {navbar.light}
                 </a>
                 <a
                   href="/plus"
                   className="block px-3 py-1.5 hover:bg-slate-800 hover:text-[#FF6F3C]"
                 >
-                  Plus — Pedidos y reportes
+                  {navbar.plus}
                 </a>
                 <a
                   href="/pro"
                   className="block px-3 py-1.5 hover:bg-slate-800 hover:text-[#FF6F3C]"
                 >
-                  Pro — Operación completa
+                  {navbar.pro}
                 </a>
               </div>
             )}
           </div>
 
           <a href="#faq" className="hover:text-[#FF6F3C]">
-            FAQs
+            {navbar.faq}
           </a>
         </div>
 
         {/* ACCIONES DERECHA */}
         <div className="flex items-center gap-3">
-          {/* CTA desktop */}
+          {/* CTA Desktop */}
           <a
             href="#contacto"
             className="hidden sm:inline-flex text-xs sm:text-sm px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors md:inline-flex"
           >
-            Agenda una demo
+            {navbar.demo}
           </a>
 
-          {/* Botón menú móvil */}
+          {/* Toggle idioma */}
+          <button
+            onClick={() => setLocale(locale === "es" ? "en" : "es")}
+            className="hidden md:inline-flex text-xs px-3 py-1 rounded-full border border-slate-700 hover:border-[#FF6F3C] hover:text-[#FF6F3C] transition-colors"
+          >
+            {locale.toUpperCase()}
+          </button>
+
+          {/* Mobile Menu Button */}
           <button
             type="button"
             className="inline-flex items-center justify-center md:hidden h-9 w-9 rounded-full border border-slate-700 text-slate-100"
@@ -111,26 +127,27 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* PANEL MENÚ MÓVIL */}
+      {/* MOBILE MENU */}
       {isMobileMenuOpen && (
         <div className="md:hidden border-t border-slate-800 bg-slate-950">
           <div className="max-w-6xl mx-auto px-4 py-3 space-y-2 text-sm">
+            
             <a
               href="#como-funciona"
               className="block py-2 text-slate-100 hover:text-[#FF6F3C]"
               onClick={closeMobileMenu}
             >
-              Cómo funciona
+              {navbar.howItWorks}
             </a>
 
-            {/* Acordeón "Nuestros productos" en móvil */}
+            {/* Productos Mobile Accordion */}
             <div className="pt-1">
               <button
                 type="button"
                 className="w-full flex items-center justify-between py-2 text-slate-100 hover:text-[#FF6F3C]"
                 onClick={() => setIsMobilePlansOpen((open) => !open)}
               >
-                <span>Nuestros productos</span>
+                <span>{navbar.products}</span>
                 <span className="text-[10px]">
                   {isMobilePlansOpen ? "▲" : "▼"}
                 </span>
@@ -143,21 +160,21 @@ export default function Navbar() {
                     className="block py-1 text-slate-200 hover:text-[#FF6F3C]"
                     onClick={closeMobileMenu}
                   >
-                    Light — Menú digital + QR
+                    {navbar.light}
                   </a>
                   <a
                     href="/plus"
                     className="block py-1 text-slate-200 hover:text-[#FF6F3C]"
                     onClick={closeMobileMenu}
                   >
-                    Plus — Pedidos y reportes
+                    {navbar.plus}
                   </a>
                   <a
                     href="/pro"
                     className="block py-1 text-slate-200 hover:text-[#FF6F3C]"
                     onClick={closeMobileMenu}
                   >
-                    Pro — Operación completa
+                    {navbar.pro}
                   </a>
                 </div>
               )}
@@ -168,7 +185,7 @@ export default function Navbar() {
               className="block pt-2 pb-1 text-slate-100 hover:text-[#FF6F3C]"
               onClick={closeMobileMenu}
             >
-              FAQs
+              {navbar.faq}
             </a>
 
             <a
@@ -176,8 +193,16 @@ export default function Navbar() {
               className="mt-2 inline-flex w-full justify-center text-xs sm:text-sm px-4 py-2.5 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors"
               onClick={closeMobileMenu}
             >
-              Agenda una demo
+              {navbar.demo}
             </a>
+
+            {/* Toggle idioma mobile */}
+            <button
+              onClick={() => setLocale(locale === "es" ? "en" : "es")}
+              className="mt-3 w-full text-center text-xs px-3 py-1 rounded-full border border-slate-700 hover:border-[#FF6F3C] hover:text-[#FF6F3C] transition-colors"
+            >
+              {locale.toUpperCase()}
+            </button>
           </div>
         </div>
       )}
