@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 import MarketingLayout from "../components/layout/MarketingLayout";
 import LeadForm from "../components/LeadForm";
@@ -14,11 +13,11 @@ import ProDetailsSection from "../components/landing/ProDetailsSection";
 import TestimonialsSection from "../components/landing/TestimonialsSection";
 import FAQSection from "../components/landing/FAQSection";
 import HeroSection from "../components/landing/HeroSection";
+import BenefitsSection from "../components/landing/BenefitsSection";
 
 export default function LandingPage() {
   return (
     <MarketingLayout>
-        
       {/* HERO (nuevo componente) */}
       <HeroSection />
 
@@ -69,8 +68,8 @@ export default function LandingPage() {
             <div className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-4">
               <p className="font-semibold mb-1 text-sm">Pagos y facturación</p>
               <p className="text-slate-400">
-                Integración futura con pasarelas y/o POS. La arquitectura ya está
-                pensada para eso.
+                Integración futura con pasarelas y/o POS. La arquitectura ya
+                está pensada para eso.
               </p>
             </div>
 
@@ -105,7 +104,8 @@ export default function LandingPage() {
             className="text-sm text-slate-400 mb-6"
           >
             Comienza con lo básico y escala a medida que tu restaurante crece.
-            Todos los productos incluyen hosting, dominio técnico y soporte básico.
+            Todos los productos incluyen hosting, dominio técnico y soporte
+            básico.
           </motion.p>
 
           <div className="grid md:grid-cols-3 gap-5 text-sm">
@@ -125,7 +125,10 @@ export default function LandingPage() {
       <FAQSection />
 
       {/* CONTACTO */}
-      <section id="contacto" className="py-12 border-t border-slate-800/70 mb-10">
+      <section
+        id="contacto"
+        className="py-12 border-t border-slate-800/70 mb-10"
+      >
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -157,10 +160,8 @@ export default function LandingPage() {
               whatsappNumber="573227921640"
             />
           </motion.div>
-
         </motion.div>
       </section>
-
     </MarketingLayout>
   );
 }
