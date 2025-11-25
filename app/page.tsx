@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-import MarketingLayout from "./components/layout/MarketingLayout";
-import LeadForm from "./components/LeadForm";
+import MarketingLayout from "../components/layout/MarketingLayout";
+import LeadForm from "../components/LeadForm";
 
-import ProductCard from "./components/landing/ProductCard";
-import { productsData } from "./components/landing/productsData";
+import ProductCard from "../components/landing/ProductCard";
+import { productsData } from "../components/landing/productsData";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
