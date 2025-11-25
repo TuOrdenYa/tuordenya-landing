@@ -16,6 +16,9 @@ import { homeEn } from "../../locales/en/home";
 import { benefitsEs } from "../../locales/es/benefits";
 import { benefitsEn } from "../../locales/en/benefits";
 
+import { integrationsEs } from "../../locales/es/integrations";
+import { integrationsEn } from "../../locales/en/integrations";
+
 /* ===============================================
    TIPOS DEL CONTEXTO
    =============================================== */
@@ -25,6 +28,7 @@ type I18nContextValue = {
 
   home: HomeContent;
   benefits: typeof benefitsEs;
+  integrations: typeof integrationsEs;
 };
 
 /* ===============================================
@@ -49,6 +53,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   // Selección de textos por idioma
   const home = locale === "es" ? homeEs : homeEn;
   const benefits = locale === "es" ? benefitsEs : benefitsEn;
+  const integrations = locale === "es" ? integrationsEs : integrationsEn;
 
   // Memo del valor del Provider para evitar renders innecesarios
   const value = useMemo(
@@ -57,8 +62,9 @@ export function I18nProvider({ children }: { children: ReactNode }) {
       setLocale,
       home,
       benefits,
+      integrations,
     }),
-    [locale, home, benefits]
+    [locale, home, benefits, integrations]
   );
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;

@@ -14,6 +14,7 @@ import TestimonialsSection from "../components/landing/TestimonialsSection";
 import FAQSection from "../components/landing/FAQSection";
 import HeroSection from "../components/landing/HeroSection";
 import BenefitsSection from "../components/landing/BenefitsSection";
+import IntegrationsSection from "../components/landing/IntegrationsSection";
 
 export default function LandingPage() {
   return (
@@ -31,58 +32,7 @@ export default function LandingPage() {
       <ProDetailsSection />
 
       {/* INTEGRACIONES */}
-      <section className="py-12">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <motion.h2
-            variants={fadeUp}
-            className="text-xl sm:text-2xl font-semibold mb-2"
-          >
-            Integraciones y ecosistema
-          </motion.h2>
-
-          <motion.p
-            variants={fadeUp}
-            className="text-sm text-slate-400 mb-6 max-w-xl"
-          >
-            TuOrdenYa está diseñado para conversar con otras herramientas que ya
-            usas en tu restaurante. Empezamos simple y vamos creciendo contigo.
-          </motion.p>
-
-          <motion.div
-            variants={fadeUp}
-            className="grid sm:grid-cols-3 gap-4 text-xs"
-          >
-            <div className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-4">
-              <p className="font-semibold mb-1 text-sm">Canales de pedido</p>
-              <p className="text-slate-400">
-                QR, WhatsApp y órdenes desde salón. Diseño para sumar otros
-                canales en futuro.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-4">
-              <p className="font-semibold mb-1 text-sm">Pagos y facturación</p>
-              <p className="text-slate-400">
-                Integración futura con pasarelas y/o POS. La arquitectura ya
-                está pensada para eso.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-4">
-              <p className="font-semibold mb-1 text-sm">Datos y reportes</p>
-              <p className="text-slate-400">
-                Base de datos preparada para alimentar tableros e informes
-                avanzados (Plus y Pro).
-              </p>
-            </div>
-          </motion.div>
-        </motion.div>
-      </section>
+      <IntegrationsSection />
 
       {/* PRODUCTOS */}
       <section id="productos" className="py-12 border-t border-slate-800/70">
