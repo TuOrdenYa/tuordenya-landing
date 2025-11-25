@@ -4,12 +4,14 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 import { fadeUp, staggerContainer } from "./animations";
-import { useI18n } from "@/components/i18n/useI18n";
+import { useI18n } from "@/components/i18n/LanguageContext";
 
 type Plan = "Light" | "Plus" | "Pro";
 
 export default function HeroSection() {
-  const { hero } = useI18n("home");
+  // 👇 Leemos los textos desde el contexto i18n
+  const { home } = useI18n();
+  const hero = home.hero;
 
   const [selectedPlan, setSelectedPlan] = useState<Plan>("Light");
   const [isPlanMenuOpen, setIsPlanMenuOpen] = useState(false);
@@ -35,28 +37,26 @@ export default function HeroSection() {
       >
         {/* COLUMNA IZQUIERDA */}
         <motion.div variants={fadeUp} className="space-y-5">
-
-          {/* BADGE */}
+          {/* Badge */}
           <span className="inline-flex items-center gap-2 rounded-full border border-[#FF6F3C] bg-[#FFD5C2] px-3 py-1 text-xs font-medium text-[#FF6F3C]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#FF6F3C]" />
             {hero.badge}
           </span>
 
-          {/* TÍTULO */}
+          {/* Título */}
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight">
             {hero.title}{" "}
             <span className="text-[#FF6F3C]">{hero.highlight}</span>
           </h1>
 
-          {/* DESCRIPCIÓN */}
+          {/* Descripción */}
           <p className="text-sm sm:text-base text-slate-400 max-w-xl">
             {hero.description}
           </p>
 
           {/* CTAs */}
           <div className="flex flex-wrap items-center gap-3">
-
-            {/* BOTÓN PRINCIPAL + SELECTOR */}
+            {/* Botón principal + selector de plan */}
             <div className="relative inline-flex">
               <button
                 type="button"
@@ -95,7 +95,7 @@ export default function HeroSection() {
               )}
             </div>
 
-            {/* CTA SECUNDARIA */}
+            {/* CTA secundaria */}
             <a
               href="#productos"
               className="px-5 py-2.5 text-sm rounded-full border border-slate-700/70 hover:border-[#FF6F3C] hover:text-[#FF6F3C] transition-colors"
@@ -104,7 +104,7 @@ export default function HeroSection() {
             </a>
           </div>
 
-          {/* SEGMENTOS */}
+          {/* Segmentos */}
           <div className="flex flex-wrap gap-2 pt-2 text-[11px] text-slate-400">
             {hero.segments.map((segment, index) => (
               <span
@@ -117,7 +117,7 @@ export default function HeroSection() {
           </div>
         </motion.div>
 
-        {/* COLUMNA DERECHA - (Se mantiene igual porque NO tiene textos dinámicos aún) */}
+        {/* COLUMNA DERECHA (la dejamos estática por ahora, sin i18n) */}
         <motion.div
           variants={fadeUp}
           className="rounded-3xl border border-slate-800/70 bg-gradient-to-br from-slate-900 to-slate-950 p-5 sm:p-6 flex flex-col gap-4 shadow-xl"
@@ -134,8 +134,52 @@ export default function HeroSection() {
             </span>
           </div>
 
-          {/* Aquí no movimos textos porque estos vienen de estructuras fijas */}
-          {/* Luego si quieres los pasamos a i18n también */}
+          <div className="space-y-3 text-xs">
+            <div className="rounded-2xl border border-[#F7C325] bg-[#F7C3251A] px-4 py-3">
+              <div className="flex items-center justify-between mb-1">
+                <span className="font-semibold">Light</span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#F7C325] text-slate-950 font-semibold">
+                  Punto de partida
+                </span>
+              </div>
+              <p className="text-slate-200">
+                Menú digital responsive, QR por local y botón de pedido por
+                WhatsApp. Ideal para cafeterías, food trucks y negocios pequeños.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-[#2ECC71] bg-[#2ECC711A] px-4 py-3">
+              <div className="flex items-center justify-between mb-1">
+                <span className="font-semibold">Plus</span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#2ECC71] text-slate-950 font-semibold">
+                  Pedidos + reportes
+                </span>
+              </div>
+              <p className="text-slate-400">
+                Todo lo de Light, más registro de pedidos básicos y reportes
+                sencillos para entender qué se vende y cuándo.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-[#4A90E2] bg-[#4A90E21A] px-4 py-3">
+              <div className="flex items-center justify-between mb-1">
+                <span className="font-semibold">Pro</span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#4A90E2] text-slate-50 font-semibold">
+                  Operación completa
+                </span>
+              </div>
+              <p className="text-slate-200">
+                Órdenes por mesa y canal, tiempos de cocina, cuentas y cierres.
+                Pensado para restaurantes de alta rotación, cadenas y dark
+                kitchens.
+              </p>
+            </div>
+          </div>
+
+          <p className="text-[11px] text-slate-500 pt-1">
+            Empiezas con el nivel que necesitas hoy y puedes migrar a Plus o Pro
+            sin cambiar de plataforma ni de menú.
+          </p>
         </motion.div>
       </motion.div>
     </section>
