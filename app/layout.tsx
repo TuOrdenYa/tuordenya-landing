@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-// 👇 Import GA4 Script
 import Script from "next/script";
-// 👇 Import Analytics para pageviews automáticos
 import Analytics from "@/app/analytics";
+
+// 👇 Import I18n Provider
+import { I18nProvider } from "@/components/i18n/LanguageContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,8 +40,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {/* ==========================================
-             🔥 GOOGLE ANALYTICS 4 — INIT
-          ========================================== */}
+              🔥 GOOGLE ANALYTICS 4 — INIT
+           ========================================== */}
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-WZMB6KBB54"
@@ -61,7 +62,13 @@ export default function RootLayout({
         {/* Registrar pageviews automáticos */}
         <Analytics />
 
-        {children}
+        {/* ==========================================
+               🌍 I18N PROVIDER WRAPPING
+           ========================================== */}
+        <I18nProvider>
+          {children}
+        </I18nProvider>
+
       </body>
     </html>
   );
