@@ -2,10 +2,14 @@ import type { HomeContent } from "../types";
 
 export const homeEn: HomeContent = {
   navbar: {
+    subtitle: "Menus and ordering for restaurants",
     howItWorks: "How it works",
     products: "Our products",
     faq: "FAQs",
     demo: "Book a demo",
+    light: "Light — Digital menu + QR",
+    plus: "Plus — Orders and reports",
+    pro: "Pro — Full operation",
   },
   hero: {
     badge: "Start with Light, grow into Plus and Pro",

@@ -17,10 +17,14 @@ export type ProductContent = {
 
 export type HomeContent = {
   navbar: {
+    subtitle: string;
     howItWorks: string;
     products: string;
     faq: string;
     demo: string;
+    light: string;
+    plus: string;
+    pro: string;
   };
   hero: {
     badge: string;
