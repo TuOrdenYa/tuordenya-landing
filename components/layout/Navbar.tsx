@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function Navbar() {
   const [isHeaderPlansOpen, setIsHeaderPlansOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMobilePlansOpen, setIsMobilePlansOpen] = useState(false);
+  const [isMobilePlansOpen, setIsMobilePlansOpen] = useState(false); // acordeón productos en móvil
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);

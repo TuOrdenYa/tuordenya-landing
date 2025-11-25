@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import Image from "next/image"; // si lo usas en esta página (no lo usas ahora, pero por si acaso)
 import LeadForm from "../components/LeadForm";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
@@ -241,10 +240,6 @@ export default function LandingPro() {
         </section>
 
         {/* SECCIÓN BENEFICIOS */}
-        {/* ...aquí TODO el resto de tus secciones tal como las tienes ahora... */}
-        {/* No las toco para que solo cambiemos header/footer en este paso */}
-
-        {/* SECCIÓN BENEFICIOS */}
         <section className="py-10 border-t border-slate-800/70">
           <motion.div
             variants={staggerContainer}
@@ -293,7 +288,436 @@ export default function LandingPro() {
         </section>
 
         {/* CÓMO FUNCIONA */}
-        {/* ...y así sucesivamente, sin cambios, hasta el formulario/contacto... */}
+        <section id="como-funciona" className="py-12">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <motion.h2
+              variants={fadeUp}
+              className="text-xl sm:text-2xl font-semibold mb-6"
+            >
+              Cómo funciona
+            </motion.h2>
+
+            <div className="grid md:grid-cols-3 gap-5 text-sm">
+              <motion.div
+                variants={fadeUp}
+                className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-4"
+              >
+                <p className="text-xs text-slate-400">Paso 1</p>
+                <p className="font-semibold mt-1 mb-2">Configura tu menú</p>
+                <p className="text-slate-400 text-xs">
+                  Cargamos tu carta, categorías, modificadores y combos.
+                  Ajustamos a tu marca para que se vea como tu restaurante.
+                </p>
+              </motion.div>
+              <motion.div
+                variants={fadeUp}
+                className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-4"
+              >
+                <p className="text-xs text-slate-400">Paso 2</p>
+                <p className="font-semibold mt-1 mb-2">Imprime tus QR</p>
+                <p className="text-slate-400 text-xs">
+                  Te entregamos los códigos QR listos para mesas, empaques y
+                  puntos de venta. Opcional: diseño en tu línea gráfica.
+                </p>
+              </motion.div>
+              <motion.div
+                variants={fadeUp}
+                className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-4"
+              >
+                <p className="text-xs text-slate-400">Paso 3</p>
+                <p className="font-semibold mt-1 mb-2">
+                  Empiezas a recibir pedidos
+                </p>
+                <p className="text-slate-400 text-xs">
+                  Los clientes ordenan desde su celular. Tú ves pedidos, tiempos
+                  y cuentas desde una vista única.
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* SECCIÓN PRO DETALLADA */}
+        <section id="pro" className="py-12 border-t border-slate-800/70">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="grid md:grid-cols-[1.1fr,1fr] gap-8 items-start"
+          >
+            <motion.div variants={fadeUp}>
+              <h2 className="text-xl sm:text-2xl font-semibold mb-3">
+                RestOrder Pro: operación completa
+              </h2>
+              <p className="text-sm text-slate-400 mb-4 max-w-xl">
+                Cuando tu restaurante crece, necesitas algo más que un menú
+                digital. Pro está pensado para manejar órdenes, tiempos de
+                cocina, cuentas por mesa y reportes de operación.
+              </p>
+              <div className="grid sm:grid-cols-2 gap-4 text-sm">
+                <div className="space-y-2">
+                  <p className="font-semibold">Órdenes por mesa y canal</p>
+                  <p className="text-slate-400 text-xs">
+                    Control de órdenes en salón, domicilio y para llevar.
+                    Clientes, mesa y estado de cada pedido.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <p className="font-semibold">Flujo cocina y barra</p>
+                  <p className="text-slate-400 text-xs">
+                    Envío de órdenes a cocina/bar, estados por preparación y
+                    alertas de demora.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <p className="font-semibold">Cuentas y pagos</p>
+                  <p className="text-slate-400 text-xs">
+                    Divide cuentas, agrega productos, maneja propinas y deja
+                    todo listo para POS o caja.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <p className="font-semibold">Reportes operativos</p>
+                  <p className="text-slate-400 text-xs">
+                    Órdenes por franja horaria, platos más vendidos y desempeño
+                    por canal.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={fadeUp}
+              className="rounded-3xl border border-[#4A90E2] bg-gradient-to-br from-slate-900 to-slate-950 p-5 text-sm"
+            >
+              <p className="text-xs font-semibold text-[#4A90E2] mb-2">
+                ¿Para quién es Pro?
+              </p>
+              <ul className="space-y-2 text-xs">
+                <li>• Restaurantes con varias mesas y rotación constante.</li>
+                <li>• Cadenas pequeñas o marcas con más de una sede.</li>
+                <li>• Dark kitchens con alto volumen de pedidos.</li>
+                <li>
+                  • Negocios que ya usan POS y quieren conectar la operación.
+                </li>
+              </ul>
+              <a
+                href="#contacto"
+                className="inline-flex mt-4 px-4 py-2 rounded-full bg-[#4A90E2] text-slate-50 text-xs font-semibold hover:bg-[#5fa3ff]"
+              >
+                Quiero hablar de la versión Pro
+              </a>
+            </motion.div>
+          </motion.div>
+        </section>
+
+        {/* INTEGRACIONES */}
+        <section className="py-12">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <motion.h2
+              variants={fadeUp}
+              className="text-xl sm:text-2xl font-semibold mb-2"
+            >
+              Integraciones y ecosistema
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              className="text-sm text-slate-400 mb-6 max-w-xl"
+            >
+              TuOrdenYa está diseñado para conversar con otras herramientas que
+              ya usas en tu restaurante. Empezamos simple y vamos creciendo
+              contigo.
+            </motion.p>
+
+            <motion.div
+              variants={fadeUp}
+              className="grid sm:grid-cols-3 gap-4 text-xs"
+            >
+              <div className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-4">
+                <p className="font-semibold mb-1 text-sm">Canales de pedido</p>
+                <p className="text-slate-400">
+                  QR, WhatsApp y órdenes desde salón. Diseño para sumar otros
+                  canales en futuro.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-4">
+                <p className="font-semibold mb-1 text-sm">Pagos y facturación</p>
+                <p className="text-slate-400">
+                  Integración futura con pasarelas y/o POS. La arquitectura ya
+                  está pensada para eso.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-4">
+                <p className="font-semibold mb-1 text-sm">Datos y reportes</p>
+                <p className="text-slate-400">
+                  Base de datos preparada para alimentar tableros e informes
+                  avanzados (Plus y Pro).
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        </section>
+
+        {/* productos */}
+        <section id="productos" className="py-12 border-t border-slate-800/70">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <motion.h2
+              variants={fadeUp}
+              className="text-xl sm:text-2xl font-semibold mb-2"
+            >
+              Productos pensados para ti
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              className="text-sm text-slate-400 mb-6"
+            >
+              Comienza con lo básico y escala a medida que tu restaurante crece.
+              Todos los productos incluyen hosting, dominio técnico y soporte
+              básico.
+            </motion.p>
+
+            <div className="grid md:grid-cols-3 gap-5 text-sm">
+              {/* Light */}
+              <motion.div
+                variants={fadeUp}
+                className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-5 flex flex-col justify-between"
+              >
+                <div>
+                  <p className="text-xs font-semibold text-slate-400">Light</p>
+                  <p className="text-lg font-semibold mt-1 mb-1">
+                    Menú + QR + WhatsApp
+                  </p>
+                  <p className="text-xs text-slate-400 mb-3">
+                    Ideal para cafeterías, food trucks y negocios pequeños que
+                    quieren salir del papel.
+                  </p>
+                  <ul className="text-xs space-y-1">
+                    <li>• Menú digital responsive.</li>
+                    <li>• Código QR por local.</li>
+                    <li>• Botón “Ordenar por WhatsApp”.</li>
+                    <li>• Ajuste básico a tu marca.</li>
+                  </ul>
+                </div>
+                <p className="mt-4 text-xs text-slate-500">
+                  👉 Punto de partida rápido y económico.
+                </p>
+              </motion.div>
+
+              {/* Plus */}
+              <motion.div
+                variants={fadeUp}
+                className="rounded-2xl border border-slate-800/70 bg-slate-900/80 p-5 flex flex-col justify-between"
+              >
+                <div>
+                  <p className="text-xs font-semibold text-slate-400">Plus</p>
+                  <p className="text-lg font-semibold mt-1 mb-1">
+                    Pedidos básicos + reportes
+                  </p>
+                  <p className="text-xs text-slate-400 mb-3">
+                    Para restaurantes que empiezan a manejar más volumen y
+                    necesitan ver datos simples.
+                  </p>
+                  <ul className="text-xs space-y-1">
+                    <li>• Todo lo de Light.</li>
+                    <li>• Registro de pedidos básicos.</li>
+                    <li>• Reportes de ventas sencillos.</li>
+                    <li>• Mejor visibilidad de operación.</li>
+                  </ul>
+                </div>
+                <p className="mt-4 text-xs text-slate-500">
+                  👉 Ideal cuando ya superaste la fase “solo menú”.
+                </p>
+              </motion.div>
+
+              {/* Pro */}
+              <motion.div
+                variants={fadeUp}
+                className="rounded-2xl border border-[#FF6F3C] bg-gradient-to-br from-[#FF6F3C33] to-slate-900 p-5 flex flex-col justify-between relative overflow-hidden"
+              >
+                <span className="absolute right-4 top-4 text-[10px] px-2 py-1 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold">
+                  Recomendado
+                </span>
+                <div>
+                  <p className="text-xs font-semibold text-[#FF6F3C]">Pro</p>
+                  <p className="text-lg font-semibold mt-1 mb-1">
+                    Operación completa
+                  </p>
+                  <p className="text-xs text-slate-200 mb-3">
+                    Pensado para la operación diaria: mesas, cocina, cuentas,
+                    tiempos y reportes.
+                  </p>
+                  <ul className="text-xs space-y-1">
+                    <li>• Todo lo de Light y Plus.</li>
+                    <li>• Órdenes por mesa y canal.</li>
+                    <li>• Flujo de cocina y barra.</li>
+                    <li>• Cuentas, propinas y cierres.</li>
+                    <li>• Reportes operativos clave.</li>
+                  </ul>
+                </div>
+                <a
+                  href="#contacto"
+                  className="mt-4 inline-flex px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 text-xs font-semibold hover:bg-[#FF814F]"
+                >
+                  Quiero cotizar Pro
+                </a>
+              </motion.div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* TESTIMONIOS */}
+        <section className="py-12">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <motion.h2
+              variants={fadeUp}
+              className="text-xl sm:text-2xl font-semibold mb-2"
+            >
+              Lo que dicen los restaurantes
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              className="text-sm text-slate-400 mb-6"
+            >
+              Aún si hoy estás en papel o en WhatsApp, TuOrdenYa te ayuda a
+              estandarizar tu operación paso a paso.
+            </motion.p>
+
+            <div className="grid md:grid-cols-3 gap-5 text-xs">
+              <motion.div
+                variants={fadeUp}
+                className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-4"
+              >
+                <p className="mb-3 text-slate-200">
+                  “Con el menú digital y los QR dejamos de imprimir cartas cada
+                  vez que subían los precios. Hoy cambiamos todo en minutos.”
+                </p>
+                <p className="font-semibold">Café Alameda</p>
+                <p className="text-slate-400">Cafetería de barrio</p>
+              </motion.div>
+              <motion.div
+                variants={fadeUp}
+                className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-4"
+              >
+                <p className="mb-3 text-slate-200">
+                  “Plus nos permitió ver qué platos se mueven más por horario y
+                  tomar decisiones de menú más rápido.”
+                </p>
+                <p className="font-semibold">La Parrilla 24</p>
+                <p className="text-slate-400">Restaurante familiar</p>
+              </motion.div>
+              <motion.div
+                variants={fadeUp}
+                className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-4"
+              >
+                <p className="mb-3 text-slate-200">
+                  “Con Pro tenemos control de las mesas, tiempos y cuentas sin
+                  estar corriendo con papeles.”
+                </p>
+                <p className="font-semibold">Bistro Central</p>
+                <p className="text-slate-400">Restaurante de alta rotación</p>
+              </motion.div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* FAQ */}
+        <section id="faq" className="py-12 border-t border-slate-800/70">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="max-w-3xl"
+          >
+            <motion.h2
+              variants={fadeUp}
+              className="text-xl sm:text-2xl font-semibold mb-2"
+            >
+              Preguntas frecuentes
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              className="text-sm text-slate-400 mb-6"
+            >
+              Si tienes dudas específicas de tu operación, cuéntanos y adaptamos
+              la implementación a tu caso.
+            </motion.p>
+
+            <motion.div variants={fadeUp} className="space-y-4 text-sm">
+              <details className="group rounded-2xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
+                <summary className="cursor-pointer list-none flex justify-between items-center">
+                  <span>¿Cuánto se demora la implementación?</span>
+                  <span className="text-xs text-slate-500 group-open:hidden">
+                    +
+                  </span>
+                  <span className="text-xs text-slate-500 hidden group-open:inline">
+                    –
+                  </span>
+                </summary>
+                <p className="mt-2 text-xs text-slate-400">
+                  Depende de la complejidad de tu carta y operación, pero
+                  normalmente tomamos días, no meses. Light puede quedar listo
+                  muy rápido; Pro requiere un poco más de coordinación.
+                </p>
+              </details>
+
+              <details className="group rounded-2xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
+                <summary className="cursor-pointer list-none flex justify-between items-center">
+                  <span>¿Necesito cambiar mi POS actual?</span>
+                  <span className="text-xs text-slate-500 group-open:hidden">
+                    +
+                  </span>
+                  <span className="text-xs text-slate-500 hidden group-open:inline">
+                    –
+                  </span>
+                </summary>
+                <p className="mt-2 text-xs text-slate-400">
+                  No necesariamente. TuOrdenYa puede convivir con tu POS actual
+                  mientras definimos el nivel de integración que tenga sentido
+                  para tu negocio.
+                </p>
+              </details>
+
+              <details className="group rounded-2xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
+                <summary className="cursor-pointer list-none flex justify-between items-center">
+                  <span>¿Puedo empezar con Light y luego subir?</span>
+                  <span className="text-xs text-slate-500 group-open:hidden">
+                    +
+                  </span>
+                  <span className="text-xs text-slate-500 hidden group-open:inline">
+                    –
+                  </span>
+                </summary>
+                <p className="mt-2 text-xs text-slate-400">
+                  Sí. Justamente la idea es que empieces con lo básico y puedas
+                  migrar a Plus o Pro cuando el volumen de tu restaurante lo
+                  justifique.
+                </p>
+              </details>
+            </motion.div>
+          </motion.div>
+        </section>
 
         {/* FORMULARIO / CONTACTO */}
         <section
