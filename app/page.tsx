@@ -5,21 +5,20 @@ import { motion } from "framer-motion";
 import MarketingLayout from "../components/layout/MarketingLayout";
 import LeadForm from "../components/LeadForm";
 
-import ProductCard from "../components/landing/ProductCard";
-import { productsData } from "../components/landing/productsData";
 import { fadeUp, staggerContainer } from "../components/landing/animations";
-import HowItWorksSection from "../components/landing/HowItWorksSection";
-import ProDetailsSection from "../components/landing/ProDetailsSection";
-import TestimonialsSection from "../components/landing/TestimonialsSection";
-import FAQSection from "../components/landing/FAQSection";
 import HeroSection from "../components/landing/HeroSection";
 import BenefitsSection from "../components/landing/BenefitsSection";
+import HowItWorksSection from "../components/landing/HowItWorksSection";
+import ProDetailsSection from "../components/landing/ProDetailsSection";
 import IntegrationsSection from "../components/landing/IntegrationsSection";
+import ProductsSection from "../components/landing/ProductsSection";
+import TestimonialsSection from "../components/landing/TestimonialsSection";
+import FAQSection from "../components/landing/FAQSection";
 
 export default function LandingPage() {
   return (
     <MarketingLayout>
-      {/* HERO (nuevo componente) */}
+      {/* HERO */}
       <HeroSection />
 
       {/* BENEFICIOS */}
@@ -35,38 +34,7 @@ export default function LandingPage() {
       <IntegrationsSection />
 
       {/* PRODUCTOS */}
-      <section id="productos" className="py-12 border-t border-slate-800/70">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <motion.h2
-            variants={fadeUp}
-            className="text-xl sm:text-2xl font-semibold mb-2"
-          >
-            Productos pensados para ti
-          </motion.h2>
-
-          <motion.p
-            variants={fadeUp}
-            className="text-sm text-slate-400 mb-6"
-          >
-            Comienza con lo básico y escala a medida que tu restaurante crece.
-            Todos los productos incluyen hosting, dominio técnico y soporte
-            básico.
-          </motion.p>
-
-          <div className="grid md:grid-cols-3 gap-5 text-sm">
-            {productsData.map((product) => (
-              <motion.div key={product.id} variants={fadeUp}>
-                <ProductCard {...product} />
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
+      <ProductsSection />
 
       {/* TESTIMONIOS */}
       <TestimonialsSection />
