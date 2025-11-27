@@ -5,6 +5,7 @@ import { useState } from "react";
 
 // 👇 Importamos el hook del contexto de idioma
 import { useI18n } from "@/components/i18n/LanguageContext";
+import setLeadSource from "@/components/lib/leadSource";
 
 export default function Navbar() {
   const { locale, setLocale, home } = useI18n();
