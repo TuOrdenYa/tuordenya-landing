@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useI18n } from "@/components/i18n/LanguageContext";
 import setLeadSource from "@/components/lib/leadSource";
 
 const fadeUp = {
@@ -22,6 +23,8 @@ const staggerContainer = {
 export default function PlusPage() {
   const [isHeaderPlansOpen, setIsHeaderPlansOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { home } = useI18n();
+  const plusPage = home.pages?.plus;
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
@@ -109,7 +112,7 @@ export default function PlusPage() {
               onClick={() => setLeadSource("plus_page_cta_top")}
               className="hidden sm:inline-flex text-xs sm:text-sm px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors md:inline-flex"
             >
-              Agenda una demo
+              {plusPage?.ctaLabel || "Quiero el plan Plus"}
             </a>
 
             {/* Botón menú móvil */}
@@ -189,7 +192,7 @@ export default function PlusPage() {
                   closeMobileMenu();
                 }}
               >
-                Agenda una demo
+                {plusPage?.ctaLabel || "Quiero el plan Plus"}
               </a>
             </div>
           </div>
@@ -243,7 +246,7 @@ export default function PlusPage() {
                   onClick={() => setLeadSource("plus_page_cta_hero")}
                   className="px-5 py-2.5 text-sm rounded-full bg-[#2ECC71] text-slate-950 font-semibold hover:bg-[#38D27C] transition-colors"
                 >
-                  Quiero el plan Plus
+                  {plusPage?.ctaLabel || "Quiero el plan Plus"}
                 </a>
                 <a
                   href="/#productos"
@@ -435,7 +438,7 @@ export default function PlusPage() {
                 onClick={() => setLeadSource("plus_page_cta_details")}
                 className="inline-flex mt-4 px-4 py-2 rounded-full bg-[#2ECC71] text-slate-950 text-xs font-semibold hover:bg-[#38D27C]"
               >
-                Hablar del producto Plus
+                {plusPage?.detailCtaLabel || "Hablar del producto Plus"}
               </a>
             </motion.div>
           </motion.div>

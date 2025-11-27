@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useI18n } from "@/components/i18n/LanguageContext";
 import setLeadSource from "@/components/lib/leadSource";
 
 const fadeUp = {
@@ -22,6 +23,8 @@ const staggerContainer = {
 export default function ProPage() {
   const [isHeaderPlansOpen, setIsHeaderPlansOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { home } = useI18n();
+  const proPage = home.pages?.pro;
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
@@ -109,7 +112,7 @@ export default function ProPage() {
               onClick={() => setLeadSource("pro_page_cta_top")}
               className="hidden sm:inline-flex text-xs sm:text-sm px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors md:inline-flex"
             >
-              Agenda una demo
+              {proPage?.ctaLabel || "Quiero hablar de la versión Pro"}
             </a>
 
             {/* Botón menú móvil */}
@@ -189,7 +192,7 @@ export default function ProPage() {
                   closeMobileMenu();
                 }}
               >
-                Agenda una demo
+                {proPage?.ctaLabel || "Quiero hablar de la versión Pro"}
               </a>
             </div>
           </div>
@@ -243,7 +246,7 @@ export default function ProPage() {
                   onClick={() => setLeadSource("pro_page_cta_hero")}
                   className="px-5 py-2.5 text-sm rounded-full bg-[#4A90E2] text-slate-50 font-semibold hover:bg-[#5fa3ff] transition-colors"
                 >
-                  Quiero hablar de la versión Pro
+                  {proPage?.ctaLabel || "Quiero hablar de la versión Pro"}
                 </a>
                 <a
                   href="/#productos"
@@ -434,7 +437,7 @@ export default function ProPage() {
                 onClick={() => setLeadSource("pro_page_cta_details")}
                 className="inline-flex mt-4 px-4 py-2 rounded-full bg-[#4A90E2] text-slate-50 text-xs font-semibold hover:bg-[#5fa3ff]"
               >
-                Agendar una conversación sobre Pro
+                {proPage?.detailCtaLabel || "Agendar una conversación sobre Pro"}
               </a>
             </motion.div>
           </motion.div>

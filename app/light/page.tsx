@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useI18n } from "@/components/i18n/LanguageContext";
 import setLeadSource from "@/components/lib/leadSource";
 
 const fadeUp = {
@@ -22,6 +23,8 @@ const staggerContainer = {
 export default function LightPage() {
   const [isHeaderPlansOpen, setIsHeaderPlansOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { home } = useI18n();
+  const lightPage = home.pages?.light;
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
@@ -109,7 +112,7 @@ export default function LightPage() {
               onClick={() => setLeadSource("light_page_cta_top")}
               className="hidden sm:inline-flex text-xs sm:text-sm px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors md:inline-flex"
             >
-              Agenda una demo
+              {lightPage?.ctaLabel || "Quiero el plan Light"}
             </a>
 
             {/* Botón menú móvil */}
@@ -189,7 +192,7 @@ export default function LightPage() {
                   closeMobileMenu();
                 }}
               >
-                Agenda una demo
+                {lightPage?.ctaLabel || "Quiero el plan Light"}
               </a>
             </div>
           </div>
@@ -241,7 +244,7 @@ export default function LightPage() {
                   onClick={() => setLeadSource("light_page_cta_hero")}
                   className="px-5 py-2.5 text-sm rounded-full bg-[#F7C325] text-slate-950 font-semibold hover:bg-[#F9CF47] transition-colors"
                 >
-                  Quiero el plan Light
+                  {lightPage?.ctaLabel || "Quiero el plan Light"}
                 </a>
                 <a
                   href="https://menu.tuordenya.com"
@@ -448,7 +451,7 @@ export default function LightPage() {
                 onClick={() => setLeadSource("light_page_cta_details")}
                 className="inline-flex mt-4 px-4 py-2 rounded-full bg-[#F7C325] text-slate-950 text-xs font-semibold hover:bg-[#F9CF47]"
               >
-                Hablar del producto Light
+                {lightPage?.detailCtaLabel || "Hablar del producto Light"}
               </a>
             </motion.div>
           </motion.div>
