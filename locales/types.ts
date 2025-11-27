@@ -135,6 +135,7 @@ export type ProDetailsSectionContent = {
   subtitle: string;
   cards: ProDetailsCardContent[];
   note?: string;
+  ctaLabel?: string;
 };
 
 export type TestimonialItemContent = {

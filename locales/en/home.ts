@@ -266,6 +266,7 @@ export const homeEn: HomeContent = {
       },
     ],
     note: "Pro is designed to grow with you: we start with basic operations and can later enable more advanced integrations (POS, payments, etc.).",
+    ctaLabel: "I want to talk about the Pro plan",
   },
 
   testimonialsSection: {

@@ -260,6 +260,7 @@ export const homeEs: HomeContent = {
       },
     ],
     note: "Pro está pensado para crecer contigo: empezamos por la operación básica y luego se pueden activar integraciones más avanzadas (POS, pagos, etc.).",
+    ctaLabel: "Quiero hablar de la versión Pro",
   },
 
   testimonialsSection: {
