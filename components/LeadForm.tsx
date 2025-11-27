@@ -170,9 +170,25 @@ export default function LeadForm({
     setIsSubmitting(true);
 
     try {
+      // If resolvedSource wasn't available at mount time (race/navigation),
+      // try reading it again right before submit.
+      let submitSource = resolvedSource;
+      if (!submitSource) {
+        try {
+          const stored = sessionStorage.getItem("leadSource");
+          if (stored) {
+            submitSource = stored;
+            // clear it so it doesn't persist accidentally
+            sessionStorage.removeItem("leadSource");
+            setResolvedSource(stored);
+          }
+        } catch (err) {
+          // ignore storage errors
+        }
+      }
       // 1️⃣ Build message for Supabase
       const composedMessage = [
-        resolvedSource ? `Origen: ${resolvedSource}` : null,
+        submitSource ? `Origen: ${submitSource}` : null,
         formData.interest ? `Interés: ${formData.interest}` : null,
         formData.operationNotes
           ? `Sobre su operación: ${formData.operationNotes}`
@@ -189,7 +205,7 @@ export default function LeadForm({
           phone: formData.whatsapp || null,
           email: formData.email || null,
           restaurant: formData.restaurantName || null,
-          source: resolvedSource || page,
+          source: submitSource || page,
           message: composedMessage || null,
         },
       ]);
@@ -210,7 +226,7 @@ export default function LeadForm({
         gaEvent("submit_lead_form", {
           page,
           interest: formData.interest || "No especificado",
-          source: resolvedSource || page,
+          source: submitSource || page,
         });
       } catch (err) {
         console.error("Error enviando evento submit_lead_form:", err);
