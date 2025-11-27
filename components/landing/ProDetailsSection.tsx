@@ -2,33 +2,11 @@
 
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer } from "./animations";
+import { useI18n } from "@/components/i18n/LanguageContext";
 
 export default function ProDetailsSection() {
-  const features = [
-    {
-      title: "Órdenes por mesa y canal",
-      desc: "Control de órdenes en salón, domicilio y para llevar. Clientes, mesa y estado de cada pedido.",
-    },
-    {
-      title: "Flujo cocina y barra",
-      desc: "Envío de órdenes a cocina/bar, estados por preparación y alertas de demora.",
-    },
-    {
-      title: "Cuentas y pagos",
-      desc: "Divide cuentas, agrega productos, maneja propinas y deja todo listo para POS o caja.",
-    },
-    {
-      title: "Reportes operativos",
-      desc: "Órdenes por franja horaria, platos más vendidos y desempeño por canal.",
-    },
-  ];
-
-  const bullets = [
-    "Restaurantes con varias mesas y rotación constante.",
-    "Cadenas pequeñas o marcas con más de una sede.",
-    "Dark kitchens con alto volumen de pedidos.",
-    "Negocios que ya usan POS y quieren conectar la operación.",
-  ];
+  const { home } = useI18n();
+  const { proDetailsSection } = home;
 
   return (
     <section id="pro" className="py-12 border-t border-slate-800/70">
@@ -41,19 +19,27 @@ export default function ProDetailsSection() {
       >
         <motion.div variants={fadeUp}>
           <h2 className="text-xl sm:text-2xl font-semibold mb-3">
-            RestOrder Pro: operación completa
+            {proDetailsSection.title}
           </h2>
           <p className="text-sm text-slate-400 mb-4 max-w-xl">
-            Cuando tu restaurante crece, necesitas algo más que un menú
-            digital. Pro está pensado para manejar órdenes, tiempos de cocina,
-            cuentas por mesa y reportes de operación.
+            {proDetailsSection.subtitle}
           </p>
 
           <div className="grid sm:grid-cols-2 gap-4 text-sm">
-            {features.map((item) => (
-              <div key={item.title} className="space-y-2">
-                <p className="font-semibold">{item.title}</p>
-                <p className="text-slate-400 text-xs">{item.desc}</p>
+            {proDetailsSection.cards.map((card) => (
+              <div key={card.title} className="space-y-2">
+                {card.badge && (
+                  <p className="text-xs font-semibold text-[#FF6F3C]">{card.badge}</p>
+                )}
+                <p className="font-semibold">{card.title}</p>
+                <p className="text-slate-400 text-xs">{card.description}</p>
+                {card.bullets && (
+                  <ul className="text-xs text-slate-400 mt-2 space-y-1">
+                    {card.bullets.map((b) => (
+                      <li key={b}>• {b}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
             ))}
           </div>
@@ -63,19 +49,21 @@ export default function ProDetailsSection() {
           variants={fadeUp}
           className="rounded-3xl border border-[#4A90E2] bg-gradient-to-br from-slate-900 to-slate-950 p-5 text-sm"
         >
-          <p className="text-xs font-semibold text-[#4A90E2] mb-2">
-            ¿Para quién es Pro?
-          </p>
-          <ul className="space-y-2 text-xs">
-            {bullets.map((b) => (
-              <li key={b}>• {b}</li>
-            ))}
-          </ul>
+          {proDetailsSection.note && (
+            <p className="text-xs font-semibold text-[#4A90E2] mb-2">{proDetailsSection.note}</p>
+          )}
+          {proDetailsSection.cards && (
+            <ul className="space-y-2 text-xs">
+              {proDetailsSection.cards.map((c) => (
+                <li key={c.title}>• {c.title}</li>
+              ))}
+            </ul>
+          )}
           <a
             href="#contacto"
             className="inline-flex mt-4 px-4 py-2 rounded-full bg-[#4A90E2] text-slate-50 text-xs font-semibold hover:bg-[#5fa3ff]"
           >
-            Quiero hablar de la versión Pro
+            {"Quiero hablar de la versión Pro"}
           </a>
         </motion.div>
       </motion.div>
