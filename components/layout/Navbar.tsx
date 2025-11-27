@@ -96,6 +96,11 @@ export default function Navbar() {
           {/* CTA Desktop */}
           <a
             href="#contacto"
+            onClick={() => {
+              try {
+                sessionStorage.setItem("leadSource", "contact_navbar");
+              } catch (err) {}
+            }}
             className="hidden sm:inline-flex text-xs sm:text-sm px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors md:inline-flex"
           >
             {navbar.demo}
@@ -190,8 +195,13 @@ export default function Navbar() {
 
             <a
               href="#contacto"
+              onClick={() => {
+                try {
+                  sessionStorage.setItem("leadSource", "contact_navbar_mobile");
+                } catch (err) {}
+                closeMobileMenu();
+              }}
               className="mt-2 inline-flex w-full justify-center text-xs sm:text-sm px-4 py-2.5 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors"
-              onClick={closeMobileMenu}
             >
               {navbar.demo}
             </a>

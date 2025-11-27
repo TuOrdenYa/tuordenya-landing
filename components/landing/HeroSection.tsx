@@ -17,6 +17,15 @@ export default function HeroSection() {
   const planLabelMap: Record<Plan, string> = hero.planCtaLabel;
 
   const handlePrimaryClick = () => {
+    try {
+      sessionStorage.setItem(
+        "leadSource",
+        `hero_${selectedPlan.toLowerCase()}`
+      );
+    } catch (err) {
+      // ignore
+    }
+
     const section = document.getElementById("contacto");
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });

@@ -23,6 +23,8 @@ const variantClasses: Record<ProductVariant, string> = {
 
 export default function ProductCard({
   variant,
+  // accept an optional id to better identify product source if provided
+  id,
   label,
   title,
   description,
@@ -74,6 +76,17 @@ export default function ProductCard({
       {ctaLabel && ctaHref && (
         <a
           href={ctaHref}
+          onClick={() => {
+            try {
+              // only set a product-specific source if the CTA leads to contact
+              if (ctaHref.includes("#contacto")) {
+                const productKey = id || `product_${variant}`;
+                sessionStorage.setItem("leadSource", productKey);
+              }
+            } catch (err) {
+              // ignore storage errors
+            }
+          }}
           className="mt-4 inline-flex px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 text-xs font-semibold hover:bg-[#FF814F]"
         >
           {ctaLabel}

@@ -17,6 +17,8 @@ interface LeadFormProps {
   defaultInterest?: string;
   /** Número de WhatsApp al que llegan los leads (sin +, ej: 573227921640) */
   whatsappNumber?: string;
+  /** Optional source/section that originated the lead (overrides sessionStorage) */
+  source?: string;
 }
 
 interface FormState {
@@ -32,6 +34,7 @@ export default function LeadForm({
   page = "landing_home",
   defaultInterest = "Solo menú digital (Light)",
   whatsappNumber = "573227921640",
+  source,
 }: LeadFormProps) {
   const { home, locale } = useI18n();
   const { contactSection } = home;
@@ -50,6 +53,24 @@ export default function LeadForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const [resolvedSource, setResolvedSource] = useState<string | null>(
+    source || null
+  );
+
+  // On mount, if no explicit source prop provided, read transient source from sessionStorage
+  useEffect(() => {
+    if (resolvedSource) return;
+    try {
+      const stored = sessionStorage.getItem("leadSource");
+      if (stored) {
+        setResolvedSource(stored);
+        // clear it so it doesn't persist accidentally
+        sessionStorage.removeItem("leadSource");
+      }
+    } catch (err) {
+      // ignore sessionStorage errors (e.g. SSR or privacy settings)
+    }
+  }, [resolvedSource]);
 
   // Helper function to update form field
   const updateFormField = (field: keyof FormState, value: string) => {
@@ -151,6 +172,7 @@ export default function LeadForm({
     try {
       // 1️⃣ Build message for Supabase
       const composedMessage = [
+        resolvedSource ? `Origen: ${resolvedSource}` : null,
         formData.interest ? `Interés: ${formData.interest}` : null,
         formData.operationNotes
           ? `Sobre su operación: ${formData.operationNotes}`
@@ -167,6 +189,7 @@ export default function LeadForm({
           phone: formData.whatsapp || null,
           email: formData.email || null,
           restaurant: formData.restaurantName || null,
+          source: resolvedSource || page,
           message: composedMessage || null,
         },
       ]);
@@ -187,6 +210,7 @@ export default function LeadForm({
         gaEvent("submit_lead_form", {
           page,
           interest: formData.interest || "No especificado",
+          source: resolvedSource || page,
         });
       } catch (err) {
         console.error("Error enviando evento submit_lead_form:", err);

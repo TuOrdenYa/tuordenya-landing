@@ -61,6 +61,11 @@ export default function ProDetailsSection() {
           )}
           <a
             href="#contacto"
+            onClick={() => {
+              try {
+                sessionStorage.setItem("leadSource", "pro_details");
+              } catch (err) {}
+            }}
             className="inline-flex mt-4 px-4 py-2 rounded-full bg-[#4A90E2] text-slate-50 text-xs font-semibold hover:bg-[#5fa3ff]"
           >
             {"Quiero hablar de la versión Pro"}
