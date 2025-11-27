@@ -17,24 +17,24 @@ export default function ProDetailsSection() {
             {
               title: "Dining room and tables",
               items: [
-                "Orders by table, area or channel (salon, takeaway, delivery).",
+                "Orders by table, area or channel (dine-in, takeaway, delivery).",
                 "Open tickets, partial orders and split items.",
-                "Notes for kitchen and special instructions from customers.",
+                "Notes for kitchen and special customer instructions.",
               ],
             },
             {
               title: "Kitchen and bar",
               items: [
-                "KOT / production view for kitchen and bar.",
-                "Control of preparation times and status per order.",
-                "Prioritization of dishes and handling of modifiers.",
+                "Production (KOT) view for kitchen and bar.",
+                "Preparation time tracking and per-order status.",
+                "Dish prioritization and modifier handling.",
               ],
             },
             {
               title: "Checks, tips and closing",
               items: [
                 "Print or view checks, split by person or group.",
-                "Tips management and simple closing per shift.",
+                "Tips management and simple shift closing.",
                 "Base prepared to connect with POS or invoicing.",
               ],
             },
