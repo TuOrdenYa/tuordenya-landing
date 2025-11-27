@@ -1,5 +1,9 @@
+// locales/types.ts
+
+// Idiomas soportados
 export type Locale = "es" | "en";
 
+// Variantes de producto
 export type ProductVariant = "light" | "plus" | "pro";
 
 export type ProductContent = {
@@ -15,36 +19,50 @@ export type ProductContent = {
   ctaHref?: string;
 };
 
-export type HomeContent = {
-  navbar: {
-    subtitle: string;
-    howItWorks: string;
-    products: string;
-    faq: string;
-    demo: string;
-    light: string;
-    plus: string;
-    pro: string;
+// ──────────────────────────────
+// Navbar
+// ──────────────────────────────
+export type NavbarContent = {
+  subtitle: string;
+  howItWorks: string;
+  products: string;
+  faq: string;
+  demo: string;
+  light: string; // texto opción Light del menú
+  plus: string;  // texto opción Plus del menú
+  pro: string;   // texto opción Pro del menú
+};
+
+// ──────────────────────────────
+// Hero
+// ──────────────────────────────
+export type HeroContent = {
+  badge: string;
+  title: string;
+  highlight: string;
+  description: string;
+  planCtaLabel: {
+    Light: string;
+    Plus: string;
+    Pro: string;
   };
-  hero: {
-    badge: string;
-    title: string;
-    highlight: string;
-    description: string;
-    planCtaLabel: {
-      Light: string;
-      Plus: string;
-      Pro: string;
-    };
-    secondaryCta: string;
-    segments: string[];
-  };
-  productsSection: {
-    title: string;
-    subtitle: string;
-    products: ProductContent[];
-  };
-  export type ContactSectionFormContent = {
+  secondaryCta: string;
+  segments: string[];
+};
+
+// ──────────────────────────────
+// Productos (tarjetas Light / Plus / Pro)
+// ──────────────────────────────
+export type ProductsSectionContent = {
+  title: string;
+  subtitle: string;
+  products: ProductContent[];
+};
+
+// ──────────────────────────────
+// Contacto
+// ──────────────────────────────
+export type ContactSectionFormContent = {
   nameLabel: string;
   namePlaceholder: string;
   restaurantLabel: string;
@@ -56,8 +74,8 @@ export type HomeContent = {
   interestLabel: string;
   interestPlaceholder: string;
   interestOptions: {
-    value: string;   // p.ej. "light", "plus", "pro"
-    label: string;   // texto visible en el <option>
+    value: string; // ej: "light", "plus", "pro"
+    label: string; // texto visible en el <option>
   }[];
   notesLabel: string;
   notesPlaceholder: string;
@@ -71,10 +89,12 @@ export type ContactSectionContent = {
   form: ContactSectionFormContent;
 };
 
+// ──────────────────────────────
+// Contenido completo del Home
+// ──────────────────────────────
 export type HomeContent = {
   navbar: NavbarContent;
   hero: HeroContent;
   productsSection: ProductsSectionContent;
   contactSection: ContactSectionContent;
-};
 };
