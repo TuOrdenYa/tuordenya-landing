@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { fadeUp, staggerContainer } from "./animations";
 import { useI18n } from "@/components/i18n/LanguageContext";
+import setLeadSource from "@/components/lib/leadSource";
 
 type Plan = "Light" | "Plus" | "Pro";
 
@@ -17,14 +18,7 @@ export default function HeroSection() {
   const planLabelMap: Record<Plan, string> = hero.planCtaLabel;
 
   const handlePrimaryClick = () => {
-    try {
-      sessionStorage.setItem(
-        "leadSource",
-        `hero_${selectedPlan.toLowerCase()}`
-      );
-    } catch (err) {
-      // ignore
-    }
+    setLeadSource(`hero_${selectedPlan.toLowerCase()}`);
 
     const section = document.getElementById("contacto");
     if (section) {

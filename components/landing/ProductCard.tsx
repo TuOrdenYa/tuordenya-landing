@@ -78,14 +78,20 @@ export default function ProductCard({
         <a
           href={ctaHref}
           onClick={() => {
-            try {
-              // only set a product-specific source if the CTA leads to contact
-              if (ctaHref.includes("#contacto")) {
-                const productKey = id || `product_${variant}`;
-                sessionStorage.setItem("leadSource", productKey);
+            // only set a product-specific source if the CTA leads to contact
+            if (ctaHref.includes("#contacto")) {
+              const productKey = id || `product_${variant}`;
+              try {
+                // import dynamically to avoid SSR issues
+                const { setLeadSource } = require("@/components/lib/leadSource");
+                setLeadSource(productKey);
+              } catch (err) {
+                try {
+                  sessionStorage.setItem("leadSource", productKey);
+                } catch (_) {
+                  /* ignore */
+                }
               }
-            } catch (err) {
-              // ignore storage errors
             }
           }}
           className="mt-4 inline-flex px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 text-xs font-semibold hover:bg-[#FF814F]"
