@@ -1,44 +1,69 @@
+// components/landing/ProDetailsSection.tsx
 "use client";
 
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer } from "./animations";
-import ProductCard from "./ProductCard";
-import { useI18n } from "../i18n/LanguageContext";
+import { useI18n } from "@/components/i18n/LanguageContext";
 
-export default function ProductsSection() {
+export default function ProDetailsSection() {
   const { home } = useI18n();
-  const { productsSection } = home;
+  const { proDetailsSection } = home;
 
   return (
-    <section id="productos" className="py-12 border-t border-slate-800/70">
+    <section className="py-12 border-t border-slate-800/70">
       <motion.div
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
+        className="space-y-6"
       >
-        <motion.h2
-          variants={fadeUp}
-          className="text-xl sm:text-2xl font-semibold mb-2"
-        >
-          {productsSection.title}
-        </motion.h2>
+        <motion.div variants={fadeUp} className="max-w-3xl">
+          <h2 className="text-xl sm:text-2xl font-semibold mb-2">
+            {proDetailsSection.title}
+          </h2>
+          <p className="text-sm text-slate-400">
+            {proDetailsSection.subtitle}
+          </p>
+        </motion.div>
 
-        <motion.p
+        <motion.div
           variants={fadeUp}
-          className="text-sm text-slate-400 mb-6"
+          className="grid md:grid-cols-3 gap-4 text-sm"
         >
-          {productsSection.subtitle}
-        </motion.p>
-
-        <div className="grid md:grid-cols-3 gap-5 text-sm">
-          {productsSection.products.map((product) => (
-            <motion.div key={product.id} variants={fadeUp}>
-              {/* ProductCard ya maneja el layout y estilos */}
-              <ProductCard {...product} />
-            </motion.div>
+          {proDetailsSection.cards.map((card) => (
+            <div
+              key={card.title}
+              className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-4 flex flex-col gap-2"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <p className="font-semibold text-sm">{card.title}</p>
+                {card.badge && (
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-200">
+                    {card.badge}
+                  </span>
+                )}
+              </div>
+              <p className="text-xs text-slate-400 mb-2">
+                {card.description}
+              </p>
+              <ul className="text-xs text-slate-400 space-y-1">
+                {card.bullets.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </div>
+        </motion.div>
+
+        {proDetailsSection.note && (
+          <motion.p
+            variants={fadeUp}
+            className="text-[11px] text-slate-500 max-w-3xl"
+          >
+            {proDetailsSection.note}
+          </motion.p>
+        )}
       </motion.div>
     </section>
   );

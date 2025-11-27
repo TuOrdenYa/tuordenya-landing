@@ -112,8 +112,8 @@ export type FAQSectionContent = {
 };
 
 export type HowItWorksStepContent = {
-  label: string;      // "1", "2", "3"
-  title: string;      // Título de cada paso
+  label: string; // "1", "2", "3"
+  title: string;
   description: string;
 };
 
@@ -121,6 +121,20 @@ export type HowItWorksSectionContent = {
   title: string;
   subtitle: string;
   steps: HowItWorksStepContent[];
+};
+
+export type ProDetailsCardContent = {
+  title: string;
+  badge?: string;
+  description: string;
+  bullets: string[];
+};
+
+export type ProDetailsSectionContent = {
+  title: string;
+  subtitle: string;
+  cards: ProDetailsCardContent[];
+  note?: string;
 };
 
 export type HomeContent = {
@@ -132,4 +146,5 @@ export type HomeContent = {
   contactSection: ContactSectionContent;
   faqSection: FAQSectionContent;
   howItWorksSection: HowItWorksSectionContent;
+  proDetailsSection: ProDetailsSectionContent;
 };

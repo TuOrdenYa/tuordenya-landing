@@ -225,4 +225,46 @@ export const homeEn: HomeContent = {
       },
     ],
   },
+
+  proDetailsSection: {
+    title: "Pro in detail: full front-of-house and kitchen operations",
+    subtitle:
+      "When your restaurant handles more tables, more locations or more channels, Pro helps you keep daily operations under control.",
+    cards: [
+      {
+        title: "Tables, dining room and channels",
+        badge: "Front-of-house",
+        description:
+          "Organize your tables, dining areas and service types (dine-in, delivery, takeout) in one place.",
+        bullets: [
+          "Assign orders by table or ticket number.",
+          "Overview of table occupation and rotation.",
+          "Support for multiple sales channels in parallel.",
+        ],
+      },
+      {
+        title: "Kitchen and bar connected",
+        badge: "Production",
+        description:
+          "What the waiter records is sent to kitchen and bar with the right information and in the right order.",
+        bullets: [
+          "Tickets split by area (kitchen, bar, desserts).",
+          "Clearer preparation times for the team.",
+          "Fewer back-and-forth trips between dining room and kitchen.",
+        ],
+      },
+      {
+        title: "Bills, closing and reports",
+        badge: "Control",
+        description:
+          "More organized closing at the end of the shift and better visibility of the day-to-day.",
+        bullets: [
+          "Bills per table, split checks and tips.",
+          "Closing by shift, cash drawer or responsible person.",
+          "Basic operational reports ready to review.",
+        ],
+      },
+    ],
+    note: "Pro is designed to grow with you: we start with basic operations and can later enable more advanced integrations (POS, payments, etc.).",
+  },
 };

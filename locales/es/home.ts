@@ -225,4 +225,46 @@ export const homeEs: HomeContent = {
       },
     ],
   },
+
+  proDetailsSection: {
+    title: "Pro en detalle: operación completa en salón y cocina",
+    subtitle:
+      "Cuando tu restaurante ya maneja más mesas, más sedes o más canales, Pro te ayuda a ordenar la operación diaria sin perder el control.",
+    cards: [
+      {
+        title: "Mesas, salones y canales",
+        badge: "Piso de salón",
+        description:
+          "Organiza tus mesas, salones y tipos de servicio (salón, domicilio, para llevar) desde un mismo lugar.",
+        bullets: [
+          "Asignación de órdenes por mesa o número de pedido.",
+          "Visual de ocupación y rotación de mesas.",
+          "Soporte para varios canales de venta en paralelo.",
+        ],
+      },
+      {
+        title: "Cocina y barra conectadas",
+        badge: "Producción",
+        description:
+          "Lo que el mesero registra llega a cocina y barra con la información correcta y en el orden adecuado.",
+        bullets: [
+          "Tickets separados por área (cocina, barra, postres).",
+          "Tiempos de preparación más claros para el equipo.",
+          "Menos idas y vueltas entre salón y cocina.",
+        ],
+      },
+      {
+        title: "Cuentas, cierres y reportes",
+        badge: "Control",
+        description:
+          "Cierres más ordenados al final del turno y mejor visibilidad del día a día.",
+        bullets: [
+          "Cuentas por mesa, división y propinas.",
+          "Cierres por turno, caja o responsable.",
+          "Reportes operativos básicos listos para revisar.",
+        ],
+      },
+    ],
+    note: "Pro está pensado para crecer contigo: empezamos por la operación básica y luego se pueden activar integraciones más avanzadas (POS, pagos, etc.).",
+  },
 };
