@@ -1,5 +1,4 @@
 import type { HomeContent } from "../types";
-import type { HomeContent } from "../types";
 
 export const homeEs: HomeContent = {
   navbar: {
@@ -85,7 +84,7 @@ export const homeEs: HomeContent = {
       },
     ],
   },
-   contactSection: {
+  contactSection: {
     title: "Conversemos sobre tu restaurante",
     subtitle:
       "Déjanos tus datos y te contactamos para mostrarte cómo TuOrdenYa puede ayudarte a vender más y operar mejor.",
@@ -107,13 +106,12 @@ export const homeEs: HomeContent = {
       interestPlaceholder: "Selecciona una opción",
       interestOptions: [
         { value: "light", label: "Solo menú digital (Light)" },
-        { value: "plus", label: "Pedidos y reportes (Plus)" },
+        { value: "plus", label: "Pedidos básicos + reportes (Plus)" },
         { value: "pro", label: "Operación completa (Pro)" },
-        { value: "other", label: "Tengo otra necesidad" },
+        { value: "dudas", label: "Solo quiero hacer unas preguntas" },
       ],
       notesLabel: "Cuéntanos un poco de tu operación",
-      notesPlaceholder:
-        "Número de mesas, sedes, si usas POS, etc.",
+      notesPlaceholder: "Número de mesas, sedes, si usas POS, etc.",
       submitLabel: "Enviar mensaje",
     },
   },
