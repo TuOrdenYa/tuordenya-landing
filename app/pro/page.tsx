@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import setLeadSource from "@/components/lib/leadSource";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -105,6 +106,7 @@ export default function ProPage() {
             {/* CTA desktop */}
             <a
               href="/#contacto"
+              onClick={() => setLeadSource("pro_page_cta_top")}
               className="hidden sm:inline-flex text-xs sm:text-sm px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors md:inline-flex"
             >
               Agenda una demo
@@ -182,7 +184,10 @@ export default function ProPage() {
               <a
                 href="/#contacto"
                 className="mt-2 inline-flex w-full justify-center text-xs sm:text-sm px-4 py-2.5 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors"
-                onClick={closeMobileMenu}
+                onClick={() => {
+                  setLeadSource("pro_page_cta_mobile");
+                  closeMobileMenu();
+                }}
               >
                 Agenda una demo
               </a>
@@ -235,6 +240,7 @@ export default function ProPage() {
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <a
                   href="/#contacto"
+                  onClick={() => setLeadSource("pro_page_cta_hero")}
                   className="px-5 py-2.5 text-sm rounded-full bg-[#4A90E2] text-slate-50 font-semibold hover:bg-[#5fa3ff] transition-colors"
                 >
                   Quiero hablar de la versión Pro
@@ -425,6 +431,7 @@ export default function ProPage() {
               </ul>
               <a
                 href="/#contacto"
+                onClick={() => setLeadSource("pro_page_cta_details")}
                 className="inline-flex mt-4 px-4 py-2 rounded-full bg-[#4A90E2] text-slate-50 text-xs font-semibold hover:bg-[#5fa3ff]"
               >
                 Agendar una conversación sobre Pro
@@ -448,7 +455,7 @@ export default function ProPage() {
             <a href="/#faq" className="hover:text-[#FF6F3C]">
               FAQs
             </a>
-            <a href="/#contacto" className="hover:text-[#FF6F3C]">
+            <a href="/#contacto" className="hover:text-[#FF6F3C]" onClick={() => setLeadSource("pro_page_footer")}>
               Contacto
             </a>
           </div>

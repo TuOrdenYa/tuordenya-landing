@@ -1,3 +1,5 @@
+import setLeadSource from "../lib/leadSource";
+
 export default function Footer() {
   return (
     <footer className="border-t border-slate-800/70 py-6 text-[11px] text-slate-500">
@@ -13,7 +15,7 @@ export default function Footer() {
           <a href="#faq" className="hover:text-[#FF6F3C]">
             FAQs
           </a>
-          <a href="#contacto" className="hover:text-[#FF6F3C]">
+          <a href="#contacto" className="hover:text-[#FF6F3C]" onClick={() => setLeadSource("footer_contact")}>
             Contacto
           </a>
         </div>

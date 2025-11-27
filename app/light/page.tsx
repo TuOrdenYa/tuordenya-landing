@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import setLeadSource from "@/components/lib/leadSource";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -105,6 +106,7 @@ export default function LightPage() {
             {/* CTA desktop – color de marca global (naranja) */}
             <a
               href="/#contacto"
+              onClick={() => setLeadSource("light_page_cta_top")}
               className="hidden sm:inline-flex text-xs sm:text-sm px-4 py-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors md:inline-flex"
             >
               Agenda una demo
@@ -182,7 +184,10 @@ export default function LightPage() {
               <a
                 href="/#contacto"
                 className="mt-2 inline-flex w-full justify-center text-xs sm:text-sm px-4 py-2.5 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold hover:bg-[#FF814F] transition-colors"
-                onClick={closeMobileMenu}
+                onClick={() => {
+                  setLeadSource("light_page_cta_mobile");
+                  closeMobileMenu();
+                }}
               >
                 Agenda una demo
               </a>
@@ -233,6 +238,7 @@ export default function LightPage() {
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <a
                   href="/#contacto"
+                  onClick={() => setLeadSource("light_page_cta_hero")}
                   className="px-5 py-2.5 text-sm rounded-full bg-[#F7C325] text-slate-950 font-semibold hover:bg-[#F9CF47] transition-colors"
                 >
                   Quiero el plan Light
@@ -439,6 +445,7 @@ export default function LightPage() {
               </ul>
               <a
                 href="/#contacto"
+                onClick={() => setLeadSource("light_page_cta_details")}
                 className="inline-flex mt-4 px-4 py-2 rounded-full bg-[#F7C325] text-slate-950 text-xs font-semibold hover:bg-[#F9CF47]"
               >
                 Hablar del producto Light
@@ -462,7 +469,7 @@ export default function LightPage() {
             <a href="/#faq" className="hover:text-[#FF6F3C]">
               FAQs
             </a>
-            <a href="/#contacto" className="hover:text-[#FF6F3C]">
+            <a href="/#contacto" className="hover:text-[#FF6F3C]" onClick={() => setLeadSource("light_page_footer")}>
               Contacto
             </a>
           </div>
