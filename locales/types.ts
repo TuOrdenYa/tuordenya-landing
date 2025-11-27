@@ -137,6 +137,18 @@ export type ProDetailsSectionContent = {
   note?: string;
 };
 
+export type TestimonialItemContent = {
+  quote: string;
+  name: string;
+  role: string;
+};
+
+export type TestimonialsSectionContent = {
+  title: string;
+  subtitle: string;
+  items: TestimonialItemContent[];
+};
+
 export type HomeContent = {
   navbar: NavbarContent;
   hero: HeroContent;
@@ -147,4 +159,5 @@ export type HomeContent = {
   faqSection: FAQSectionContent;
   howItWorksSection: HowItWorksSectionContent;
   proDetailsSection: ProDetailsSectionContent;
+  testimonialsSection: TestimonialsSectionContent;
 };

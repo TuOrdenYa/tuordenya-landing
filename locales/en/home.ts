@@ -267,4 +267,30 @@ export const homeEn: HomeContent = {
     ],
     note: "Pro is designed to grow with you: we start with basic operations and can later enable more advanced integrations (POS, payments, etc.).",
   },
+
+  testimonialsSection: {
+    title: "What restaurants like yours say",
+    subtitle:
+      "We start with real cases and adjust the tool based on the type of operation.",
+    items: [
+      {
+        quote:
+          "With Light we stopped printing menus every time we changed a dish. Now we update everything in minutes.",
+        name: "Laura Gómez",
+        role: "Owner — Neighborhood coffee shop",
+      },
+      {
+        quote:
+          "Plus helped us understand which products sold more at specific times. We make better inventory decisions.",
+        name: "Carlos Pérez",
+        role: "Manager — Casual restaurant",
+      },
+      {
+        quote:
+          "With Pro we organized front-of-house and kitchen operations. Order mistakes dropped and daily closing is clearer.",
+        name: "María Rodríguez",
+        role: "Manager — High-rotation restaurant",
+      },
+    ],
+  },
 };

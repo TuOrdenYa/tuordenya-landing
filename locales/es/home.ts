@@ -155,14 +155,8 @@ export const homeEs: HomeContent = {
       interestPlaceholder: "Selecciona una opción",
       interestOptions: [
         { value: "light", label: "Solo menú digital (Light)" },
-        {
-          value: "plus",
-          label: "Menú + pedidos y reportes (Plus)",
-        },
-        {
-          value: "pro",
-          label: "Operación completa (Pro)",
-        },
+        { value: "plus", label: "Menú + pedidos y reportes (Plus)" },
+        { value: "pro", label: "Operación completa (Pro)" },
         {
           value: "unsure",
           label: "No estoy seguro, quiero que me asesoren",
@@ -266,5 +260,31 @@ export const homeEs: HomeContent = {
       },
     ],
     note: "Pro está pensado para crecer contigo: empezamos por la operación básica y luego se pueden activar integraciones más avanzadas (POS, pagos, etc.).",
+  },
+
+  testimonialsSection: {
+    title: "Lo que dicen restaurantes como el tuyo",
+    subtitle:
+      "Empezamos con casos reales y vamos ajustando la herramienta según el tipo de operación.",
+    items: [
+      {
+        quote:
+          "Con Light dejamos de imprimir menús cada vez que cambiábamos un plato. Ahora actualizamos todo en minutos.",
+        name: "Laura Gómez",
+        role: "Dueña — Cafetería de barrio",
+      },
+      {
+        quote:
+          "Plus nos ayudó a entender qué productos se movían más por horarios. Tomamos mejores decisiones de inventario.",
+        name: "Carlos Pérez",
+        role: "Administrador — Restaurante casual",
+      },
+      {
+        quote:
+          "Con Pro ordenamos la operación entre salón y cocina. Se redujeron los errores en pedidos y el cierre del día es más claro.",
+        name: "María Rodríguez",
+        role: "Gerente — Restaurante de alta rotación",
+      },
+    ],
   },
 };
