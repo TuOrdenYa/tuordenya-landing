@@ -265,7 +265,7 @@ export default function LeadForm({
 
         {errorMessage && (
           <p className="text-xs text-red-400">{errorMessage}</p>
-        }}
+        )}
 
         <button
           type="submit"
