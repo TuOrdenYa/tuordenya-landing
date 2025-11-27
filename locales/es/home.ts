@@ -199,4 +199,30 @@ export const homeEs: HomeContent = {
       },
     ],
   },
+
+  howItWorksSection: {
+    title: "Cómo funciona TuOrdenYa",
+    subtitle:
+      "Tres niveles pensados para diferentes etapas de tu restaurante. Empieza simple y escala cuando lo necesites.",
+    steps: [
+      {
+        label: "1",
+        title: "Light — Menú + QR + WhatsApp",
+        description:
+          "Digitalizamos tu carta, generamos el QR por local y conectamos los pedidos por WhatsApp. Ideal para cafeterías y negocios pequeños.",
+      },
+      {
+        label: "2",
+        title: "Plus — Pedidos básicos + reportes",
+        description:
+          "Cuando el volumen crece, activas el registro de pedidos y reportes sencillos para entender qué se vende, en qué horarios y cómo va tu operación.",
+      },
+      {
+        label: "3",
+        title: "Pro — Operación completa",
+        description:
+          "Para restaurantes con salón, cocina y más movimiento. Manejo de órdenes por mesa y canal, tiempos de preparación, cuentas, propinas y cierres diarios.",
+      },
+    ],
+  },
 };

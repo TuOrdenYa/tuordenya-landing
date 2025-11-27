@@ -17,6 +17,8 @@ interface LeadFormProps {
   defaultInterest?: string;
   /** Número de WhatsApp al que llegan los leads (sin +, ej: 573227921640) */
   whatsappNumber?: string;
+  /** Origen/Sección desde la que se envía el lead (ej: "contact_section", "how_it_works") */
+  source?: string;
 }
 
 interface FormState {
@@ -32,6 +34,7 @@ export default function LeadForm({
   page = "landing_home",
   defaultInterest = "Solo menú digital (Light)",
   whatsappNumber = "573227921640",
+  source = "contact_section",
 }: LeadFormProps) {
   const { home, locale } = useI18n();
   const { contactSection } = home;
@@ -62,6 +65,7 @@ export default function LeadForm({
 
     if (includeHeader) {
       lines.push("👋 Hola, llegó un lead desde la landing de TuOrdenYa.");
+      lines.push(source ? `Origen: ${source}` : `Origen: ${page}`);
       lines.push("");
     }
 
@@ -167,6 +171,7 @@ export default function LeadForm({
           phone: formData.whatsapp || null,
           email: formData.email || null,
           restaurant: formData.restaurantName || null,
+          source: source || page,
           message: composedMessage || null,
         },
       ]);
@@ -187,6 +192,7 @@ export default function LeadForm({
         gaEvent("submit_lead_form", {
           page,
           interest: formData.interest || "No especificado",
+          source: source || page,
         });
       } catch (err) {
         console.error("Error enviando evento submit_lead_form:", err);

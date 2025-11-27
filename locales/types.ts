@@ -70,8 +70,8 @@ export type ProductsSectionContent = {
 };
 
 export type ContactSectionFormInterestOption = {
-  value: string; // ej: "light", "plus", "pro", "unsure"
-  label: string; // texto visible en el <option>
+  value: string; // "light" | "plus" | "pro" | "unsure"
+  label: string;
 };
 
 export type ContactSectionFormContent = {
@@ -111,6 +111,18 @@ export type FAQSectionContent = {
   items: FAQItemContent[];
 };
 
+export type HowItWorksStepContent = {
+  label: string;      // "1", "2", "3"
+  title: string;      // Título de cada paso
+  description: string;
+};
+
+export type HowItWorksSectionContent = {
+  title: string;
+  subtitle: string;
+  steps: HowItWorksStepContent[];
+};
+
 export type HomeContent = {
   navbar: NavbarContent;
   hero: HeroContent;
@@ -119,4 +131,5 @@ export type HomeContent = {
   productsSection: ProductsSectionContent;
   contactSection: ContactSectionContent;
   faqSection: FAQSectionContent;
+  howItWorksSection: HowItWorksSectionContent;
 };

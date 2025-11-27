@@ -199,4 +199,30 @@ export const homeEn: HomeContent = {
       },
     ],
   },
+
+  howItWorksSection: {
+    title: "How TuOrdenYa works",
+    subtitle:
+      "Three levels designed for different stages of your restaurant. Start simple and scale when you need it.",
+    steps: [
+      {
+        label: "1",
+        title: "Light — Menu + QR + WhatsApp",
+        description:
+          "We digitize your menu, generate a QR per location and connect orders via WhatsApp. Perfect for coffee shops and smaller venues.",
+      },
+      {
+        label: "2",
+        title: "Plus — Basic orders + reports",
+        description:
+          "When volume grows, you activate order tracking and simple reports to understand what sells, at what times, and how your operation is doing.",
+      },
+      {
+        label: "3",
+        title: "Pro — Full operations",
+        description:
+          "For restaurants with dining rooms, kitchen and higher rotation. Manage orders by table and channel, prep times, bills, tips and daily closing.",
+      },
+    ],
+  },
 };
