@@ -1,6 +1,7 @@
 type ProductVariant = "light" | "plus" | "pro";
 
 type ProductCardProps = {
+  id?: string;
   variant: ProductVariant;
   label: string;
   title: string;
