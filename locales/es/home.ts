@@ -2,6 +2,12 @@
 import type { HomeContent } from "../types";
 
 export const homeEs: HomeContent = {
+  site: { title: "TuOrdenYa – Menús digitales y gestión para restaurantes" },
+  pages: {
+    light: { ctaLabel: "Quiero el plan Light", detailCtaLabel: "Hablar del producto Light" },
+    plus: { ctaLabel: "Quiero el plan Plus", detailCtaLabel: "Hablar del producto Plus" },
+    pro: { ctaLabel: "Quiero hablar de la versión Pro", detailCtaLabel: "Agendar una conversación sobre Pro" },
+  },
   navbar: {
     subtitle: "Menús y órdenes para restaurantes",
     howItWorks: "Cómo funciona",
@@ -30,6 +36,21 @@ export const homeEs: HomeContent = {
       "🍽️ Restaurantes con salón y mayor volumen (Plus)",
       "🏬 Cadenas y dark kitchens (Pro)",
     ],
+    summary: {
+      suiteLabel: "Suite TuOrdenYa",
+      title: "Elige el nivel para tu restaurante",
+      chip: "Escalable por etapas",
+      lightTitle: "Light",
+      lightChip: "Punto de partida",
+      lightText: "Menú digital responsive, QR por local y botón de pedido por WhatsApp. Ideal para cafeterías, food trucks y negocios pequeños.",
+      plusTitle: "Plus",
+      plusChip: "Pedidos + reportes",
+      plusText: "Todo lo de Light, más registro de pedidos básicos y reportes sencillos para entender qué se vende y cuándo.",
+      proTitle: "Pro",
+      proChip: "Operación completa",
+      proText: "Órdenes por mesa y canal, tiempos de cocina, cuentas y cierres. Pensado para restaurantes de alta rotación, cadenas y dark kitchens.",
+      footer: "Empiezas con el nivel que necesitas hoy y puedes migrar a Plus o Pro sin cambiar de plataforma ni de menú.",
+    },
   },
 
   benefitsSection: {
@@ -169,6 +190,8 @@ export const homeEs: HomeContent = {
       submitLabelLoading: "Enviando...",
       privacyNotice:
         "Respetamos tu tiempo: nada de spam, solo información relevante para tu restaurante.",
+      whatsappIntro: "👋 Hola, llegó un lead desde la landing de TuOrdenYa.",
+      sourceLabel: "Fuente: tuordenya.com",
     },
   },
 

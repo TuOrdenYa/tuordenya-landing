@@ -19,7 +19,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TuOrdenYa – Menús digitales y gestión para restaurantes",
+  title: {
+    default: "TuOrdenYa – Menús digitales y gestión para restaurantes",
+    template: "%s | TuOrdenYa",
+  },
   description:
     "Menús digitales con QR, pedidos por WhatsApp y operación completa para restaurantes. Versiones Light, Plus y Pro.",
   icons: {

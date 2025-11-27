@@ -80,34 +80,22 @@ export default function LeadForm({
   // Helper function to build message lines
   const buildMessageLines = (includeHeader: boolean = false): string[] => {
     const lines: (string | null)[] = [];
-
     if (includeHeader) {
-      lines.push("👋 Hola, llegó un lead desde la landing de TuOrdenYa.");
+      lines.push(form.whatsappIntro || (locale === "en"
+        ? "👋 Hello — a lead arrived via the TuOrdenYa landing page."
+        : "👋 Hola, llegó un lead desde la landing de TuOrdenYa."));
       lines.push("");
     }
-
-    lines.push(
-      formData.fullName ? `👤 Nombre: ${formData.fullName}` : null
-    );
-    lines.push(
-      formData.restaurantName ? `🏪 Restaurante: ${formData.restaurantName}` : null
-    );
-    lines.push(
-      formData.whatsapp ? `📱 WhatsApp del cliente: ${formData.whatsapp}` : null
-    );
+    lines.push(formData.fullName ? (locale === "en" ? `👤 Name: ${formData.fullName}` : `👤 Nombre: ${formData.fullName}`) : null);
+    lines.push(formData.restaurantName ? (locale === "en" ? `🏪 Restaurant: ${formData.restaurantName}` : `🏪 Restaurante: ${formData.restaurantName}`) : null);
+    lines.push(formData.whatsapp ? (locale === "en" ? `📱 Client WhatsApp: ${formData.whatsapp}` : `📱 WhatsApp del cliente: ${formData.whatsapp}`) : null);
     lines.push(formData.email ? `✉️ Email: ${formData.email}` : null);
-    lines.push(formData.interest ? `⭐ Interés: ${formData.interest}` : null);
-    lines.push(
-      formData.operationNotes
-        ? `📝 Sobre su operación: ${formData.operationNotes}`
-        : null
-    );
-
+    lines.push(formData.interest ? (locale === "en" ? `⭐ Interest: ${formData.interest}` : `⭐ Interés: ${formData.interest}`) : null);
+    lines.push(formData.operationNotes ? (locale === "en" ? `📝 About their operation: ${formData.operationNotes}` : `📝 Sobre su operación: ${formData.operationNotes}`) : null);
     if (includeHeader) {
       lines.push("");
     }
-    lines.push("Fuente: tuordenya.com");
-
+    lines.push(form.sourceLabel || (locale === "en" ? "Source: tuordenya.com" : "Fuente: tuordenya.com"));
     return lines.filter(Boolean) as string[];
   };
 
@@ -188,12 +176,14 @@ export default function LeadForm({
       }
       // 1️⃣ Build message for Supabase
       const composedMessage = [
-        submitSource ? `Origen: ${submitSource}` : null,
-        formData.interest ? `Interés: ${formData.interest}` : null,
+        submitSource ? (locale === "en" ? `Origin: ${submitSource}` : `Origen: ${submitSource}`) : null,
+        formData.interest ? (locale === "en" ? `Interest: ${formData.interest}` : `Interés: ${formData.interest}`) : null,
         formData.operationNotes
-          ? `Sobre su operación: ${formData.operationNotes}`
+          ? (locale === "en"
+              ? `About operation: ${formData.operationNotes}`
+              : `Sobre su operación: ${formData.operationNotes}`)
           : null,
-        "Fuente: tuordenya.com",
+        form.sourceLabel || (locale === "en" ? "Source: tuordenya.com" : "Fuente: tuordenya.com"),
       ]
         .filter(Boolean)
         .join(" | ");

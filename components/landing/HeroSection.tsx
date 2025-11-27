@@ -28,47 +28,36 @@ export default function HeroSection() {
     }
   };
 
-  // 👉 Textos de la tarjetica derecha (Suite TuOrdenYa) en ES / EN
-  const summaryTexts =
-    locale === "en"
-      ? {
-          suiteLabel: "TuOrdenYa Suite",
-          title: "Choose the level for your restaurant",
-          chip: "Scalable by stages",
-          lightTitle: "Light",
-          lightChip: "Starting point",
-          lightText:
-            "Responsive digital menu, QR per location and WhatsApp ordering. Ideal for coffee shops, food trucks and small venues.",
-          plusTitle: "Plus",
-          plusChip: "Orders + reports",
-          plusText:
-            "Everything in Light plus basic order tracking and simple reports so you know what sells and when.",
-          proTitle: "Pro",
-          proChip: "Full operations",
-          proText:
-            "Orders by table and channel, kitchen times, checks and closing. Designed for high-rotation restaurants and chains.",
-          footer:
-            "You start with the level you need today and can move to Plus or Pro without changing platform or menu.",
-        }
-      : {
-          suiteLabel: "Suite TuOrdenYa",
-          title: "Elige el nivel para tu restaurante",
-          chip: "Escalable por etapas",
-          lightTitle: "Light",
-          lightChip: "Punto de partida",
-          lightText:
-            "Menú digital responsive, QR por local y botón de pedido por WhatsApp. Ideal para cafeterías, food trucks y negocios pequeños.",
-          plusTitle: "Plus",
-          plusChip: "Pedidos + reportes",
-          plusText:
-            "Todo lo de Light, más registro de pedidos básicos y reportes sencillos para entender qué se vende y cuándo.",
-          proTitle: "Pro",
-          proChip: "Operación completa",
-          proText:
-            "Órdenes por mesa y canal, tiempos de cocina, cuentas y cierres. Pensado para restaurantes de alta rotación, cadenas y dark kitchens.",
-          footer:
-            "Empiezas con el nivel que necesitas hoy y puedes migrar a Plus o Pro sin cambiar de plataforma ni de menú.",
-        };
+  const summaryTexts = hero.summary ?? {
+    suiteLabel: locale === "en" ? "TuOrdenYa Suite" : "Suite TuOrdenYa",
+    title:
+      locale === "en"
+        ? "Choose the level for your restaurant"
+        : "Elige el nivel para tu restaurante",
+    chip: locale === "en" ? "Scalable by stages" : "Escalable por etapas",
+    lightTitle: "Light",
+    lightChip: locale === "en" ? "Starting point" : "Punto de partida",
+    lightText:
+      locale === "en"
+        ? "Responsive digital menu, QR per location and WhatsApp ordering. Ideal for coffee shops, food trucks and small venues."
+        : "Menú digital responsive, QR por local y botón de pedido por WhatsApp. Ideal para cafeterías, food trucks y negocios pequeños.",
+    plusTitle: "Plus",
+    plusChip: locale === "en" ? "Orders + reports" : "Pedidos + reportes",
+    plusText:
+      locale === "en"
+        ? "Everything in Light plus basic order tracking and simple reports so you know what sells and when."
+        : "Todo lo de Light, más registro de pedidos básicos y reportes sencillos para entender qué se vende y cuándo.",
+    proTitle: "Pro",
+    proChip: locale === "en" ? "Full operations" : "Operación completa",
+    proText:
+      locale === "en"
+        ? "Orders by table and channel, kitchen times, checks and closing. Designed for high-rotation restaurants and chains."
+        : "Órdenes por mesa y canal, tiempos de cocina, cuentas y cierres. Pensado para restaurantes de alta rotación, cadenas y dark kitchens.",
+    footer:
+      locale === "en"
+        ? "You start with the level you need today and can move to Plus or Pro without changing platform or menu."
+        : "Empiezas con el nivel que necesitas hoy y puedes migrar a Plus o Pro sin cambiar de plataforma ni de menú.",
+  };
 
   return (
     <section className="py-12 sm:py-16 lg:py-20">

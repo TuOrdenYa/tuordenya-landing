@@ -2,6 +2,12 @@
 import type { HomeContent } from "../types";
 
 export const homeEn: HomeContent = {
+  site: { title: "TuOrdenYa – Digital menus and operations for restaurants" },
+  pages: {
+    light: { ctaLabel: "I want the Light plan", detailCtaLabel: "Talk about the Light product" },
+    plus: { ctaLabel: "I want the Plus plan", detailCtaLabel: "Talk about the Plus product" },
+    pro: { ctaLabel: "I want to talk about Pro", detailCtaLabel: "Schedule a conversation about Pro" },
+  },
   navbar: {
     subtitle: "Menus and orders for restaurants",
     howItWorks: "How it works",
@@ -30,6 +36,21 @@ export const homeEn: HomeContent = {
       "🍽️ Dine-in restaurants with more volume (Plus)",
       "🏬 Chains and dark kitchens (Pro)",
     ],
+    summary: {
+      suiteLabel: "TuOrdenYa Suite",
+      title: "Choose the level for your restaurant",
+      chip: "Scalable by stages",
+      lightTitle: "Light",
+      lightChip: "Starting point",
+      lightText: "Responsive digital menu, QR per location and WhatsApp ordering. Ideal for coffee shops, food trucks and small venues.",
+      plusTitle: "Plus",
+      plusChip: "Orders + reports",
+      plusText: "Everything in Light plus basic order tracking and simple reports so you know what sells and when.",
+      proTitle: "Pro",
+      proChip: "Full operations",
+      proText: "Orders by table and channel, kitchen times, checks and closing. Designed for high-rotation restaurants and chains.",
+      footer: "You start with the level you need today and can move to Plus or Pro without changing platform or menu.",
+    },
   },
 
   benefitsSection: {
@@ -175,6 +196,8 @@ export const homeEn: HomeContent = {
       submitLabelLoading: "Sending...",
       privacyNotice:
         "We respect your time: no spam, only relevant information for your restaurant.",
+      whatsappIntro: "👋 Hello — a lead arrived via the TuOrdenYa landing page.",
+      sourceLabel: "Source: tuordenya.com",
     },
   },
 

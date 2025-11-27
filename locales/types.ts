@@ -40,6 +40,23 @@ export type HeroContent = {
   };
   secondaryCta: string;
   segments: string[];
+  summary?: HeroSummaryContent;
+};
+
+export type HeroSummaryContent = {
+  suiteLabel: string;
+  title: string;
+  chip: string;
+  lightTitle: string;
+  lightChip: string;
+  lightText: string;
+  plusTitle: string;
+  plusChip: string;
+  plusText: string;
+  proTitle: string;
+  proChip: string;
+  proText: string;
+  footer: string;
 };
 
 export type BenefitsSectionColumn = {
@@ -92,6 +109,8 @@ export type ContactSectionFormContent = {
   submitLabel: string;
   submitLabelLoading?: string;
   privacyNotice: string;
+  whatsappIntro?: string;
+  sourceLabel?: string;
 };
 
 export type ContactSectionContent = {
@@ -162,4 +181,10 @@ export type HomeContent = {
   howItWorksSection: HowItWorksSectionContent;
   proDetailsSection: ProDetailsSectionContent;
   testimonialsSection: TestimonialsSectionContent;
+  site?: { title: string };
+  pages?: {
+    light?: { ctaLabel?: string; detailCtaLabel?: string };
+    plus?: { ctaLabel?: string; detailCtaLabel?: string };
+    pro?: { ctaLabel?: string; detailCtaLabel?: string };
+  };
 };
