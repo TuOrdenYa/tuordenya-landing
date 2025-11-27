@@ -8,7 +8,7 @@ import { useI18n } from "@/components/i18n/LanguageContext";
 interface LeadFormProps {
   /** Identificador de página para GA4 (ej: "landing_home", "landing_light", etc.) */
   page?: string;
-  /** Interés por defecto mostrado en el select */
+  /** Interés por defecto mostrado en el select (texto) */
   defaultInterest?: string;
   /** Número de WhatsApp al que llegan los leads (sin +, ej: 573227921640) */
   whatsappNumber?: string;
@@ -19,6 +19,10 @@ export default function LeadForm({
   defaultInterest = "Solo menú digital (Light)",
   whatsappNumber = "573227921640",
 }: LeadFormProps) {
+  const { home, locale } = useI18n();
+  const { contactSection } = home;
+  const form = contactSection.form;
+
   // Estado del formulario
   const [fullName, setFullName] = useState("");
   const [restaurantName, setRestaurantName] = useState("");
@@ -70,7 +74,11 @@ export default function LeadForm({
 
     // Validación básica
     if (!fullName.trim() || !whatsapp.trim()) {
-      setErrorMessage("Por favor completa al menos tu nombre y WhatsApp.");
+      setErrorMessage(
+        locale === "en"
+          ? "Please fill in at least your name and WhatsApp."
+          : "Por favor completa al menos tu nombre y WhatsApp."
+      );
       return;
     }
 
@@ -101,7 +109,9 @@ export default function LeadForm({
       if (error) {
         console.error("Error guardando lead en Supabase:", error);
         setErrorMessage(
-          "Ocurrió un error guardando tus datos. Intenta de nuevo."
+          locale === "en"
+            ? "There was an error saving your data. Please try again."
+            : "Ocurrió un error guardando tus datos. Intenta de nuevo."
         );
         return; // No seguimos a WhatsApp si falla
       }
@@ -148,7 +158,11 @@ export default function LeadForm({
       setOperationNotes("");
     } catch (err) {
       console.error("Error inesperado en el submit:", err);
-      setErrorMessage("Ocurrió un error inesperado. Intenta de nuevo.");
+      setErrorMessage(
+        locale === "en"
+          ? "Unexpected error. Please try again."
+          : "Ocurrió un error inesperado. Intenta de nuevo."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -160,79 +174,89 @@ export default function LeadForm({
         onSubmit={handleSubmit}
         className="rounded-2xl border border-slate-800/70 bg-slate-900/60 p-5 space-y-4 text-sm"
       >
+        {/* NOMBRE */}
         <div>
           <label className="text-xs text-slate-400 block mb-1">
-            Nombre completo
+            {form.nameLabel}
           </label>
           <input
             type="text"
-            placeholder="Ej: Juan Pérez"
+            placeholder={form.namePlaceholder}
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
           />
         </div>
 
+        {/* RESTAURANTE */}
         <div>
           <label className="text-xs text-slate-400 block mb-1">
-            Nombre del restaurante
+            {form.restaurantLabel}
           </label>
           <input
             type="text"
-            placeholder="Ej: La Parrilla 24"
+            placeholder={form.restaurantPlaceholder}
             value={restaurantName}
             onChange={(e) => setRestaurantName(e.target.value)}
             className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
           />
         </div>
 
+        {/* WHATSAPP */}
         <div>
-          <label className="text-xs text-slate-400 block mb-1">WhatsApp</label>
+          <label className="text-xs text-slate-400 block mb-1">
+            {form.whatsappLabel}
+          </label>
           <input
             type="tel"
-            placeholder="Ej: +57 300 000 0000"
+            placeholder={form.whatsappPlaceholder}
             value={whatsapp}
             onChange={(e) => setWhatsapp(e.target.value)}
             className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
           />
         </div>
 
+        {/* EMAIL */}
         <div>
           <label className="text-xs text-slate-400 block mb-1">
-            Correo electrónico
+            {form.emailLabel}
           </label>
           <input
             type="email"
-            placeholder="Ej: nombre@tuordenya.com"
+            placeholder={form.emailPlaceholder}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
           />
         </div>
 
+        {/* INTERÉS */}
         <div>
           <label className="text-xs text-slate-400 block mb-1">
-            ¿Qué te interesa?
+            {form.interestLabel}
           </label>
           <select
             value={interest}
             onChange={(e) => setInterest(e.target.value)}
             className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
           >
-            <option>Solo menú digital (Light)</option>
-            <option>Menú + pedidos y reportes (Plus)</option>
-            <option>Operación completa (Pro)</option>
-            <option>No estoy seguro, quiero que me asesoren</option>
+            <option value="">{form.interestPlaceholder}</option>
+            {form.interestOptions.map((opt) => (
+              <option key={opt.value} value={opt.label}>
+                {opt.label}
+              </option>
+            ))}
           </select>
         </div>
 
+        {/* NOTAS / OPERACIÓN */}
         <div>
           <label className="text-xs text-slate-400 block mb-1">
-            Cuéntanos un poco de tu operación
+            {form.notesLabel}
           </label>
           <textarea
             rows={3}
-            placeholder="Número de mesas, sedes, si usas POS, etc."
+            placeholder={form.notesPlaceholder}
             value={operationNotes}
             onChange={(e) => setOperationNotes(e.target.value)}
             className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
@@ -241,19 +265,24 @@ export default function LeadForm({
 
         {errorMessage && (
           <p className="text-xs text-red-400">{errorMessage}</p>
-        )}
+        }}
 
         <button
           type="submit"
           disabled={isSubmitting}
           className="w-full mt-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold text-sm py-2 hover:bg-[#FF814F] disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          {isSubmitting ? "Enviando..." : "Enviar mensaje"}
+          {isSubmitting
+            ? locale === "en"
+              ? "Sending..."
+              : "Enviando..."
+            : form.submitLabel}
         </button>
 
         <p className="text-[11px] text-slate-500 mt-1">
-          Respetamos tu tiempo: nada de spam, solo información relevante para tu
-          restaurante.
+          {locale === "en"
+            ? "We respect your time: no spam, only relevant information for your restaurant."
+            : "Respetamos tu tiempo: nada de spam, solo información relevante para tu restaurante."}
         </p>
       </form>
     </div>
