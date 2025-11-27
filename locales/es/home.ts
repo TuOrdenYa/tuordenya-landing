@@ -81,6 +81,7 @@ export const homeEs: HomeContent = {
     title: "Productos pensados para ti",
     subtitle:
       "Comienza con lo básico y escala a medida que tu restaurante crece. Todos los productos incluyen hosting, dominio técnico y soporte básico.",
+    recommendedLabel: "Recomendado",
     products: [
       {
         id: "light",

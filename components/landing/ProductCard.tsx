@@ -1,3 +1,7 @@
+"use client";
+
+import { useI18n } from "@/components/i18n/LanguageContext";
+
 type ProductVariant = "light" | "plus" | "pro";
 
 type ProductCardProps = {
@@ -35,11 +39,13 @@ export default function ProductCard({
   ctaLabel,
   ctaHref,
 }: ProductCardProps) {
+  const { home } = useI18n();
+  const recommendedLabel = home.productsSection?.recommendedLabel ?? "Recomendado";
   return (
     <div className={`${baseClasses} ${variantClasses[variant]}`}>
       {recommended && (
         <span className="absolute right-4 top-4 text-[10px] px-2 py-1 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold">
-          Recomendado
+          {recommendedLabel}
         </span>
       )}
 

@@ -67,6 +67,7 @@ export type ProductsSectionContent = {
   title: string;
   subtitle: string;
   products: ProductContent[];
+  recommendedLabel?: string;
 };
 
 export type ContactSectionFormInterestOption = {
