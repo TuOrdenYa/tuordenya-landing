@@ -5,6 +5,11 @@ import { supabase } from "../lib/supabase";
 import { gaEvent } from "@/lib/gtag";
 import { useI18n } from "@/components/i18n/LanguageContext";
 
+// Reusable Tailwind classes
+const INPUT_CLASS =
+  "w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]";
+const LABEL_CLASS = "text-xs text-slate-400 block mb-1";
+
 interface LeadFormProps {
   /** Identificador de página para GA4 (ej: "landing_home", "landing_light", etc.) */
   page?: string;
@@ -12,6 +17,15 @@ interface LeadFormProps {
   defaultInterest?: string;
   /** Número de WhatsApp al que llegan los leads (sin +, ej: 573227921640) */
   whatsappNumber?: string;
+}
+
+interface FormState {
+  fullName: string;
+  restaurantName: string;
+  whatsapp: string;
+  email: string;
+  interest: string;
+  operationNotes: string;
 }
 
 export default function LeadForm({
@@ -23,18 +37,66 @@ export default function LeadForm({
   const { contactSection } = home;
   const form = contactSection.form;
 
-  // Estado del formulario
-  const [fullName, setFullName] = useState("");
-  const [restaurantName, setRestaurantName] = useState("");
-  const [whatsapp, setWhatsapp] = useState("");
-  const [email, setEmail] = useState("");
-  const [interest, setInterest] = useState(defaultInterest);
-  const [operationNotes, setOperationNotes] = useState("");
+  // Consolidated form state
+  const [formData, setFormData] = useState<FormState>({
+    fullName: "",
+    restaurantName: "",
+    whatsapp: "",
+    email: "",
+    interest: defaultInterest,
+    operationNotes: "",
+  });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-  // Para trackear vista del formulario (view_lead_form)
   const containerRef = useRef<HTMLDivElement | null>(null);
+
+  // Helper function to update form field
+  const updateFormField = (field: keyof FormState, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  // Helper function to build message lines
+  const buildMessageLines = (includeHeader: boolean = false): string[] => {
+    const lines: (string | null)[] = [];
+
+    if (includeHeader) {
+      lines.push("👋 Hola, llegó un lead desde la landing de TuOrdenYa.");
+      lines.push("");
+    }
+
+    lines.push(
+      formData.fullName ? `👤 Nombre: ${formData.fullName}` : null
+    );
+    lines.push(
+      formData.restaurantName ? `🏪 Restaurante: ${formData.restaurantName}` : null
+    );
+    lines.push(
+      formData.whatsapp ? `📱 WhatsApp del cliente: ${formData.whatsapp}` : null
+    );
+    lines.push(formData.email ? `✉️ Email: ${formData.email}` : null);
+    lines.push(formData.interest ? `⭐ Interés: ${formData.interest}` : null);
+    lines.push(
+      formData.operationNotes
+        ? `📝 Sobre su operación: ${formData.operationNotes}`
+        : null
+    );
+
+    if (includeHeader) {
+      lines.push("");
+    }
+    lines.push("Fuente: tuordenya.com");
+
+    return lines.filter(Boolean) as string[];
+  };
+
+  // Helper function to get error message
+  const getErrorMessage = (
+    enMsg: string,
+    esMsg: string
+  ): string => {
+    return locale === "en" ? enMsg : esMsg;
+  };
 
   useEffect(() => {
     const el = containerRef.current;
@@ -67,17 +129,18 @@ export default function LeadForm({
     };
   }, [page]);
 
-  // Envío del formulario: Supabase + WhatsApp + GA4
+  // Form submission: Supabase + WhatsApp + GA4
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isSubmitting) return;
 
-    // Validación básica
-    if (!fullName.trim() || !whatsapp.trim()) {
+    // Validation
+    if (!formData.fullName.trim() || !formData.whatsapp.trim()) {
       setErrorMessage(
-        locale === "en"
-          ? "Please fill in at least your name and WhatsApp."
-          : "Por favor completa al menos tu nombre y WhatsApp."
+        getErrorMessage(
+          "Please fill in at least your name and WhatsApp.",
+          "Por favor completa al menos tu nombre y WhatsApp."
+        )
       );
       return;
     }
@@ -86,22 +149,24 @@ export default function LeadForm({
     setIsSubmitting(true);
 
     try {
-      // 1️⃣ Preparar mensaje para Supabase
+      // 1️⃣ Build message for Supabase
       const composedMessage = [
-        interest ? `Interés: ${interest}` : null,
-        operationNotes ? `Sobre su operación: ${operationNotes}` : null,
+        formData.interest ? `Interés: ${formData.interest}` : null,
+        formData.operationNotes
+          ? `Sobre su operación: ${formData.operationNotes}`
+          : null,
         "Fuente: tuordenya.com",
       ]
         .filter(Boolean)
         .join(" | ");
 
-      // 2️⃣ Guardar en Supabase (tabla leads)
+      // 2️⃣ Save to Supabase (leads table)
       const { error } = await supabase.from("leads").insert([
         {
-          name: fullName || null,
-          phone: whatsapp || null,
-          email: email || null,
-          restaurant: restaurantName || null,
+          name: formData.fullName || null,
+          phone: formData.whatsapp || null,
+          email: formData.email || null,
+          restaurant: formData.restaurantName || null,
           message: composedMessage || null,
         },
       ]);
@@ -109,59 +174,49 @@ export default function LeadForm({
       if (error) {
         console.error("Error guardando lead en Supabase:", error);
         setErrorMessage(
-          locale === "en"
-            ? "There was an error saving your data. Please try again."
-            : "Ocurrió un error guardando tus datos. Intenta de nuevo."
+          getErrorMessage(
+            "There was an error saving your data. Please try again.",
+            "Ocurrió un error guardando tus datos. Intenta de nuevo."
+          )
         );
-        return; // No seguimos a WhatsApp si falla
+        return;
       }
 
-      // 3️⃣ GA4 — Evento de envío exitoso
+      // 3️⃣ GA4 — Success event
       try {
         gaEvent("submit_lead_form", {
           page,
-          interest: interest || "No especificado",
+          interest: formData.interest || "No especificado",
         });
       } catch (err) {
         console.error("Error enviando evento submit_lead_form:", err);
       }
 
-      // 4️⃣ Construir mensaje para WhatsApp
-      const messageLines = [
-        "👋 Hola, llegó un lead desde la landing de TuOrdenYa.",
-        "",
-        fullName ? `👤 Nombre: ${fullName}` : null,
-        restaurantName ? `🏪 Restaurante: ${restaurantName}` : null,
-        whatsapp ? `📱 WhatsApp del cliente: ${whatsapp}` : null,
-        email ? `✉️ Email: ${email}` : null,
-        interest ? `⭐ Interés: ${interest}` : null,
-        operationNotes ? `📝 Sobre su operación: ${operationNotes}` : null,
-        "",
-        "Fuente: tuordenya.com",
-      ]
-        .filter(Boolean)
-        .join("\n");
-
+      // 4️⃣ Build WhatsApp message
+      const messageLines = buildMessageLines(true).join("\n");
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
         messageLines
       )}`;
 
-      // 5️⃣ Abrir tu WhatsApp en una nueva pestaña
+      // 5️⃣ Open WhatsApp in new tab
       window.open(whatsappUrl, "_blank");
 
-      // 6️⃣ Limpiar formulario
-      setFullName("");
-      setRestaurantName("");
-      setWhatsapp("");
-      setEmail("");
-      setInterest(defaultInterest);
-      setOperationNotes("");
+      // 6️⃣ Clear form
+      setFormData({
+        fullName: "",
+        restaurantName: "",
+        whatsapp: "",
+        email: "",
+        interest: defaultInterest,
+        operationNotes: "",
+      });
     } catch (err) {
       console.error("Error inesperado en el submit:", err);
       setErrorMessage(
-        locale === "en"
-          ? "Unexpected error. Please try again."
-          : "Ocurrió un error inesperado. Intenta de nuevo."
+        getErrorMessage(
+          "Unexpected error. Please try again.",
+          "Ocurrió un error inesperado. Intenta de nuevo."
+        )
       );
     } finally {
       setIsSubmitting(false);
@@ -176,69 +231,59 @@ export default function LeadForm({
       >
         {/* NOMBRE */}
         <div>
-          <label className="text-xs text-slate-400 block mb-1">
-            {form.nameLabel}
-          </label>
+          <label className={LABEL_CLASS}>{form.nameLabel}</label>
           <input
             type="text"
             placeholder={form.namePlaceholder}
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
+            value={formData.fullName}
+            onChange={(e) => updateFormField("fullName", e.target.value)}
+            className={INPUT_CLASS}
           />
         </div>
 
         {/* RESTAURANTE */}
         <div>
-          <label className="text-xs text-slate-400 block mb-1">
-            {form.restaurantLabel}
-          </label>
+          <label className={LABEL_CLASS}>{form.restaurantLabel}</label>
           <input
             type="text"
             placeholder={form.restaurantPlaceholder}
-            value={restaurantName}
-            onChange={(e) => setRestaurantName(e.target.value)}
-            className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
+            value={formData.restaurantName}
+            onChange={(e) => updateFormField("restaurantName", e.target.value)}
+            className={INPUT_CLASS}
           />
         </div>
 
         {/* WHATSAPP */}
         <div>
-          <label className="text-xs text-slate-400 block mb-1">
-            {form.whatsappLabel}
-          </label>
+          <label className={LABEL_CLASS}>{form.whatsappLabel}</label>
           <input
             type="tel"
             placeholder={form.whatsappPlaceholder}
-            value={whatsapp}
-            onChange={(e) => setWhatsapp(e.target.value)}
-            className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
+            value={formData.whatsapp}
+            onChange={(e) => updateFormField("whatsapp", e.target.value)}
+            className={INPUT_CLASS}
           />
         </div>
 
         {/* EMAIL */}
         <div>
-          <label className="text-xs text-slate-400 block mb-1">
-            {form.emailLabel}
-          </label>
+          <label className={LABEL_CLASS}>{form.emailLabel}</label>
           <input
             type="email"
             placeholder={form.emailPlaceholder}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
+            value={formData.email}
+            onChange={(e) => updateFormField("email", e.target.value)}
+            className={INPUT_CLASS}
           />
         </div>
 
         {/* INTERÉS */}
         <div>
-          <label className="text-xs text-slate-400 block mb-1">
-            {form.interestLabel}
-          </label>
+          <label className={LABEL_CLASS}>{form.interestLabel}</label>
           <select
-            value={interest}
-            onChange={(e) => setInterest(e.target.value)}
-            className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
+            value={formData.interest}
+            onChange={(e) => updateFormField("interest", e.target.value)}
+            className={INPUT_CLASS}
           >
             <option value="">{form.interestPlaceholder}</option>
             {form.interestOptions.map((opt) => (
@@ -251,15 +296,13 @@ export default function LeadForm({
 
         {/* NOTAS / OPERACIÓN */}
         <div>
-          <label className="text-xs text-slate-400 block mb-1">
-            {form.notesLabel}
-          </label>
+          <label className={LABEL_CLASS}>{form.notesLabel}</label>
           <textarea
             rows={3}
             placeholder={form.notesPlaceholder}
-            value={operationNotes}
-            onChange={(e) => setOperationNotes(e.target.value)}
-            className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs outline-none focus:border-[#FF6F3C]"
+            value={formData.operationNotes}
+            onChange={(e) => updateFormField("operationNotes", e.target.value)}
+            className={INPUT_CLASS}
           />
         </div>
 
@@ -273,16 +316,15 @@ export default function LeadForm({
           className="w-full mt-2 rounded-full bg-[#FF6F3C] text-slate-950 font-semibold text-sm py-2 hover:bg-[#FF814F] disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {isSubmitting
-            ? locale === "en"
-              ? "Sending..."
-              : "Enviando..."
+            ? getErrorMessage("Sending...", "Enviando...")
             : form.submitLabel}
         </button>
 
         <p className="text-[11px] text-slate-500 mt-1">
-          {locale === "en"
-            ? "We respect your time: no spam, only relevant information for your restaurant."
-            : "Respetamos tu tiempo: nada de spam, solo información relevante para tu restaurante."}
+          {getErrorMessage(
+            "We respect your time: no spam, only relevant information for your restaurant.",
+            "Respetamos tu tiempo: nada de spam, solo información relevante para tu restaurante."
+          )}
         </p>
       </form>
     </div>

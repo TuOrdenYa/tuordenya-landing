@@ -1,16 +1,18 @@
+// locales/en/home.ts
 import type { HomeContent } from "../types";
 
 export const homeEn: HomeContent = {
   navbar: {
-    subtitle: "Menus and ordering for restaurants",
+    subtitle: "Menus and orders for restaurants",
     howItWorks: "How it works",
     products: "Our products",
     faq: "FAQs",
     demo: "Book a demo",
-    light: "Light — Digital menu + QR",
-    plus: "Plus — Orders and reports",
-    pro: "Pro — Full operation",
+    light: "Light — Menu + QR",
+    plus: "Plus — Orders & reports",
+    pro: "Pro — Full operations",
   },
+
   hero: {
     badge: "Start with Light, grow into Plus and Pro",
     title: "Digital menus and full operations",
@@ -29,6 +31,52 @@ export const homeEn: HomeContent = {
       "🏬 Chains and dark kitchens (Pro)",
     ],
   },
+
+  benefitsSection: {
+    title: "What you get with TuOrdenYa",
+    subtitle:
+      "You move from a printed menu to a digital experience that connects orders, operations and data in one place.",
+    columns: [
+      {
+        items: [
+          "• Guests see your menu by scanning a QR code.",
+          "• You receive orders via WhatsApp or directly from the system.",
+          "• Update prices and dishes without printing new menus.",
+        ],
+      },
+      {
+        items: [
+          "• Basic reports in Plus and full operations in Pro.",
+          "• Scalable: start with Light and upgrade to Plus/Pro as you grow.",
+          "• Ready to integrate with your current flow (POS, kitchen, etc.).",
+        ],
+      },
+    ],
+  },
+
+  integrationsSection: {
+    title: "Integrations and ecosystem",
+    subtitle:
+      "TuOrdenYa is designed to connect with other tools you already use in your restaurant. We start simple and grow with you.",
+    cards: [
+      {
+        title: "Order channels",
+        description:
+          "QR, WhatsApp and dining room orders. Designed to add more channels in the future.",
+      },
+      {
+        title: "Payments and billing",
+        description:
+          "Future integration with payment gateways and/or POS systems. The architecture is already prepared for that.",
+      },
+      {
+        title: "Data and reports",
+        description:
+          "Database ready to feed dashboards and advanced reports (Plus and Pro).",
+      },
+    ],
+  },
+
   productsSection: {
     title: "Products designed for you",
     subtitle:
@@ -84,6 +132,7 @@ export const homeEn: HomeContent = {
       },
     ],
   },
+
   contactSection: {
     title: "Let’s talk about your restaurant",
     subtitle:
@@ -95,25 +144,59 @@ export const homeEn: HomeContent = {
     ],
     form: {
       nameLabel: "Full name",
-      namePlaceholder: "E.g. John Smith",
+      namePlaceholder: "e.g. John Doe",
       restaurantLabel: "Restaurant name",
-      restaurantPlaceholder: "E.g. La Parrilla 24",
+      restaurantPlaceholder: "e.g. La Parrilla 24",
       whatsappLabel: "WhatsApp",
-      whatsappPlaceholder: "E.g. +57 300 000 0000",
+      whatsappPlaceholder: "e.g. +57 300 000 0000",
       emailLabel: "Email",
-      emailPlaceholder: "E.g. name@tuordenya.com",
+      emailPlaceholder: "e.g. name@tuordenya.com",
       interestLabel: "What are you interested in?",
       interestPlaceholder: "Select an option",
       interestOptions: [
         { value: "light", label: "Digital menu only (Light)" },
-        { value: "plus", label: "Orders and reports (Plus)" },
-        { value: "pro", label: "Full operations (Pro)" },
-        { value: "other", label: "Something else" },
+        {
+          value: "plus",
+          label: "Menu + orders and reports (Plus)",
+        },
+        {
+          value: "pro",
+          label: "Full operation (Pro)",
+        },
+        {
+          value: "unsure",
+          label: "Not sure, I’d like advice",
+        },
       ],
       notesLabel: "Tell us a bit about your operation",
-      notesPlaceholder:
-        "Number of tables, locations, whether you use a POS, etc.",
+      notesPlaceholder: "Number of tables, locations, if you use a POS, etc.",
       submitLabel: "Send message",
+      submitLabelLoading: "Sending...",
+      privacyNotice:
+        "We respect your time: no spam, only relevant information for your restaurant.",
     },
+  },
+
+  faqSection: {
+    title: "Frequently asked questions",
+    subtitle:
+      "If you have specific questions about your operation, tell us and we’ll adapt the implementation to your case.",
+    items: [
+      {
+        question: "How long does implementation take?",
+        answer:
+          "It depends on the complexity of your menu and operations, but we usually talk about days, not months. Light can be ready very quickly; Pro requires a bit more coordination.",
+      },
+      {
+        question: "Do I need to replace my current POS?",
+        answer:
+          "Not necessarily. TuOrdenYa can live alongside your current POS while we define the level of integration that makes sense for your business.",
+      },
+      {
+        question: "Can I start with Light and upgrade later?",
+        answer:
+          "Yes. The whole idea is that you start with the basics and upgrade to Plus or Pro when your restaurant’s volume justifies it.",
+      },
+    ],
   },
 };

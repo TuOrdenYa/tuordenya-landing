@@ -1,9 +1,7 @@
 // locales/types.ts
 
-// Idiomas soportados
 export type Locale = "es" | "en";
 
-// Variantes de producto
 export type ProductVariant = "light" | "plus" | "pro";
 
 export type ProductContent = {
@@ -19,23 +17,17 @@ export type ProductContent = {
   ctaHref?: string;
 };
 
-// ──────────────────────────────
-// Navbar
-// ──────────────────────────────
 export type NavbarContent = {
   subtitle: string;
   howItWorks: string;
   products: string;
   faq: string;
   demo: string;
-  light: string; // texto opción Light del menú
-  plus: string;  // texto opción Plus del menú
-  pro: string;   // texto opción Pro del menú
+  light: string;
+  plus: string;
+  pro: string;
 };
 
-// ──────────────────────────────
-// Hero
-// ──────────────────────────────
 export type HeroContent = {
   badge: string;
   title: string;
@@ -50,18 +42,38 @@ export type HeroContent = {
   segments: string[];
 };
 
-// ──────────────────────────────
-// Productos (tarjetas Light / Plus / Pro)
-// ──────────────────────────────
+export type BenefitsSectionColumn = {
+  items: string[];
+};
+
+export type BenefitsSectionContent = {
+  title: string;
+  subtitle: string;
+  columns: BenefitsSectionColumn[];
+};
+
+export type IntegrationsCardContent = {
+  title: string;
+  description: string;
+};
+
+export type IntegrationsSectionContent = {
+  title: string;
+  subtitle: string;
+  cards: IntegrationsCardContent[];
+};
+
 export type ProductsSectionContent = {
   title: string;
   subtitle: string;
   products: ProductContent[];
 };
 
-// ──────────────────────────────
-// Contacto
-// ──────────────────────────────
+export type ContactSectionFormInterestOption = {
+  value: string; // ej: "light", "plus", "pro", "unsure"
+  label: string; // texto visible en el <option>
+};
+
 export type ContactSectionFormContent = {
   nameLabel: string;
   namePlaceholder: string;
@@ -73,13 +85,12 @@ export type ContactSectionFormContent = {
   emailPlaceholder: string;
   interestLabel: string;
   interestPlaceholder: string;
-  interestOptions: {
-    value: string; // ej: "light", "plus", "pro"
-    label: string; // texto visible en el <option>
-  }[];
+  interestOptions: ContactSectionFormInterestOption[];
   notesLabel: string;
   notesPlaceholder: string;
   submitLabel: string;
+  submitLabelLoading?: string;
+  privacyNotice: string;
 };
 
 export type ContactSectionContent = {
@@ -89,12 +100,23 @@ export type ContactSectionContent = {
   form: ContactSectionFormContent;
 };
 
-// ──────────────────────────────
-// Contenido completo del Home
-// ──────────────────────────────
+export type FAQItemContent = {
+  question: string;
+  answer: string;
+};
+
+export type FAQSectionContent = {
+  title: string;
+  subtitle: string;
+  items: FAQItemContent[];
+};
+
 export type HomeContent = {
   navbar: NavbarContent;
   hero: HeroContent;
+  benefitsSection: BenefitsSectionContent;
+  integrationsSection: IntegrationsSectionContent;
   productsSection: ProductsSectionContent;
   contactSection: ContactSectionContent;
+  faqSection: FAQSectionContent;
 };

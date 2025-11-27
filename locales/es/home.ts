@@ -1,3 +1,4 @@
+// locales/es/home.ts
 import type { HomeContent } from "../types";
 
 export const homeEs: HomeContent = {
@@ -7,10 +8,11 @@ export const homeEs: HomeContent = {
     products: "Nuestros productos",
     faq: "FAQs",
     demo: "Agenda una demo",
-    light: "Light — Menú digital + QR",
+    light: "Light — Menú + QR",
     plus: "Plus — Pedidos y reportes",
     pro: "Pro — Operación completa",
   },
+
   hero: {
     badge: "Empieza con Light, escala a Plus y Pro cuando crezcas",
     title: "Menús digitales y operación completa",
@@ -29,6 +31,52 @@ export const homeEs: HomeContent = {
       "🏬 Cadenas y dark kitchens (Pro)",
     ],
   },
+
+  benefitsSection: {
+    title: "¿Qué ganas con TuOrdenYa?",
+    subtitle:
+      "Pasas de un menú impreso a una experiencia digital que conecta pedidos, operación y datos en un solo lugar.",
+    columns: [
+      {
+        items: [
+          "• Los clientes ven tu carta escaneando un código QR.",
+          "• Recibes pedidos por WhatsApp o directamente desde el sistema.",
+          "• Actualizas precios y platos sin reimprimir menús.",
+        ],
+      },
+      {
+        items: [
+          "• Reportes básicos desde Plus y operación completa en Pro.",
+          "• Escalable: comienza con Light y migra a Plus/Pro cuando creces.",
+          "• Base lista para integrarse con tu flujo actual (POS, cocina, etc.).",
+        ],
+      },
+    ],
+  },
+
+  integrationsSection: {
+    title: "Integraciones y ecosistema",
+    subtitle:
+      "TuOrdenYa está diseñado para conversar con otras herramientas que ya usas en tu restaurante. Empezamos simple y vamos creciendo contigo.",
+    cards: [
+      {
+        title: "Canales de pedido",
+        description:
+          "QR, WhatsApp y órdenes desde salón. Diseñado para sumar otros canales en el futuro.",
+      },
+      {
+        title: "Pagos y facturación",
+        description:
+          "Integración futura con pasarelas y/o POS. La arquitectura ya está pensada para eso.",
+      },
+      {
+        title: "Datos y reportes",
+        description:
+          "Base de datos preparada para alimentar tableros e informes avanzados (Plus y Pro).",
+      },
+    ],
+  },
+
   productsSection: {
     title: "Productos pensados para ti",
     subtitle:
@@ -84,6 +132,7 @@ export const homeEs: HomeContent = {
       },
     ],
   },
+
   contactSection: {
     title: "Conversemos sobre tu restaurante",
     subtitle:
@@ -106,13 +155,48 @@ export const homeEs: HomeContent = {
       interestPlaceholder: "Selecciona una opción",
       interestOptions: [
         { value: "light", label: "Solo menú digital (Light)" },
-        { value: "plus", label: "Pedidos básicos + reportes (Plus)" },
-        { value: "pro", label: "Operación completa (Pro)" },
-        { value: "dudas", label: "Solo quiero hacer unas preguntas" },
+        {
+          value: "plus",
+          label: "Menú + pedidos y reportes (Plus)",
+        },
+        {
+          value: "pro",
+          label: "Operación completa (Pro)",
+        },
+        {
+          value: "unsure",
+          label: "No estoy seguro, quiero que me asesoren",
+        },
       ],
       notesLabel: "Cuéntanos un poco de tu operación",
       notesPlaceholder: "Número de mesas, sedes, si usas POS, etc.",
       submitLabel: "Enviar mensaje",
+      submitLabelLoading: "Enviando...",
+      privacyNotice:
+        "Respetamos tu tiempo: nada de spam, solo información relevante para tu restaurante.",
     },
+  },
+
+  faqSection: {
+    title: "Preguntas frecuentes",
+    subtitle:
+      "Si tienes dudas específicas de tu operación, cuéntanos y adaptamos la implementación a tu caso.",
+    items: [
+      {
+        question: "¿Cuánto se demora la implementación?",
+        answer:
+          "Depende de la complejidad de tu carta y operación, pero normalmente tomamos días, no meses. Light puede quedar listo muy rápido; Pro requiere un poco más de coordinación.",
+      },
+      {
+        question: "¿Necesito cambiar mi POS actual?",
+        answer:
+          "No necesariamente. TuOrdenYa puede convivir con tu POS actual mientras definimos el nivel de integración que tenga sentido para tu negocio.",
+      },
+      {
+        question: "¿Puedo empezar con Light y luego subir?",
+        answer:
+          "Sí. Justamente la idea es que empieces con lo básico y puedas migrar a Plus o Pro cuando el volumen de tu restaurante lo justifique.",
+      },
+    ],
   },
 };
