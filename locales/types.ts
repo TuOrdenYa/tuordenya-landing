@@ -170,6 +170,53 @@ export type TestimonialsSectionContent = {
   items: TestimonialItemContent[];
 };
 
+// ================= Product Page Extended Content Types =================
+export interface ProductPageSummaryStat { label: string; value: string }
+
+export interface ProductPageSummaryContent {
+  label?: string;
+  planName?: string;
+  chip?: string;
+  stats?: ProductPageSummaryStat[];
+  includesTitle?: string;
+  includesList?: string[];
+  footer?: string;
+}
+
+export interface ProductPageDetailsFeature { title: string; text: string }
+
+export interface ProductPageDetailsContent {
+  title?: string;
+  subtitle?: string;
+  features?: ProductPageDetailsFeature[];
+}
+
+export interface ProductPageUpgradeContent {
+  title?: string;
+  subtitle?: string;
+  bullets?: string[];
+}
+
+export interface ProductPageSuitabilityContent {
+  title?: string;
+  bullets?: string[];
+}
+
+export interface ProductPageContent {
+  ctaLabel: string;
+  detailCtaLabel: string;
+  badge?: string;
+  title?: string;
+  highlight?: string;
+  subtitle?: string;
+  bullets?: string[];
+  segments?: string[];
+  summary?: ProductPageSummaryContent;
+  details?: ProductPageDetailsContent;
+  upgrade?: ProductPageUpgradeContent;
+  suitability?: ProductPageSuitabilityContent;
+}
+
 export type HomeContent = {
   navbar: NavbarContent;
   hero: HeroContent;
@@ -183,8 +230,8 @@ export type HomeContent = {
   testimonialsSection: TestimonialsSectionContent;
   site?: { title: string };
   pages?: {
-    light?: { ctaLabel?: string; detailCtaLabel?: string };
-    plus?: { ctaLabel?: string; detailCtaLabel?: string };
-    pro?: { ctaLabel?: string; detailCtaLabel?: string };
+    light?: ProductPageContent;
+    plus?: ProductPageContent;
+    pro?: ProductPageContent;
   };
 };
