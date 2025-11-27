@@ -213,30 +213,30 @@ export default function PlusPage() {
               {/* Badge superior (VERDE PLUS) */}
               <span className="inline-flex items-center gap-2 rounded-full border border-[#2ECC71] bg-[#2ECC711A] px-3 py-1 text-xs font-medium text-[#2ECC71]">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#2ECC71]" />
-                Plan Plus — Cuando ya quieres ver pedidos y datos
+                {plusPage?.badge || "Plan Plus — Cuando ya quieres ver pedidos y datos"}
               </span>
 
               {/* Título */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight">
-                Pedidos básicos + reportes{" "}
-                <span className="text-[#2ECC71]">
-                  para entender mejor tu operación.
-                </span>
+                {plusPage?.title || "Pedidos básicos + reportes"}{" "}
+                <span className="text-[#2ECC71]">{plusPage?.highlight || "para entender mejor tu operación."}</span>
               </h1>
 
               {/* Subtítulo */}
               <p className="text-sm sm:text-base text-slate-400 max-w-xl">
-                Plus es el paso natural después de Light: sigues teniendo tu
-                menú digital y tus QR, pero ahora empiezas a registrar pedidos y
-                ver reportes simples para tomar decisiones con datos.
+                {plusPage?.subtitle || "Plus es el paso natural después de Light: sigues teniendo tu menú digital y tus QR, pero ahora empiezas a registrar pedidos y ver reportes simples para tomar decisiones con datos."}
               </p>
 
               {/* Bullets clave */}
               <ul className="text-sm text-slate-300 space-y-2">
-                <li>• Registro básico de pedidos por día y canal.</li>
-                <li>• Reportes sencillos: ventas, productos más vendidos.</li>
-                <li>• Mantienes el mismo menú digital y QR de Light.</li>
-                <li>• Sin complejidad de mesas ni flows de cocina avanzados.</li>
+                {(plusPage?.bullets || [
+                  "Registro básico de pedidos por día y canal.",
+                  "Reportes sencillos: ventas, productos más vendidos.",
+                  "Mantienes el mismo menú digital y QR de Light.",
+                  "Sin complejidad de mesas ni flows de cocina avanzados.",
+                ]).map((b) => (
+                  <li key={b}>• {b}</li>
+                ))}
               </ul>
 
               {/* CTAs */}
@@ -258,15 +258,13 @@ export default function PlusPage() {
 
               {/* Segmento a quién va dirigido */}
               <div className="flex flex-wrap gap-2 pt-2 text-[11px] text-slate-400">
-                <span className="px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800/80">
-                  🍽️ Restaurantes con más rotación
-                </span>
-                <span className="px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800/80">
-                  🍕 Marcas con domicilios frecuentes
-                </span>
-                <span className="px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800/80">
-                  🥡 Negocios que ya sienten más volumen
-                </span>
+                {(plusPage?.segments || [
+                  "🍽️ Restaurantes con más rotación",
+                  "🍕 Marcas con domicilios frecuentes",
+                  "🥡 Negocios que ya sienten más volumen",
+                ]).map((s) => (
+                  <span key={s} className="px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800/80">{s}</span>
+                ))}
               </div>
             </motion.div>
 
@@ -277,51 +275,45 @@ export default function PlusPage() {
             >
               <div className="flex items-center justify-between mb-1">
                 <div>
-                  <p className="text-xs text-slate-400">Resumen plan</p>
-                  <p className="text-lg font-semibold">TuOrdenYa Plus</p>
+                  <p className="text-xs text-slate-400">{plusPage?.summary?.label || "Resumen plan"}</p>
+                  <p className="text-lg font-semibold">{plusPage?.summary?.planName || "TuOrdenYa Plus"}</p>
                 </div>
                 <span className="text-[10px] rounded-full px-3 py-1 bg-[#2ECC71] text-slate-950 font-semibold">
-                  Pedidos + datos
+                  {plusPage?.summary?.chip || "Pedidos + datos"}
                 </span>
               </div>
 
               <div className="space-y-3 text-xs">
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Tipo de solución</span>
-                  <span className="font-semibold text-slate-100">
-                    Menú + pedidos básicos
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Foco principal</span>
-                  <span className="font-semibold text-slate-100">
-                    Registro y reportes
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Nivel de complejidad</span>
-                  <span className="font-semibold text-slate-100">
-                    Medio / manejable
-                  </span>
-                </div>
+                {(plusPage?.summary?.stats || [
+                  { label: "Tipo de solución", value: "Menú + pedidos básicos" },
+                  { label: "Foco principal", value: "Registro y reportes" },
+                  { label: "Nivel de complejidad", value: "Medio / manejable" },
+                ]).map((st) => (
+                  <div className="flex justify-between" key={st.label}>
+                    <span className="text-slate-400">{st.label}</span>
+                    <span className="font-semibold text-slate-100">{st.value}</span>
+                  </div>
+                ))}
               </div>
 
               <div className="mt-2 h-px bg-slate-800/70" />
 
               <div className="space-y-2 text-xs">
-                <p className="text-slate-400">Incluye</p>
+                <p className="text-slate-400">{plusPage?.summary?.includesTitle || "Incluye"}</p>
                 <ul className="text-slate-300 space-y-1">
-                  <li>• Todo lo del plan Light.</li>
-                  <li>• Registro de pedidos básicos.</li>
-                  <li>• Reportes de ventas por rango de fechas.</li>
-                  <li>• Productos más vendidos y tickets promedio.</li>
+                  {(plusPage?.summary?.includesList || [
+                    "Todo lo del plan Light.",
+                    "Registro de pedidos básicos.",
+                    "Reportes de ventas por rango de fechas.",
+                    "Productos más vendidos y tickets promedio.",
+                  ]).map((inc) => (
+                    <li key={inc}>• {inc}</li>
+                  ))}
                 </ul>
               </div>
 
               <p className="text-[11px] text-slate-500 pt-1">
-                Cuando necesites manejar mesas, tiempos de cocina y cuentas
-                separadas, Pro es el siguiente paso natural en la misma
-                plataforma.
+                {plusPage?.summary?.footer || "Cuando necesites manejar mesas, tiempos de cocina y cuentas separadas, Pro es el siguiente paso natural en la misma plataforma."}
               </p>
             </motion.div>
           </motion.div>
@@ -338,11 +330,10 @@ export default function PlusPage() {
           >
             <motion.div variants={fadeUp} className="md:col-span-1">
               <h2 className="text-xl sm:text-2xl font-semibold mb-3">
-                Lo que incluye el plan Plus
+                {plusPage?.details?.title || "Lo que incluye el plan Plus"}
               </h2>
               <p className="text-sm text-slate-400">
-                Plus combina tu menú digital con un registro simple de pedidos y
-                reportes que te ayudan a entender cómo se comportan tus ventas.
+                {plusPage?.details?.subtitle || "Plus combina tu menú digital con un registro simple de pedidos y reportes que te ayudan a entender cómo se comportan tus ventas."}
               </p>
             </motion.div>
 
@@ -350,35 +341,17 @@ export default function PlusPage() {
               variants={fadeUp}
               className="md:col-span-2 grid sm:grid-cols-2 gap-4 text-sm"
             >
-              <div className="space-y-2">
-                <p className="font-semibold">Registro centralizado de pedidos</p>
-                <p className="text-slate-400 text-xs">
-                  Lleva un control de los pedidos que entran por salón, WhatsApp
-                  o domicilio, sin necesidad de un sistema complejo de mesas.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <p className="font-semibold">Reportes básicos</p>
-                <p className="text-slate-400 text-xs">
-                  Visualiza ventas por día, franja horaria o canal, y entiende
-                  mejor los momentos fuertes y flojos de tu operación.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <p className="font-semibold">Top de productos</p>
-                <p className="text-slate-400 text-xs">
-                  Identifica cuáles platos se venden más y cuáles casi no se
-                  mueven, para ajustar menú, combos o promociones.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <p className="font-semibold">Base lista para Pro</p>
-                <p className="text-slate-400 text-xs">
-                  Toda la estructura de datos está pensada para que, cuando
-                  pases a Pro, no tengas que empezar de cero ni migrar de
-                  sistema.
-                </p>
-              </div>
+              {(plusPage?.details?.features || [
+                { title: "Registro centralizado de pedidos", text: "Control de pedidos por salón, WhatsApp o domicilio sin sistema complejo." },
+                { title: "Reportes básicos", text: "Ventas por día, franja y canal para entender momentos fuertes y flojos." },
+                { title: "Top de productos", text: "Identifica platos más vendidos y los que no se mueven para ajustar." },
+                { title: "Base lista para Pro", text: "Estructura preparada para migrar sin empezar de cero." },
+              ]).map((f) => (
+                <div className="space-y-2" key={f.title}>
+                  <p className="font-semibold">{f.title}</p>
+                  <p className="text-slate-400 text-xs">{f.text}</p>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
         </section>
@@ -394,25 +367,19 @@ export default function PlusPage() {
           >
             <motion.div variants={fadeUp}>
               <h2 className="text-xl sm:text-2xl font-semibold mb-3">
-                ¿Cuándo tiene sentido subir a Pro?
+                {plusPage?.upgrade?.title || "¿Cuándo tiene sentido subir a Pro?"}
               </h2>
               <p className="text-sm text-slate-400 mb-4 max-w-xl">
-                Si Plus te queda corto porque ya manejas muchas mesas,
-                tiempos de cocina o varios ambientes, Pro se vuelve la
-                herramienta adecuada.
+                {plusPage?.upgrade?.subtitle || "Si Plus te queda corto porque ya manejas muchas mesas, tiempos de cocina o varios ambientes, Pro se vuelve la herramienta adecuada."}
               </p>
               <ul className="text-sm text-slate-300 space-y-2">
-                <li>
-                  • Manejas varias mesas al tiempo y necesitas ver su estado.
-                </li>
-                <li>
-                  • Te interesa dividir cuentas, manejar propinas y controlar
-                  cierres.
-                </li>
-                <li>
-                  • Quieres ver tiempos de preparación y evitar cuellos de
-                  botella.
-                </li>
+                {(plusPage?.upgrade?.bullets || [
+                  "Manejas varias mesas al tiempo y necesitas ver su estado.",
+                  "Te interesa dividir cuentas, manejar propinas y controlar cierres.",
+                  "Quieres ver tiempos de preparación y evitar cuellos de botella.",
+                ]).map((u) => (
+                  <li key={u}>• {u}</li>
+                ))}
               </ul>
             </motion.div>
 
@@ -421,17 +388,17 @@ export default function PlusPage() {
               className="rounded-3xl border border-slate-800/70 bg-slate-900/60 p-5 text-sm"
             >
               <p className="text-xs font-semibold text-slate-300 mb-2">
-                ¿Es Plus para ti?
+                {plusPage?.suitability?.title || "¿Es Plus para ti?"}
               </p>
               <ul className="space-y-2 text-xs text-slate-400">
-                <li>• Ya tienes buen volumen de pedidos.</li>
-                <li>• Quieres ver datos claros sin complicarte.</li>
-                <li>
-                  • Aún no estás listo para una operación de salón completa.
-                </li>
-                <li>
-                  • Necesitas más información que la que te da solo un menú.
-                </li>
+                {(plusPage?.suitability?.bullets || [
+                  "Ya tienes buen volumen de pedidos.",
+                  "Quieres ver datos claros sin complicarte.",
+                  "Aún no estás listo para una operación de salón completa.",
+                  "Necesitas más información que la que te da solo un menú.",
+                ]).map((sb) => (
+                  <li key={sb}>• {sb}</li>
+                ))}
               </ul>
               <a
                 href="/#contacto"

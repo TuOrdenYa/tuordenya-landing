@@ -213,30 +213,30 @@ export default function ProPage() {
               {/* Badge superior */}
               <span className="inline-flex items-center gap-2 rounded-full border border-[#4A90E2] bg-[#4A90E21A] px-3 py-1 text-xs font-medium text-[#4A90E2]">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#4A90E2]" />
-                RestOrder Pro — Operación completa para restaurantes en serio
+                {proPage?.badge || "RestOrder Pro — Operación completa para restaurantes en serio"}
               </span>
 
               {/* Título */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight">
-                Mesas, cocina, cuentas y tiempos{" "}
-                <span className="text-[#4A90E2]">
-                  en un solo sistema pensado para tu salón.
-                </span>
+                {proPage?.title || "Mesas, cocina, cuentas y tiempos"} {" "}
+                <span className="text-[#4A90E2]">{proPage?.highlight || "en un solo sistema pensado para tu salón."}</span>
               </h1>
 
               {/* Subtítulo */}
               <p className="text-sm sm:text-base text-slate-400 max-w-xl">
-                Pro es la versión para restaurantes que manejan mesas, varios
-                ambientes, cocina y barra, y necesitan tener control fino sobre
-                órdenes, tiempos, cuentas y cierres diarios.
+                {proPage?.subtitle || "Pro es la versión para restaurantes que manejan mesas, varios ambientes, cocina y barra, y necesitan tener control fino sobre órdenes, tiempos, cuentas y cierres diarios."}
               </p>
 
               {/* Bullets clave */}
               <ul className="text-sm text-slate-300 space-y-2">
-                <li>• Órdenes por mesa, canal y estado.</li>
-                <li>• Envío a cocina y barra con estados de preparación.</li>
-                <li>• Cuentas, división, propinas y preparación para POS/caja.</li>
-                <li>• Reportes operativos para entender tu operación real.</li>
+                {(proPage?.bullets || [
+                  "Órdenes por mesa, canal y estado.",
+                  "Envío a cocina y barra con estados de preparación.",
+                  "Cuentas, división, propinas y preparación para POS/caja.",
+                  "Reportes operativos para entender tu operación real.",
+                ]).map((b) => (
+                  <li key={b}>• {b}</li>
+                ))}
               </ul>
 
               {/* CTAs */}
@@ -258,15 +258,13 @@ export default function ProPage() {
 
               {/* Segmento a quién va dirigido */}
               <div className="flex flex-wrap gap-2 pt-2 text-[11px] text-slate-400">
-                <span className="px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800/80">
-                  🏬 Cadenas y marcas con varias sedes
-                </span>
-                <span className="px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800/80">
-                  🍽️ Restaurantes con salón y alta rotación
-                </span>
-                <span className="px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800/80">
-                  🍱 Dark kitchens con alto volumen
-                </span>
+                {(proPage?.segments || [
+                  "🏬 Cadenas y marcas con varias sedes",
+                  "🍽️ Restaurantes con salón y alta rotación",
+                  "🍱 Dark kitchens con alto volumen",
+                ]).map((s) => (
+                  <span key={s} className="px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800/80">{s}</span>
+                ))}
               </div>
             </motion.div>
 
@@ -277,52 +275,46 @@ export default function ProPage() {
             >
               <div className="flex items-center justify-between mb-1">
                 <div>
-                  <p className="text-xs text-slate-400">Resumen plan</p>
-                  <p className="text-lg font-semibold">RestOrder Pro</p>
+                  <p className="text-xs text-slate-400">{proPage?.summary?.label || "Resumen plan"}</p>
+                  <p className="text-lg font-semibold">{proPage?.summary?.planName || "RestOrder Pro"}</p>
                 </div>
                 <span className="text-[10px] rounded-full px-3 py-1 bg-[#4A90E2] text-slate-50 font-semibold">
-                  Operación completa
+                  {proPage?.summary?.chip || "Operación completa"}
                 </span>
               </div>
 
               <div className="space-y-3 text-xs">
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Tipo de solución</span>
-                  <span className="font-semibold text-slate-100">
-                    Mesas + cocina + cuentas
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Foco principal</span>
-                  <span className="font-semibold text-slate-100">
-                    Operación en salón
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Nivel de complejidad</span>
-                  <span className="font-semibold text-slate-100">
-                    Alto, pero controlado
-                  </span>
-                </div>
+                {(proPage?.summary?.stats || [
+                  { label: "Tipo de solución", value: "Mesas + cocina + cuentas" },
+                  { label: "Foco principal", value: "Operación en salón" },
+                  { label: "Nivel de complejidad", value: "Alto, pero controlado" },
+                ]).map((st) => (
+                  <div className="flex justify-between" key={st.label}>
+                    <span className="text-slate-400">{st.label}</span>
+                    <span className="font-semibold text-slate-100">{st.value}</span>
+                  </div>
+                ))}
               </div>
 
               <div className="mt-2 h-px bg-slate-800/70" />
 
               <div className="space-y-2 text-xs">
-                <p className="text-slate-400">Incluye</p>
+                <p className="text-slate-400">{proPage?.summary?.includesTitle || "Incluye"}</p>
                 <ul className="text-slate-300 space-y-1">
-                  <li>• Todo lo de Light y Plus.</li>
-                  <li>• Órdenes por mesa, canal y estado.</li>
-                  <li>• Envío y seguimiento en cocina y barra.</li>
-                  <li>• Manejo de cuentas, división y propinas.</li>
-                  <li>• Reportes operativos por franja, canal y producto.</li>
+                  {(proPage?.summary?.includesList || [
+                    "Todo lo de Light y Plus.",
+                    "Órdenes por mesa, canal y estado.",
+                    "Envío y seguimiento en cocina y barra.",
+                    "Manejo de cuentas, división y propinas.",
+                    "Reportes operativos por franja, canal y producto.",
+                  ]).map((inc) => (
+                    <li key={inc}>• {inc}</li>
+                  ))}
                 </ul>
               </div>
 
               <p className="text-[11px] text-slate-500 pt-1">
-                Pro se construye sobre la misma base de TuOrdenYa, así que tu
-                menú y tus QR siguen siendo los mismos, solo amplías la
-                operación.
+                {proPage?.summary?.footer || "Pro se construye sobre la misma base de TuOrdenYa, así que tu menú y tus QR siguen siendo los mismos, solo amplías la operación."}
               </p>
             </motion.div>
           </motion.div>
@@ -339,12 +331,10 @@ export default function ProPage() {
           >
             <motion.div variants={fadeUp} className="md:col-span-1">
               <h2 className="text-xl sm:text-2xl font-semibold mb-3">
-                Cómo te ayuda Pro en el día a día
+                {proPage?.details?.title || "Cómo te ayuda Pro en el día a día"}
               </h2>
               <p className="text-sm text-slate-400">
-                Pro está pensado para la operación real de un restaurante:
-                meseros, cocina, barra, cuentas y clientes que entran por
-                diferentes canales.
+                {proPage?.details?.subtitle || "Pro está pensado para la operación real de un restaurante: meseros, cocina, barra, cuentas y clientes que entran por diferentes canales."}
               </p>
             </motion.div>
 
@@ -352,35 +342,17 @@ export default function ProPage() {
               variants={fadeUp}
               className="md:col-span-2 grid sm:grid-cols-2 gap-4 text-sm"
             >
-              <div className="space-y-2">
-                <p className="font-semibold">Control de mesas y estados</p>
-                <p className="text-slate-400 text-xs">
-                  Visualiza qué mesas están libres, ocupadas, esperando pedido o
-                  listas para pagar. Evita perder tiempo buscando papeles.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <p className="font-semibold">Flujo de cocina y barra</p>
-                <p className="text-slate-400 text-xs">
-                  Envía órdenes a cocina y barra, maneja estados como “en
-                  preparación”, “listo” o “entregado”, y detecta cuellos de
-                  botella.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <p className="font-semibold">Cuentas y pagos</p>
-                <p className="text-slate-400 text-xs">
-                  Divide cuentas, agrega o retira productos, maneja propinas y
-                  deja todo listo para facturación en tu POS o caja actual.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <p className="font-semibold">Reportes operativos</p>
-                <p className="text-slate-400 text-xs">
-                  Ve qué tan rápido giran tus mesas, qué franja horaria tiene
-                  más demanda y qué canales traen más tickets.
-                </p>
-              </div>
+              {(proPage?.details?.features || [
+                { title: "Control de mesas y estados", text: "Visualiza mesas libres, ocupadas o listas para pagar." },
+                { title: "Flujo de cocina y barra", text: "Envía órdenes y maneja estados preparación / listo / entregado." },
+                { title: "Cuentas y pagos", text: "Divide cuentas, maneja propinas y prepara para caja/POS." },
+                { title: "Reportes operativos", text: "Rotación de mesas, demanda por franja y canales con más tickets." },
+              ]).map((f) => (
+                <div className="space-y-2" key={f.title}>
+                  <p className="font-semibold">{f.title}</p>
+                  <p className="text-slate-400 text-xs">{f.text}</p>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
         </section>
@@ -396,21 +368,20 @@ export default function ProPage() {
           >
             <motion.div variants={fadeUp}>
               <h2 className="text-xl sm:text-2xl font-semibold mb-3">
-                Diseñado para operaciones exigentes
+                {proPage?.upgrade?.title || "Diseñado para operaciones exigentes"}
               </h2>
               <p className="text-sm text-slate-400 mb-4 max-w-xl">
-                RestOrder Pro es ideal para restaurantes con una operación
-                repetitiva y estructurada, donde hay roles, rotación de mesas y
-                necesidad de hacer seguimiento constante.
+                {proPage?.upgrade?.subtitle || "RestOrder Pro es ideal para restaurantes con una operación repetitiva y estructurada, donde hay roles, rotación de mesas y necesidad de hacer seguimiento constante."}
               </p>
               <ul className="text-sm text-slate-300 space-y-2">
-                <li>• Restaurantes de alta rotación con muchas mesas.</li>
-                <li>• Bares y gastrobares con cocina y barra separadas.</li>
-                <li>• Cadenas pequeñas y medianas con varias sedes.</li>
-                <li>
-                  • Dark kitchens que necesitan orquestar varios canales a la
-                  vez.
-                </li>
+                {(proPage?.upgrade?.bullets || [
+                  "Restaurantes de alta rotación con muchas mesas.",
+                  "Bares y gastrobares con cocina y barra separadas.",
+                  "Cadenas pequeñas y medianas con varias sedes.",
+                  "Dark kitchens que necesitan orquestar varios canales a la vez.",
+                ]).map((u) => (
+                  <li key={u}>• {u}</li>
+                ))}
               </ul>
             </motion.div>
 
@@ -419,18 +390,17 @@ export default function ProPage() {
               className="rounded-3xl border border-slate-800/70 bg-slate-900/60 p-5 text-sm"
             >
               <p className="text-xs font-semibold text-slate-300 mb-2">
-                ¿Es Pro para ti ahora?
+                {proPage?.suitability?.title || "¿Es Pro para ti ahora?"}
               </p>
               <ul className="space-y-2 text-xs text-slate-400">
-                <li>• Ya sientes que se te quedan cosas por fuera en papel.</li>
-                <li>• Manejas varios turnos, meseros y zonas.</li>
-                <li>
-                  • Quieres estandarizar la operación y no depender de cada
-                  persona.
-                </li>
-                <li>
-                  • Necesitas tener claridad de tiempos y desempeño del salón.
-                </li>
+                {(proPage?.suitability?.bullets || [
+                  "Ya sientes que se te quedan cosas por fuera en papel.",
+                  "Manejas varios turnos, meseros y zonas.",
+                  "Quieres estandarizar la operación y no depender de cada persona.",
+                  "Necesitas tener claridad de tiempos y desempeño del salón.",
+                ]).map((sb) => (
+                  <li key={sb}>• {sb}</li>
+                ))}
               </ul>
               <a
                 href="/#contacto"

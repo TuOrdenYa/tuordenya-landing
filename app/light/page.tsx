@@ -213,28 +213,30 @@ export default function LightPage() {
               {/* Badge superior – AMARILLO LIGHT */}
               <span className="inline-flex items-center gap-2 rounded-full border border-[#F7C325] bg-[#F7C3251A] px-3 py-1 text-xs font-medium text-[#F7C325]">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#F7C325]" />
-                Plan Light — Tu menú digital en días, no meses
+                {lightPage?.badge || "Plan Light — Tu menú digital en días, no meses"}
               </span>
 
               {/* Título */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight">
-                Menú digital + QR{" "}
-                <span className="text-[#F7C325]">para salir del papel.</span>
+                {lightPage?.title || "Menú digital + QR"} {" "}
+                <span className="text-[#F7C325]">{lightPage?.highlight || "para salir del papel."}</span>
               </h1>
 
               {/* Subtítulo */}
               <p className="text-sm sm:text-base text-slate-400 max-w-xl">
-                Light es el plan para restaurantes, cafeterías y food trucks que
-                quieren tener un menú digital moderno, con QR por local y
-                pedidos por WhatsApp, sin complicarse con sistemas complejos.
+                {lightPage?.subtitle || "Light es el plan para restaurantes, cafeterías y food trucks que quieren tener un menú digital moderno, con QR por local y pedidos por WhatsApp, sin complicarse con sistemas complejos."}
               </p>
 
               {/* Bullets clave */}
               <ul className="text-sm text-slate-300 space-y-2">
-                <li>• Menú digital responsive (móvil, tablet y computador).</li>
-                <li>• Código QR por local, listo para imprimir.</li>
-                <li>• Botón “Ordenar por WhatsApp” con mensaje prellenado.</li>
-                <li>• Ajuste básico a la marca de tu restaurante.</li>
+                {(lightPage?.bullets || [
+                  "Menú digital responsive (móvil, tablet y computador).",
+                  "Código QR por local, listo para imprimir.",
+                  "Botón ‘Ordenar por WhatsApp’ con mensaje prellenado.",
+                  "Ajuste básico a la marca de tu restaurante.",
+                ]).map((b) => (
+                  <li key={b}>• {b}</li>
+                ))}
               </ul>
 
               {/* CTAs – AMARILLO PARA LIGHT */}
@@ -258,15 +260,18 @@ export default function LightPage() {
 
               {/* Segmento a quién va dirigido */}
               <div className="flex flex-wrap gap-2 pt-2 text-[11px] text-slate-400">
-                <span className="px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800/80">
-                  ☕ Cafeterías y panaderías
-                </span>
-                <span className="px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800/80">
-                  🌮 Food trucks y puestos de comida
-                </span>
-                <span className="px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800/80">
-                  🍽️ Restaurantes pequeños sin POS
-                </span>
+                {(lightPage?.segments || [
+                  "☕ Cafeterías y panaderías",
+                  "🌮 Food trucks y puestos de comida",
+                  "🍽️ Restaurantes pequeños sin POS",
+                ]).map((s) => (
+                  <span
+                    key={s}
+                    className="px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800/80"
+                  >
+                    {s}
+                  </span>
+                ))}
               </div>
             </motion.div>
 
@@ -277,52 +282,45 @@ export default function LightPage() {
             >
               <div className="flex items-center justify-between mb-1">
                 <div>
-                  <p className="text-xs text-slate-400">Resumen plan</p>
-                  <p className="text-lg font-semibold">TuOrdenYa Light</p>
+                  <p className="text-xs text-slate-400">{lightPage?.summary?.label || "Resumen plan"}</p>
+                  <p className="text-lg font-semibold">{lightPage?.summary?.planName || "TuOrdenYa Light"}</p>
                 </div>
                 <span className="text-[10px] rounded-full px-3 py-1 bg-[#F7C325] text-slate-950 font-semibold">
-                  Punto de partida
+                  {lightPage?.summary?.chip || "Punto de partida"}
                 </span>
               </div>
 
               <div className="space-y-3 text-xs">
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Tipo de solución</span>
-                  <span className="font-semibold text-slate-100">
-                    Menú digital + QR
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-400">Canal principal</span>
-                  <span className="font-semibold text-slate-100">
-                    WhatsApp
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-400">
-                    Tiempo típico de salida
-                  </span>
-                  <span className="font-semibold text-slate-100">
-                    Pocos días
-                  </span>
-                </div>
+                {(lightPage?.summary?.stats || [
+                  { label: "Tipo de solución", value: "Menú digital + QR" },
+                  { label: "Canal principal", value: "WhatsApp" },
+                  { label: "Tiempo típico de salida", value: "Pocos días" },
+                ]).map((st) => (
+                  <div className="flex justify-between" key={st.label}>
+                    <span className="text-slate-400">{st.label}</span>
+                    <span className="font-semibold text-slate-100">{st.value}</span>
+                  </div>
+                ))}
               </div>
 
               <div className="mt-2 h-px bg-slate-800/70" />
 
               <div className="space-y-2 text-xs">
-                <p className="text-slate-400">Incluye</p>
+                <p className="text-slate-400">{lightPage?.summary?.includesTitle || "Incluye"}</p>
                 <ul className="text-slate-300 space-y-1">
-                  <li>• Configuración de carta base.</li>
-                  <li>• Generación de QR por local.</li>
-                  <li>• Diseño del menú en tu línea básica.</li>
-                  <li>• Hosting y dominio técnico incluidos.</li>
+                  {(lightPage?.summary?.includesList || [
+                    "Configuración de carta base.",
+                    "Generación de QR por local.",
+                    "Diseño del menú en tu línea básica.",
+                    "Hosting y dominio técnico incluidos.",
+                  ]).map((inc) => (
+                    <li key={inc}>• {inc}</li>
+                  ))}
                 </ul>
               </div>
 
               <p className="text-[11px] text-slate-500 pt-1">
-                Cuando tu volumen crezca y necesites registrar pedidos o ver
-                reportes, puedes migrar a Plus o Pro sin cambiar de plataforma.
+                {lightPage?.summary?.footer || "Cuando tu volumen crezca y necesites registrar pedidos o ver reportes, puedes migrar a Plus o Pro sin cambiar de plataforma."}
               </p>
             </motion.div>
           </motion.div>
@@ -339,11 +337,10 @@ export default function LightPage() {
           >
             <motion.div variants={fadeUp} className="md:col-span-1">
               <h2 className="text-xl sm:text-2xl font-semibold mb-3">
-                Lo que incluye el plan Light
+                {lightPage?.details?.title || "Lo que incluye el plan Light"}
               </h2>
               <p className="text-sm text-slate-400">
-                Todo lo necesario para que tu menú deje de depender del papel y
-                puedas actualizar precios y platos sin volver a imprimir.
+                {lightPage?.details?.subtitle || "Todo lo necesario para que tu menú deje de depender del papel y puedas actualizar precios y platos sin volver a imprimir."}
               </p>
             </motion.div>
 
@@ -351,38 +348,17 @@ export default function LightPage() {
               variants={fadeUp}
               className="md:col-span-2 grid sm:grid-cols-2 gap-4 text-sm"
             >
-              <div className="space-y-2">
-                <p className="font-semibold">Menú digital listo para móvil</p>
-                <p className="text-slate-400 text-xs">
-                  Cargamos tus categorías, productos y descripciones para que
-                  tus clientes vean la carta desde su celular, con una
-                  experiencia clara y moderna.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <p className="font-semibold">QR por local</p>
-                <p className="text-slate-400 text-xs">
-                  Te entregamos un código QR por sede para usar en mesas,
-                  empaques, flyers o donde quieras. Si cambias precios, el QR
-                  sigue funcionando.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <p className="font-semibold">Pedidos por WhatsApp</p>
-                <p className="text-slate-400 text-xs">
-                  Botón “Ordenar por WhatsApp” con mensaje prellenado para que
-                  los clientes puedan escribir más fácil y tú tengas claridad
-                  sobre el pedido.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <p className="font-semibold">Ajuste básico a tu marca</p>
-                <p className="text-slate-400 text-xs">
-                  Usamos tus colores y logo para que el menú se vea alineado con
-                  la identidad de tu restaurante, sin entrar en desarrollos
-                  complejos.
-                </p>
-              </div>
+              {(lightPage?.details?.features || [
+                { title: "Menú digital listo para móvil", text: "Cargamos tus categorías, productos y descripciones para que tus clientes vean la carta desde su celular, con una experiencia clara y moderna." },
+                { title: "QR por local", text: "Código por sede para usar en mesas, empaques o flyers. Si cambias precios sigue funcionando." },
+                { title: "Pedidos por WhatsApp", text: "Botón con mensaje prellenado para claridad y rapidez." },
+                { title: "Ajuste básico a tu marca", text: "Colores y logo alineados con tu identidad sin desarrollos complejos." },
+              ]).map((f) => (
+                <div className="space-y-2" key={f.title}>
+                  <p className="font-semibold">{f.title}</p>
+                  <p className="text-slate-400 text-xs">{f.text}</p>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
         </section>
@@ -398,34 +374,19 @@ export default function LightPage() {
           >
             <motion.div variants={fadeUp}>
               <h2 className="text-xl sm:text-2xl font-semibold mb-3">
-                Empieza con Light y escala cuando lo necesites
+                {lightPage?.upgrade?.title || "Empieza con Light y escala cuando lo necesites"}
               </h2>
               <p className="text-sm text-slate-400 mb-4 max-w-xl">
-                Light es perfecto para salir rápido del papel. Cuando empiezas a
-                necesitar más control sobre tus pedidos y tus datos, ya tienes
-                el camino abierto a Plus y Pro.
+                {lightPage?.upgrade?.subtitle || "Light es perfecto para salir rápido del papel. Cuando necesitas más control sobre tus pedidos y tus datos, ya tienes el camino abierto a Plus y Pro."}
               </p>
               <ul className="text-sm text-slate-300 space-y-2">
-                <li>
-                  • Si quieres registrar cada pedido y ver ventas por
-                  día/horario, el siguiente paso natural es{" "}
-                  <a href="/plus" className="underline text-[#2ECC71]">
-                    Plus
-                  </a>
-                  .
-                </li>
-                <li>
-                  • Si manejas muchas mesas, cocina, barra y cuentas, el camino
-                  es{" "}
-                  <a href="/pro" className="underline text-[#4A90E2]">
-                    Pro
-                  </a>
-                  .
-                </li>
-                <li>
-                  • En todos los casos, tu menú digital y tu QR siguen siendo
-                  los mismos: no hay que “volver a empezar”.
-                </li>
+                {(lightPage?.upgrade?.bullets || [
+                  "Si quieres registrar cada pedido y ver ventas por día/horario el siguiente paso natural es Plus.",
+                  "Si manejas muchas mesas, cocina, barra y cuentas el camino es Pro.",
+                  "Tu menú digital y tu QR siguen siendo los mismos: no hay que volver a empezar.",
+                ]).map((u) => (
+                  <li key={u}>• {u}</li>
+                ))}
               </ul>
             </motion.div>
 
@@ -434,17 +395,17 @@ export default function LightPage() {
               className="rounded-3xl border border-slate-800/70 bg-slate-900/60 p-5 text-sm"
             >
               <p className="text-xs font-semibold text-slate-300 mb-2">
-                ¿Es Light para ti?
+                {lightPage?.suitability?.title || "¿Es Light para ti?"}
               </p>
               <ul className="space-y-2 text-xs text-slate-400">
-                <li>• Aún no registras pedidos en un sistema.</li>
-                <li>• Cambias precios con cierta frecuencia.</li>
-                <li>
-                  • Tus clientes ya usan WhatsApp para escribir o preguntar.
-                </li>
-                <li>
-                  • Quieres algo simple, rápido de implementar y económico.
-                </li>
+                {(lightPage?.suitability?.bullets || [
+                  "Aún no registras pedidos en un sistema.",
+                  "Cambias precios con cierta frecuencia.",
+                  "Tus clientes ya usan WhatsApp para escribir o preguntar.",
+                  "Quieres algo simple, rápido de implementar y económico.",
+                ]).map((sb) => (
+                  <li key={sb}>• {sb}</li>
+                ))}
               </ul>
               <a
                 href="/#contacto"

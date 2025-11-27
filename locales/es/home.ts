@@ -4,9 +4,215 @@ import type { HomeContent } from "../types";
 export const homeEs: HomeContent = {
   site: { title: "TuOrdenYa – Menús digitales y gestión para restaurantes" },
   pages: {
-    light: { ctaLabel: "Quiero el plan Light", detailCtaLabel: "Hablar del producto Light" },
-    plus: { ctaLabel: "Quiero el plan Plus", detailCtaLabel: "Hablar del producto Plus" },
-    pro: { ctaLabel: "Quiero hablar de la versión Pro", detailCtaLabel: "Agendar una conversación sobre Pro" },
+    light: {
+      ctaLabel: "Quiero el plan Light",
+      detailCtaLabel: "Hablar del producto Light",
+      badge: "Plan Light — Tu menú digital en días, no meses",
+      title: "Menú digital + QR",
+      highlight: "para salir del papel.",
+      subtitle: "Light es el plan para restaurantes, cafeterías y food trucks que quieren tener un menú digital moderno, con QR por local y pedidos por WhatsApp, sin complicarse con sistemas complejos.",
+      bullets: [
+        "Menú digital responsive (móvil, tablet y computador).",
+        "Código QR por local, listo para imprimir.",
+        "Botón ‘Ordenar por WhatsApp’ con mensaje prellenado.",
+        "Ajuste básico a la marca de tu restaurante.",
+      ],
+      segments: [
+        "☕ Cafeterías y panaderías",
+        "🌮 Food trucks y puestos de comida",
+        "🍽️ Restaurantes pequeños sin POS",
+      ],
+      summary: {
+        label: "Resumen plan",
+        planName: "TuOrdenYa Light",
+        chip: "Punto de partida",
+        stats: [
+          { label: "Tipo de solución", value: "Menú digital + QR" },
+          { label: "Canal principal", value: "WhatsApp" },
+          { label: "Tiempo típico de salida", value: "Pocos días" },
+        ],
+        includesTitle: "Incluye",
+        includesList: [
+          "Configuración de carta base.",
+          "Generación de QR por local.",
+          "Diseño del menú en tu línea básica.",
+          "Hosting y dominio técnico incluidos.",
+        ],
+        footer: "Cuando tu volumen crezca y necesites registrar pedidos o ver reportes, puedes migrar a Plus o Pro sin cambiar de plataforma.",
+      },
+      details: {
+        title: "Lo que incluye el plan Light",
+        subtitle: "Todo lo necesario para que tu menú deje de depender del papel y puedas actualizar precios y platos sin volver a imprimir.",
+        features: [
+          {
+            title: "Menú digital listo para móvil",
+            text: "Cargamos tus categorías, productos y descripciones para que tus clientes vean la carta desde su celular, con una experiencia clara y moderna.",
+          },
+          {
+            title: "QR por local",
+            text: "Te entregamos un código QR por sede para usar en mesas, empaques o flyers. Si cambias precios, el QR sigue funcionando.",
+          },
+          {
+            title: "Pedidos por WhatsApp",
+            text: "Botón con mensaje prellenado para que los clientes escriban más fácil y tú tengas claridad sobre el pedido.",
+          },
+          {
+            title: "Ajuste básico a tu marca",
+            text: "Usamos tus colores y logo para que el menú se vea alineado con la identidad de tu restaurante.",
+          },
+        ],
+      },
+      upgrade: {
+        title: "Empieza con Light y escala cuando lo necesites",
+        subtitle: "Light es perfecto para salir rápido del papel. Cuando necesitas más control de pedidos y datos, el camino a Plus y Pro ya está listo.",
+        bullets: [
+          "Si quieres registrar cada pedido y ver ventas por día/horario, el siguiente paso es Plus.",
+          "Si manejas muchas mesas, cocina, barra y cuentas, el camino es Pro.",
+          "En todos los casos, tu menú digital y tu QR siguen siendo los mismos.",
+        ],
+      },
+      suitability: {
+        title: "¿Es Light para ti?",
+        bullets: [
+          "Aún no registras pedidos en un sistema.",
+          "Cambias precios con cierta frecuencia.",
+          "Tus clientes ya usan WhatsApp para escribir o preguntar.",
+          "Quieres algo simple, rápido y económico.",
+        ],
+      },
+    },
+    plus: {
+      ctaLabel: "Quiero el plan Plus",
+      detailCtaLabel: "Hablar del producto Plus",
+      badge: "Plan Plus — Cuando ya quieres ver pedidos y datos",
+      title: "Pedidos básicos + reportes",
+      highlight: "para entender mejor tu operación.",
+      subtitle: "Plus es el paso natural después de Light: mantienes tu menú y tus QR, pero ahora registras pedidos y ves reportes simples para decidir con datos.",
+      bullets: [
+        "Registro básico de pedidos por día y canal.",
+        "Reportes sencillos: ventas, productos más vendidos.",
+        "Mantienes el mismo menú y QR de Light.",
+        "Sin complejidad de mesas ni cocina avanzada.",
+      ],
+      segments: [
+        "🍽️ Restaurantes con más rotación",
+        "🍕 Marcas con domicilios frecuentes",
+        "🥡 Negocios que ya sienten más volumen",
+      ],
+      summary: {
+        label: "Resumen plan",
+        planName: "TuOrdenYa Plus",
+        chip: "Pedidos + datos",
+        stats: [
+          { label: "Tipo de solución", value: "Menú + pedidos básicos" },
+          { label: "Foco principal", value: "Registro y reportes" },
+          { label: "Nivel de complejidad", value: "Medio / manejable" },
+        ],
+        includesTitle: "Incluye",
+        includesList: [
+          "Todo lo del plan Light.",
+          "Registro de pedidos básicos.",
+          "Reportes de ventas por fechas.",
+          "Productos más vendidos y ticket promedio.",
+        ],
+        footer: "Cuando necesites manejar mesas, tiempos de cocina y cuentas separadas, Pro es el siguiente paso natural.",
+      },
+      details: {
+        title: "Lo que incluye el plan Plus",
+        subtitle: "Plus combina tu menú digital con registro simple de pedidos y reportes para entender tus ventas.",
+        features: [
+          { title: "Registro centralizado de pedidos", text: "Control de pedidos por salón, WhatsApp o domicilio sin sistema complejo de mesas." },
+          { title: "Reportes básicos", text: "Ventas por día, franja y canal para entender picos y momentos lentos." },
+          { title: "Top de productos", text: "Identifica platos más vendidos y ajusta menú, combos o promociones." },
+          { title: "Base lista para Pro", text: "Estructura preparada para migrar sin empezar de cero." },
+        ],
+      },
+      upgrade: {
+        title: "¿Cuándo subir a Pro?",
+        subtitle: "Si Plus te queda corto porque manejas muchas mesas, tiempos o ambientes, Pro se vuelve la herramienta adecuada.",
+        bullets: [
+          "Manejas varias mesas simultáneas y necesitas ver estados.",
+          "Te interesa dividir cuentas, propinas y controlar cierres.",
+          "Quieres ver tiempos de preparación y evitar cuellos de botella.",
+        ],
+      },
+      suitability: {
+        title: "¿Es Plus para ti?",
+        bullets: [
+          "Ya tienes buen volumen de pedidos.",
+          "Quieres datos claros sin complicarte.",
+          "Aún no estás listo para operación de salón completa.",
+          "Necesitas más información que solo un menú.",
+        ],
+      },
+    },
+    pro: {
+      ctaLabel: "Quiero hablar de la versión Pro",
+      detailCtaLabel: "Agendar una conversación sobre Pro",
+      badge: "RestOrder Pro — Operación completa para restaurantes en serio",
+      title: "Mesas, cocina, cuentas y tiempos",
+      highlight: "en un solo sistema pensado para tu salón.",
+      subtitle: "Pro es para restaurantes que manejan mesas, ambientes, cocina y barra, y necesitan control fino sobre órdenes, tiempos y cierres.",
+      bullets: [
+        "Órdenes por mesa, canal y estado.",
+        "Envío a cocina y barra con estados.",
+        "Cuentas, división, propinas y preparación para caja.",
+        "Reportes operativos de la jornada.",
+      ],
+      segments: [
+        "🏬 Cadenas y marcas con varias sedes",
+        "🍽️ Restaurantes con salón y alta rotación",
+        "🍱 Dark kitchens con alto volumen",
+      ],
+      summary: {
+        label: "Resumen plan",
+        planName: "RestOrder Pro",
+        chip: "Operación completa",
+        stats: [
+          { label: "Tipo de solución", value: "Mesas + cocina + cuentas" },
+          { label: "Foco principal", value: "Operación en salón" },
+          { label: "Nivel de complejidad", value: "Alto, controlado" },
+        ],
+        includesTitle: "Incluye",
+        includesList: [
+          "Todo lo de Light y Plus.",
+          "Órdenes por mesa y canal.",
+          "Flujo y seguimiento en cocina y barra.",
+          "Manejo de cuentas, división y propinas.",
+          "Reportes operativos por franja y canal.",
+        ],
+        footer: "Pro se construye sobre la misma base de TuOrdenYa: tu menú y tus QR se mantienen mientras amplías operación.",
+      },
+      details: {
+        title: "Cómo te ayuda Pro en el día a día",
+        subtitle: "Pensado para la operación real: meseros, cocina, barra, cuentas y canales de entrada.",
+        features: [
+          { title: "Control de mesas y estados", text: "Visualiza mesas libres, ocupadas o listas para pagar sin papeles." },
+          { title: "Flujo de cocina y barra", text: "Envía órdenes y maneja estados ‘en preparación’, ‘listo’ o ‘entregado’." },
+          { title: "Cuentas y pagos", text: "Divide cuentas, maneja propinas y deja todo listo para caja/POS." },
+          { title: "Reportes operativos", text: "Ve rotación de mesas, demanda por franja y canales con mayor ticket." },
+        ],
+      },
+      upgrade: {
+        title: "Diseñado para operaciones exigentes",
+        subtitle: "Ideal para operaciones repetitivas y estructuradas con roles y rotación constante.",
+        bullets: [
+          "Restaurantes de alta rotación con muchas mesas.",
+          "Bares y gastrobares con cocina y barra separadas.",
+          "Cadenas pequeñas y medianas con varias sedes.",
+          "Dark kitchens que orquestan varios canales.",
+        ],
+      },
+      suitability: {
+        title: "¿Es Pro para ti ahora?",
+        bullets: [
+          "Ya se te quedan cosas por fuera en papel.",
+          "Manejas turnos, meseros y zonas.",
+            "Quieres estandarizar sin depender de cada persona.",
+          "Necesitas claridad de tiempos y desempeño del salón.",
+        ],
+      },
+    },
   },
   navbar: {
     subtitle: "Menús y órdenes para restaurantes",
