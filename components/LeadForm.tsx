@@ -205,6 +205,7 @@ export default function LeadForm({
           phone: formData.whatsapp || null,
           email: formData.email || null,
           restaurant: formData.restaurantName || null,
+          interest: formData.interest || null,
           source: submitSource || page,
           message: composedMessage || null,
         },
