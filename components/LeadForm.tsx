@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { supabase } from "../lib/supabase";
 import { gaEvent } from "@/lib/gtag";
+import { useI18n } from "@/components/i18n/LanguageContext";
 
 interface LeadFormProps {
   /** Identificador de página para GA4 (ej: "landing_home", "landing_light", etc.) */

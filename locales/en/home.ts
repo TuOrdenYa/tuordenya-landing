@@ -93,5 +93,27 @@ export const homeEn: HomeContent = {
       "• Demo adapted to your type of business.",
       "• Clear recommendation: Light, Plus or Pro.",
     ],
+    form: {
+      nameLabel: "Full name",
+      namePlaceholder: "E.g. John Smith",
+      restaurantLabel: "Restaurant name",
+      restaurantPlaceholder: "E.g. La Parrilla 24",
+      whatsappLabel: "WhatsApp",
+      whatsappPlaceholder: "E.g. +57 300 000 0000",
+      emailLabel: "Email",
+      emailPlaceholder: "E.g. name@tuordenya.com",
+      interestLabel: "What are you interested in?",
+      interestPlaceholder: "Select an option",
+      interestOptions: [
+        { value: "light", label: "Digital menu only (Light)" },
+        { value: "plus", label: "Orders and reports (Plus)" },
+        { value: "pro", label: "Full operations (Pro)" },
+        { value: "other", label: "Something else" },
+      ],
+      notesLabel: "Tell us a bit about your operation",
+      notesPlaceholder:
+        "Number of tables, locations, whether you use a POS, etc.",
+      submitLabel: "Send message",
+    },
   },
 };

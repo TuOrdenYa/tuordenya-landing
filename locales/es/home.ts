@@ -1,4 +1,5 @@
 import type { HomeContent } from "../types";
+import type { HomeContent } from "../types";
 
 export const homeEs: HomeContent = {
   navbar: {
@@ -84,7 +85,7 @@ export const homeEs: HomeContent = {
       },
     ],
   },
-  contactSection: {
+   contactSection: {
     title: "Conversemos sobre tu restaurante",
     subtitle:
       "Déjanos tus datos y te contactamos para mostrarte cómo TuOrdenYa puede ayudarte a vender más y operar mejor.",
@@ -93,5 +94,27 @@ export const homeEs: HomeContent = {
       "• Te mostramos un demo adaptado a tu tipo de negocio.",
       "• Te proponemos un plan claro (Light, Plus o Pro).",
     ],
+    form: {
+      nameLabel: "Nombre completo",
+      namePlaceholder: "Ej: Juan Pérez",
+      restaurantLabel: "Nombre del restaurante",
+      restaurantPlaceholder: "Ej: La Parrilla 24",
+      whatsappLabel: "WhatsApp",
+      whatsappPlaceholder: "Ej: +57 300 000 0000",
+      emailLabel: "Correo electrónico",
+      emailPlaceholder: "Ej: nombre@tuordenya.com",
+      interestLabel: "¿Qué te interesa?",
+      interestPlaceholder: "Selecciona una opción",
+      interestOptions: [
+        { value: "light", label: "Solo menú digital (Light)" },
+        { value: "plus", label: "Pedidos y reportes (Plus)" },
+        { value: "pro", label: "Operación completa (Pro)" },
+        { value: "other", label: "Tengo otra necesidad" },
+      ],
+      notesLabel: "Cuéntanos un poco de tu operación",
+      notesPlaceholder:
+        "Número de mesas, sedes, si usas POS, etc.",
+      submitLabel: "Enviar mensaje",
+    },
   },
 };

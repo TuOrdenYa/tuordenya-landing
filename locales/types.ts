@@ -44,9 +44,37 @@ export type HomeContent = {
     subtitle: string;
     products: ProductContent[];
   };
-  contactSection: {
-    title: string;
-    subtitle: string;
-    bullets: string[];
-  };
+  export type ContactSectionFormContent = {
+  nameLabel: string;
+  namePlaceholder: string;
+  restaurantLabel: string;
+  restaurantPlaceholder: string;
+  whatsappLabel: string;
+  whatsappPlaceholder: string;
+  emailLabel: string;
+  emailPlaceholder: string;
+  interestLabel: string;
+  interestPlaceholder: string;
+  interestOptions: {
+    value: string;   // p.ej. "light", "plus", "pro"
+    label: string;   // texto visible en el <option>
+  }[];
+  notesLabel: string;
+  notesPlaceholder: string;
+  submitLabel: string;
+};
+
+export type ContactSectionContent = {
+  title: string;
+  subtitle: string;
+  bullets: string[];
+  form: ContactSectionFormContent;
+};
+
+export type HomeContent = {
+  navbar: NavbarContent;
+  hero: HeroContent;
+  productsSection: ProductsSectionContent;
+  contactSection: ContactSectionContent;
+};
 };
