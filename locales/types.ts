@@ -19,6 +19,7 @@ export type ProductContent = {
 
 export type NavbarContent = {
   subtitle: string;
+  backToHome: string;
   howItWorks: string;
   products: string;
   faq: string;

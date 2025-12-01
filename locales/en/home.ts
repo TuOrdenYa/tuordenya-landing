@@ -204,12 +204,13 @@ export const homeEn: HomeContent = {
   },
   navbar: {
     subtitle: "Menus and orders for restaurants",
+    backToHome: "Back to home",
     howItWorks: "How it works",
     products: "Our products",
     faq: "FAQs",
-    demo: "Book a demo",
+    demo: "Schedule a demo",
     light: "Light — Menu + QR",
-    plus: "Plus — Orders & reports",
+    plus: "Plus — Orders and reports",
     pro: "Pro — Full operations",
   },
 

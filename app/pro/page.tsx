@@ -25,6 +25,7 @@ export default function ProPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { home } = useI18n();
   const proPage = home.pages?.pro;
+  const navbar = home.navbar;
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
@@ -48,7 +49,7 @@ export default function ProPage() {
               </div>
               <div className="flex flex-col leading-tight">
                 <span className="font-semibold text-sm sm:text-base">
-                  Menús y órdenes para restaurantes
+                  {navbar?.subtitle || "Menús y órdenes para restaurantes"}
                 </span>
               </div>
             </a>
@@ -57,11 +58,11 @@ export default function ProPage() {
           {/* NAV DESKTOP */}
           <div className="hidden md:flex items-center gap-6 text-sm">
             <a href="/" className="hover:text-[#FF6F3C]">
-              Volver al inicio
+              {navbar?.backToHome || "Volver al inicio"}
             </a>
 
             <a href="/#como-funciona" className="hover:text-[#FF6F3C]">
-              Cómo funciona
+              {navbar?.howItWorks || "Cómo funciona"}
             </a>
 
             {/* Dropdown de productos en el header (desktop) */}
@@ -71,7 +72,7 @@ export default function ProPage() {
                 onClick={() => setIsHeaderPlansOpen((open) => !open)}
                 className="inline-flex items-center gap-1 hover:text-[#FF6F3C]"
               >
-                Nuestros productos
+                {navbar?.products || "Nuestros productos"}
                 <span className="text-[10px]">▼</span>
               </button>
 
@@ -81,26 +82,26 @@ export default function ProPage() {
                     href="/light"
                     className="block px-3 py-1.5 hover:bg-slate-800 hover:text-[#FF6F3C]"
                   >
-                    Light — Menú digital + QR
+                    {navbar?.light || "Light — Menú digital + QR"}
                   </a>
                   <a
                     href="/plus"
                     className="block px-3 py-1.5 hover:bg-slate-800 hover:text-[#FF6F3C]"
                   >
-                    Plus — Pedidos y reportes
+                    {navbar?.plus || "Plus — Pedidos y reportes"}
                   </a>
                   <a
                     href="/pro"
                     className="block px-3 py-1.5 hover:bg-slate-800 hover:text-[#FF6F3C]"
                   >
-                    Pro — Operación completa
+                    {navbar?.pro || "Pro — Operación completa"}
                   </a>
                 </div>
               )}
             </div>
 
             <a href="/#faq" className="hover:text-[#FF6F3C]">
-              FAQs
+              {navbar?.faq || "FAQs"}
             </a>
           </div>
 
@@ -136,7 +137,7 @@ export default function ProPage() {
                 className="block py-2 text-slate-100 hover:text-[#FF6F3C]"
                 onClick={closeMobileMenu}
               >
-                Volver al inicio
+                {navbar?.backToHome || "Volver al inicio"}
               </a>
 
               <a
@@ -144,12 +145,12 @@ export default function ProPage() {
                 className="block py-2 text-slate-100 hover:text-[#FF6F3C]"
                 onClick={closeMobileMenu}
               >
-                Cómo funciona
+                {navbar?.howItWorks || "Cómo funciona"}
               </a>
 
               <div className="pt-1">
                 <p className="text-xs uppercase tracking-wide text-slate-500 mb-1">
-                  Nuestros productos
+                  {navbar?.products || "Nuestros productos"}
                 </p>
                 <div className="space-y-1 text-xs">
                   <a
@@ -157,21 +158,21 @@ export default function ProPage() {
                     className="block py-1 text-slate-200 hover:text-[#FF6F3C]"
                     onClick={closeMobileMenu}
                   >
-                    Light — Menú digital + QR
+                    {navbar?.light || "Light — Menú digital + QR"}
                   </a>
                   <a
                     href="/plus"
                     className="block py-1 text-slate-200 hover:text-[#FF6F3C]"
                     onClick={closeMobileMenu}
                   >
-                    Plus — Pedidos y reportes
+                    {navbar?.plus || "Plus — Pedidos y reportes"}
                   </a>
                   <a
                     href="/pro"
                     className="block py-1 text-slate-200 hover:text-[#FF6F3C]"
                     onClick={closeMobileMenu}
                   >
-                    Pro — Operación completa
+                    {navbar?.pro || "Pro — Operación completa"}
                   </a>
                 </div>
               </div>
@@ -181,7 +182,7 @@ export default function ProPage() {
                 className="block pt-2 pb-1 text-slate-100 hover:text-[#FF6F3C]"
                 onClick={closeMobileMenu}
               >
-                FAQs
+                {navbar?.faq || "FAQs"}
               </a>
 
               <a
@@ -418,18 +419,17 @@ export default function ProPage() {
       <footer className="border-t border-slate-800/70 py-6 text-[11px] text-slate-500">
         <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between gap-3">
           <p>
-            © {new Date().getFullYear()} TuOrdenYa. Todos los derechos
-            reservados.
+            © {new Date().getFullYear()} TuOrdenYa. {home.footer?.copyright || "Todos los derechos reservados."}
           </p>
           <div className="flex flex-wrap gap-3">
             <a href="/#productos" className="hover:text-[#FF6F3C]">
-              Productos
+              {home.footer?.products || "Productos"}
             </a>
             <a href="/#faq" className="hover:text-[#FF6F3C]">
-              FAQs
+              {home.footer?.faq || "FAQs"}
             </a>
             <a href="/#contacto" className="hover:text-[#FF6F3C]" onClick={() => setLeadSource("pro_page_footer")}>
-              Contacto
+              {home.footer?.contact || "Contacto"}
             </a>
           </div>
         </div>

@@ -216,6 +216,7 @@ export const homeEs: HomeContent = {
   },
   navbar: {
     subtitle: "Menús y órdenes para restaurantes",
+    backToHome: "Volver al inicio",
     howItWorks: "Cómo funciona",
     products: "Nuestros productos",
     faq: "FAQs",
