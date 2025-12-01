@@ -512,4 +512,11 @@ export const homeEn: HomeContent = {
       },
     ],
   },
+
+  footer: {
+    copyright: "All rights reserved.",
+    products: "Products",
+    faq: "FAQs",
+    contact: "Contact",
+  },
 };

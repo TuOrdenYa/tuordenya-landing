@@ -518,4 +518,11 @@ export const homeEs: HomeContent = {
       },
     ],
   },
+
+  footer: {
+    copyright: "Todos los derechos reservados.",
+    products: "Productos",
+    faq: "FAQs",
+    contact: "Contacto",
+  },
 };

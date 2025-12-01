@@ -170,6 +170,13 @@ export type TestimonialsSectionContent = {
   items: TestimonialItemContent[];
 };
 
+export type FooterContent = {
+  copyright: string;
+  products: string;
+  faq: string;
+  contact: string;
+};
+
 // ================= Product Page Extended Content Types =================
 export interface ProductPageSummaryStat { label: string; value: string }
 
@@ -228,6 +235,7 @@ export type HomeContent = {
   howItWorksSection: HowItWorksSectionContent;
   proDetailsSection: ProDetailsSectionContent;
   testimonialsSection: TestimonialsSectionContent;
+  footer: FooterContent;
   site?: { title: string };
   pages?: {
     light?: ProductPageContent;
