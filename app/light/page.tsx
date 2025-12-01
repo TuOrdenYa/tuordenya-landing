@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useI18n } from "@/components/i18n/LanguageContext";
 import setLeadSource from "@/components/lib/leadSource";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -107,6 +108,11 @@ export default function LightPage() {
 
           {/* ACCIONES DERECHA */}
           <div className="flex items-center gap-3">
+            {/* Language Switcher */}
+            <div className="hidden sm:block">
+              <LanguageSwitcher />
+            </div>
+
             {/* CTA desktop – color de marca global (naranja) */}
             <a
               href="/#contacto"
@@ -184,6 +190,10 @@ export default function LightPage() {
               >
                 {navbar?.faq || "FAQs"}
               </a>
+
+              <div className="flex justify-center pt-2 pb-2">
+                <LanguageSwitcher />
+              </div>
 
               <a
                 href="/#contacto"

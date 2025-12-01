@@ -6,6 +6,7 @@ import { useState } from "react";
 // 👇 Importamos el hook del contexto de idioma
 import { useI18n } from "@/components/i18n/LanguageContext";
 import setLeadSource from "@/components/lib/leadSource";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 
 export default function Navbar() {
   const { locale, setLocale, home } = useI18n();
@@ -94,6 +95,11 @@ export default function Navbar() {
 
         {/* ACCIONES DERECHA */}
         <div className="flex items-center gap-3">
+          {/* Language Switcher */}
+          <div className="hidden sm:block">
+            <LanguageSwitcher />
+          </div>
+
           {/* CTA Desktop */}
           <a
             href="#contacto"
@@ -102,14 +108,6 @@ export default function Navbar() {
           >
             {navbar.demo}
           </a>
-
-          {/* Toggle idioma */}
-          <button
-            onClick={() => setLocale(locale === "es" ? "en" : "es")}
-            className="hidden md:inline-flex text-xs px-3 py-1 rounded-full border border-slate-700 hover:border-[#FF6F3C] hover:text-[#FF6F3C] transition-colors"
-          >
-            {locale.toUpperCase()}
-          </button>
 
           {/* Mobile Menu Button */}
           <button
@@ -190,6 +188,10 @@ export default function Navbar() {
               {navbar.faq}
             </a>
 
+            <div className="flex justify-center pt-2 pb-2">
+              <LanguageSwitcher />
+            </div>
+
             <a
               href="#contacto"
               onClick={() => {
@@ -200,14 +202,6 @@ export default function Navbar() {
             >
               {navbar.demo}
             </a>
-
-            {/* Toggle idioma mobile */}
-            <button
-              onClick={() => setLocale(locale === "es" ? "en" : "es")}
-              className="mt-3 w-full text-center text-xs px-3 py-1 rounded-full border border-slate-700 hover:border-[#FF6F3C] hover:text-[#FF6F3C] transition-colors"
-            >
-              {locale.toUpperCase()}
-            </button>
           </div>
         </div>
       )}
