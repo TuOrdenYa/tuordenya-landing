@@ -163,7 +163,7 @@ Blocks admin panel from indexing while allowing all public pages.
 ### 1. Test Rich Snippets
 **Google Rich Results Test**:
 ```
-https://search.google.com/test/rich-results?url=https://tuordenya.com
+https://search.google.com/test/rich-results?url=https://www.tuordenya.com
 ```
 
 ### 2. Validate Structured Data
@@ -185,12 +185,12 @@ https://cards-dev.twitter.com/validator
 ```
 
 ### 4. Check Sitemap
-Visit: `https://tuordenya.com/sitemap.xml`
+Visit: `https://www.tuordenya.com/sitemap.xml`
 
 Should show XML with all pages listed
 
 ### 5. Verify Robots.txt
-Visit: `https://tuordenya.com/robots.txt`
+Visit: `https://www.tuordenya.com/robots.txt`
 
 Should show crawl directives
 
@@ -222,7 +222,7 @@ Run in Chrome DevTools:
 ```
 https://search.google.com/search-console
 → Sitemaps
-→ Add sitemap URL: https://tuordenya.com/sitemap.xml
+→ Add sitemap URL: https://www.tuordenya.com/sitemap.xml
 ```
 
 ### 3. Request Indexing
@@ -430,7 +430,7 @@ Perfecto para cafeterías y food trucks. Agenda una demo gratis."
 
 ## 📝 Notes
 
-**Base URL**: Update `https://tuordenya.com` if different  
+**Base URL**: Update `https://www.tuordenya.com` if different  
 **Social Handles**: Add to structured data when created  
 **Analytics ID**: Already configured (G-WZMB6KBB54)  
 

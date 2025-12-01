@@ -109,8 +109,8 @@ Production: `https://www.tuordenya.com/admin/leads` (protected by Basic Auth)
 ### Authentication Setup (Production)
 
 1. Set environment variables in your hosting provider:
-   - `ADMIN_USER=<andresbc93>`
-   - `ADMIN_PASS=<OldTrafford_1909>`
+   - `ADMIN_USER=your_admin_username`
+   - `ADMIN_PASS=your_strong_password`
 2. Deploy the app. In production, all `/admin` routes require Basic Auth.
 3. In local development (`NODE_ENV=development`), auth is bypassed for convenience.
 

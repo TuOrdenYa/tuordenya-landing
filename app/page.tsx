@@ -1,16 +1,23 @@
-"use client";
-
 import MarketingLayout from "../components/layout/MarketingLayout";
 
 import HeroSection from "../components/landing/HeroSection";
 import BenefitsSection from "../components/landing/BenefitsSection";
 import HowItWorksSection from "../components/landing/HowItWorksSection";
 import ProDetailsSection from "../components/landing/ProDetailsSection";
-import IntegrationsSection from "../components/landing/IntegrationsSection";
 import ProductsSection from "../components/landing/ProductsSection";
-import TestimonialsSection from "../components/landing/TestimonialsSection";
 import FAQSection from "../components/landing/FAQSection";
 import ContactSection from "../components/landing/ContactSection";
+import dynamic from "next/dynamic";
+
+// Below-the-fold sections lazily loaded to reduce initial JS
+const IntegrationsSection = dynamic(
+  () => import("../components/landing/IntegrationsSection"),
+  { ssr: false, loading: () => <div className="py-12 text-sm text-slate-500">Cargando integraciones…</div> }
+);
+const TestimonialsSection = dynamic(
+  () => import("../components/landing/TestimonialsSection"),
+  { ssr: false, loading: () => <div className="py-12 text-sm text-slate-500">Cargando testimonios…</div> }
+);
 
 export default function LandingPage() {
   return (
@@ -27,13 +34,13 @@ export default function LandingPage() {
       {/* PRO DETALLADO */}
       <ProDetailsSection />
 
-      {/* INTEGRACIONES */}
+      {/* INTEGRACIONES (lazy) */}
       <IntegrationsSection />
 
       {/* PRODUCTOS */}
       <ProductsSection />
 
-      {/* TESTIMONIOS */}
+      {/* TESTIMONIOS (lazy) */}
       <TestimonialsSection />
 
       {/* FAQ */}

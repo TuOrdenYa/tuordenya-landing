@@ -336,3 +336,32 @@ Total: **23 unique source identifiers**
 - **Browser(s) Tested**: _______________
 - **Result**: ⬜ PASS / ⬜ FAIL
 - **Notes**: _______________
+
+---
+
+## 🔄 Automated Attribution Verification
+
+Use `scripts/verifyAttribution.ts` to quickly assess coverage.
+
+### Setup
+1. Ensure env vars:
+  - `NEXT_PUBLIC_SUPABASE_URL`
+  - `SUPABASE_SERVICE_ROLE_KEY` (server-side only)
+2. Install dependencies if needed: `npm install`
+
+### Run
+```bash
+npx ts-node scripts/verifyAttribution.ts
+```
+
+### Output
+- Counts per source
+- Missing sources list
+- Coverage percentage
+
+### After Running
+1. Trigger missing CTAs and submit test leads (name prefix `QA Test - SOURCE`).
+2. Re-run script until coverage is 100%.
+3. Spot-check GA events & WhatsApp messages for a sample.
+
+---
