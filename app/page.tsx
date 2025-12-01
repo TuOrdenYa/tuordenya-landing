@@ -9,15 +9,13 @@ import FAQSection from "../components/landing/FAQSection";
 import ContactSection from "../components/landing/ContactSection";
 import dynamic from "next/dynamic";
 
-// Below-the-fold sections lazily loaded to reduce initial JS
-const IntegrationsSection = dynamic(
-  () => import("../components/landing/IntegrationsSection"),
-  { ssr: false, loading: () => <div className="py-12 text-sm text-slate-500">Cargando integraciones…</div> }
-);
-const TestimonialsSection = dynamic(
-  () => import("../components/landing/TestimonialsSection"),
-  { ssr: false, loading: () => <div className="py-12 text-sm text-slate-500">Cargando testimonios…</div> }
-);
+// Below-the-fold sections lazily loaded; SSR retained for compatibility
+const IntegrationsSection = dynamic(() => import("../components/landing/IntegrationsSection"), {
+  loading: () => <div className="py-12 text-sm text-slate-500">Cargando integraciones…</div>,
+});
+const TestimonialsSection = dynamic(() => import("../components/landing/TestimonialsSection"), {
+  loading: () => <div className="py-12 text-sm text-slate-500">Cargando testimonios…</div>,
+});
 
 export default function LandingPage() {
   return (
