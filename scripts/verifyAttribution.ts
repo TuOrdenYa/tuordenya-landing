@@ -19,10 +19,8 @@ import { createClient } from '@supabase/supabase-js';
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-if (!url || !serviceKey) {
-  console.error('Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY env vars');
-  process.exit(1);
-}
+if (!url) throw new Error('Environment variable NEXT_PUBLIC_SUPABASE_URL is required');
+if (!serviceKey) throw new Error('Environment variable SUPABASE_SERVICE_ROLE_KEY is required');
 
 // Complete expected sources list (25) from docs
 const expectedSources = [
@@ -38,7 +36,7 @@ const expectedSources = [
 ];
 
 async function main() {
-  const supabase = createClient(url, serviceKey, { auth: { autoRefreshToken: false, persistSession: false } });
+  const supabase = createClient(url as string, serviceKey as string, { auth: { autoRefreshToken: false, persistSession: false } });
   const { data, error } = await supabase
     .from('leads')
     .select('source')
